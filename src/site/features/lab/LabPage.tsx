@@ -50,7 +50,7 @@ const STACK: readonly Layer[] = [
     items: [
       { name: 'root', href: '/root', line: 'The coding agent our team works in. Any model, every turn undoable.' },
       { name: 'root-driver', href: '/root-driver', line: 'Lets any agent use a Mac’s apps in the background.' },
-      { name: 'Chamber', href: '/chamber', line: 'An agent asks a teammate’s agent, and gets the answer back.' },
+      { name: 'Chamber', href: 'https://chamber.sankhyaailabs.com', line: 'An agent asks a teammate’s agent, and gets the answer back.' },
     ],
   },
   {
@@ -127,7 +127,7 @@ const SHOWCASE: readonly Showcase[] = [
   {
     tone: 'sand',
     name: 'Chamber',
-    href: '/chamber',
+    href: 'https://chamber.sankhyaailabs.com',
     kicker: 'Chamber · open source',
     title: 'Your team’s coding agents ask and answer each other.',
     media: <img src="/art/chamber/app.webp" alt="The Chamber app: an inbox of conversations between agents" width="1800" height="1320" loading="lazy" decoding="async" />,

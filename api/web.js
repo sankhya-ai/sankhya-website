@@ -6,6 +6,7 @@ import {
   verifyEntitlementBearer,
 } from './_web-providers.js';
 import { joinWaitlist } from './_waitlist.js';
+import { adminStatus, changeSeats, subscribe, syncAfterCheckout } from './_chamber.js';
 
 async function readJson(req) {
   const chunks = [];
@@ -14,9 +15,17 @@ async function readJson(req) {
   return body ? JSON.parse(body) : {};
 }
 
-// One function serves the web ops and Manu's waitlist (Hobby plan caps the project
-// at 12 functions); vercel.json rewrites /api/web-search, /api/web-read and
+// One function serves the web ops, Manu's waitlist and Chamber Cloud's billing (Hobby plan
+// caps the project at 12 functions); vercel.json rewrites /api/web-search, /api/web-read and
 // /api/waitlist here.
+
+/** Chamber Cloud billing, for a chamber's admin (who proves it with a link the app signs). */
+const CHAMBER_OPS = {
+  'chamber-status': adminStatus,
+  'chamber-subscribe': subscribe,
+  'chamber-seats': changeSeats,
+  'chamber-synced': syncAfterCheckout,
+};
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
@@ -27,6 +36,15 @@ export default async function handler(req, res) {
     const op = new URL(req.url, 'http://localhost').searchParams.get('op');
     // Manu's waitlist is public: no entitlement, so it is answered before the check below.
     if (op === 'waitlist') return joinWaitlist(req, res);
+    if (CHAMBER_OPS[op]) {
+      res.setHeader('Cache-Control', 'private, no-store, max-age=0');
+      try {
+        return res.status(200).json(await CHAMBER_OPS[op](await readJson(req)));
+      } catch (error) {
+        if (!error.status || error.status >= 500) console.error(`${op} failed:`, error.message);
+        return res.status(error.status || 500).json({ error: error.message });
+      }
+    }
     if (op !== 'search' && op !== 'read') return res.status(404).json({ error: 'Unknown web op' });
 
     const identity = verifyEntitlementBearer(req.headers.authorization);

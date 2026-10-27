@@ -2,6 +2,7 @@ import crypto from 'node:crypto';
 import { privateBillingRef, upstreamLimitUsd } from './_credits.js';
 import { admin, getAdminDb, requireEnv } from './_firebase-admin.js';
 import { createProvisionedKey, disableKey, updateKeyLimit } from './_openrouter.js';
+import { syncAllChambers } from './_chamber.js';
 
 const STALE_LOCK_MS = 5 * 60 * 1000;
 const BATCH_LIMIT = 5;
@@ -113,6 +114,15 @@ export default async function handler(req, res) {
 
   if (!verifyCronSecret(req)) {
     return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  // Chamber Cloud: renewals and lapses reach the hosted relay once a day (its grace covers the gap).
+  // Separate from the keys below, and never stops them.
+  if (process.env.CHAMBER_RAZORPAY_PLAN_ID) {
+    await syncAllChambers().then(
+      (result) => console.log('[cron] chamber cloud synced', result.synced),
+      (err) => console.error('[cron] chamber cloud sync failed:', err.message),
+    );
   }
 
   const db = getAdminDb();

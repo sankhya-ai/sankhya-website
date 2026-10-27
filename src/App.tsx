@@ -12,6 +12,7 @@ import '@/site/styles/global.css';
 import '@/site/styles/products.css';
 import SEO_ROUTES from '@/site/config/seo-routes.json';
 
+import { ChamberBilling } from '@/site/features/chamber/ChamberBilling';
 import { ChamberPage } from '@/site/features/chamber/ChamberPage';
 import { DheePage } from '@/site/features/dhee/DheePage';
 import { LabPage } from '@/site/features/lab/LabPage';
@@ -40,6 +41,10 @@ const LOCAL_HOSTNAMES = new Set(['localhost', '127.0.0.1', '[::1]']);
 const SEO = SEO_ROUTES as Record<string, { title: string; description: string; image: string; imageAlt: string; keywords?: string }>;
 const SITE_URL = 'https://www.sankhyaailabs.com';
 
+/** Chamber has its own address: chamber.sankhyaailabs.com, the page at `/` and billing at `/billing`. */
+export const CHAMBER_SITE = 'https://chamber.sankhyaailabs.com';
+const ON_CHAMBER = typeof window !== 'undefined' && window.location.hostname.startsWith('chamber.');
+
 /** Sets one attribute on a head element, creating the element if the page has none. */
 function setHead(selector: string, tag: 'meta' | 'link', identity: Record<string, string>, attribute: string, value: string) {
   let element = document.head.querySelector(selector);
@@ -57,8 +62,8 @@ function meta(key: string, content: string, attribute: 'name' | 'property' = 'na
 
 /** The head a crawler or a link preview reads, kept right as the page changes in the app. */
 function applySeo(pathname: string) {
-  const page = SEO[pathname] ?? SEO['/'];
-  const url = `${SITE_URL}${pathname === '/' ? '/' : pathname}`;
+  const page = ON_CHAMBER ? SEO['/chamber'] : SEO[pathname] ?? SEO['/'];
+  const url = ON_CHAMBER ? `${CHAMBER_SITE}${pathname}` : `${SITE_URL}${pathname === '/' ? '/' : pathname}`;
   document.title = page.title;
   meta('description', page.description);
   if (page.keywords) meta('keywords', page.keywords);
@@ -115,7 +120,13 @@ function App() {
 
   return (
     <>
-      {accountHalf ? (
+      {ON_CHAMBER ? (
+        <Routes>
+          <Route path="/billing" element={<ChamberBilling />} />
+          <Route path="/" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><ChamberPage /></ReactLenis>} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      ) : accountHalf ? (
         <Suspense fallback={<Opening />}>
           <AccountApp />
         </Suspense>
@@ -125,7 +136,6 @@ function App() {
           <Route path="/manu" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><MarketingPage /></ReactLenis>} />
           <Route path="/root" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><RootPage /></ReactLenis>} />
           <Route path="/root-driver" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><RootDriverPage /></ReactLenis>} />
-          <Route path="/chamber" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><ChamberPage /></ReactLenis>} />
           <Route path="/dhee" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><DheePage /></ReactLenis>} />
           <Route path="/tura-s1" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><TuraS1Page /></ReactLenis>} />
           <Route path="/" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><LabPage /></ReactLenis>} />

@@ -90,7 +90,7 @@ export const PRODUCTS: readonly Product[] = [
   },
   {
     name: 'Chamber',
-    href: '/chamber',
+    href: 'https://chamber.sankhyaailabs.com',
     note: 'Where your team’s agents talk',
     icon: MessagesSquare,
     group: 'Open source',

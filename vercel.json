@@ -26,6 +26,26 @@
   ],
   "rewrites": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "chamber.sankhyaailabs.com"
+        }
+      ],
+      "destination": "/chamber/index.html"
+    },
+    {
+      "source": "/billing",
+      "has": [
+        {
+          "type": "host",
+          "value": "chamber.sankhyaailabs.com"
+        }
+      ],
+      "destination": "/chamber/index.html"
+    },
+    {
       "source": "/api/waitlist",
       "destination": "/api/web?op=waitlist"
     },
@@ -66,10 +86,6 @@
       "destination": "/root-driver/index.html"
     },
     {
-      "source": "/chamber",
-      "destination": "/chamber/index.html"
-    },
-    {
       "source": "/dhee",
       "destination": "/dhee/index.html"
     },
@@ -86,6 +102,13 @@
     {
       "path": "/api/cron-managed-keys",
       "schedule": "0 2 * * *"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/chamber",
+      "destination": "https://chamber.sankhyaailabs.com/",
+      "permanent": true
     }
   ]
 }

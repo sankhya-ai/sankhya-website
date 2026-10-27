@@ -13,6 +13,8 @@ import path from 'node:path';
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const dist = path.join(root, 'dist');
 const SITE = 'https://www.sankhyaailabs.com';
+// Chamber has its own address; its page is still built here, served at chamber.sankhyaailabs.com/.
+const CHAMBER = 'https://chamber.sankhyaailabs.com/';
 const routes = JSON.parse(fs.readFileSync(path.join(root, 'src/site/config/seo-routes.json'), 'utf8'));
 const template = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
 
@@ -44,7 +46,7 @@ const ENTITY = {
   '/': {
     '@type': 'ItemList',
     name: 'What Sankhya AI Labs makes',
-    itemListElement: ['/manu', '/manu-s1', 'https://www.turalearn.com', '/root', '/root-driver', '/chamber', '/dhee', '/tura-s1'].map((href, index) => ({
+    itemListElement: ['/manu', '/manu-s1', 'https://www.turalearn.com', '/root', '/root-driver', CHAMBER, '/dhee', '/tura-s1'].map((href, index) => ({
       '@type': 'ListItem', position: index + 1, url: href.startsWith('http') ? href : `${SITE}${href}`,
     })),
   },
@@ -57,7 +59,7 @@ const ENTITY = {
   '/manu-s1': code('Manu-S1', routes['/manu-s1'].description, `${SITE}/manu-s1`, 'https://huggingface.co/sankhya-aI/manu-s1-4b'),
   '/root': macApp('root', routes['/root'].description, `${SITE}/root`),
   '/root-driver': code('root-driver', routes['/root-driver'].description, `${SITE}/root-driver`, 'https://github.com/tura-learn/root-driver', { programmingLanguage: 'Swift', runtimePlatform: 'macOS' }),
-  '/chamber': macApp('Chamber', routes['/chamber'].description, `${SITE}/chamber`, { sameAs: 'https://github.com/tura-learn/chamber', license: 'https://www.apache.org/licenses/LICENSE-2.0' }),
+  '/chamber': macApp('Chamber', routes['/chamber'].description, CHAMBER, { sameAs: 'https://github.com/tura-learn/chamber', license: 'https://www.apache.org/licenses/LICENSE-2.0' }),
   '/dhee': code('Dhee', routes['/dhee'].description, `${SITE}/dhee`, 'https://github.com/tura-learn/Dhee', { programmingLanguage: 'Python' }),
   '/tura-s1': code('Tura-S1-4B', routes['/tura-s1'].description, `${SITE}/tura-s1`, 'https://huggingface.co/AshishDwi99/tura-s1-4b', { license: 'https://www.apache.org/licenses/LICENSE-2.0' }),
 };
@@ -70,7 +72,7 @@ function replaceTag(html, pattern, replacement, label) {
 }
 
 function headFor(route, page) {
-  const url = `${SITE}${route === '/' ? '/' : route}`;
+  const url = route === '/chamber' ? CHAMBER : `${SITE}${route === '/' ? '/' : route}`;
   const image = `${SITE}${page.image}`;
   let html = template;
   html = replaceTag(html, /<title>[^<]*<\/title>/, `<title>${escape(page.title)}</title>`, 'title');
