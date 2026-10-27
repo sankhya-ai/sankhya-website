@@ -26,26 +26,6 @@
   ],
   "rewrites": [
     {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "chamber.sankhyaailabs.com"
-        }
-      ],
-      "destination": "/chamber/index.html"
-    },
-    {
-      "source": "/billing",
-      "has": [
-        {
-          "type": "host",
-          "value": "chamber.sankhyaailabs.com"
-        }
-      ],
-      "destination": "/chamber/index.html"
-    },
-    {
       "source": "/api/waitlist",
       "destination": "/api/web?op=waitlist"
     },
