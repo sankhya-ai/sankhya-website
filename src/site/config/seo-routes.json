@@ -1,0 +1,53 @@
+{
+  "/": {
+    "title": "Sankhya AI Labs – An AI lab in India building models, memory and agents",
+    "description": "Sankhya AI Labs is an AI lab in India that builds AI from the model up: our own decision models (Tura-S1, Manu-S1), memory (Dhee) and agents (root, root-driver, Chamber), shipped as products: Tura, a tutor for students, and Manu, a case diary for Indian courts.",
+    "image": "/brand/sankhya-social-card.jpg",
+    "imageAlt": "Sankhya AI Labs: a team at work under a pavilion hung with a lattice model, in ink and watercolour",
+    "preload": "/art/tura-ai-research.webp",
+    "keywords": "AI lab, AI labs in India, Indian AI lab, AI research lab India, Sankhya AI Labs, decision models, agent memory, coding agent, computer use agent, open weights"
+  },
+  "/manu": {
+    "title": "Manu – Case diary for Indian courts",
+    "description": "Manu is the case diary for Indian advocates, law firms and judges. Follow a case by its CNR; every morning Manu reads the court, notices what changed, reads each new order, and tells you what to do and by when, with the words it came from. By Sankhya AI Labs.",
+    "image": "/brand/manu-social-card.jpg",
+    "imageAlt": "Manu, the case diary that reads the court for you, by Sankhya AI Labs, over a painting of the Supreme Court of India",
+    "preload": "/art/manu-terrace.webp"
+  },
+  "/manu-s1": {
+    "title": "Manu-S1 – A fast decision model for Indian court procedure",
+    "description": "Manu-S1 reads a court record and answers one procedural question in a blink: is it in time, what kind of order is it, which court should hear it. 91.8% on 2,346 High Court orders it never saw, 64 ms a decision. Open weights, from Sankhya AI Labs.",
+    "image": "/brand/manu-social-card.jpg",
+    "imageAlt": "Manu-S1, Sankhya AI Labs' decision model for Indian court procedure"
+  },
+  "/root": {
+    "title": "root – The coding agent we work in · Sankhya AI Labs",
+    "description": "root is a free coding agent for the Mac. Bring your OpenRouter key and any model; a decision model picks every step and Dhee remembers the project, so smaller models finish long tasks. Every turn can be undone.",
+    "image": "/brand/sankhya-social-card.jpg",
+    "imageAlt": "root, the coding agent from Sankhya AI Labs"
+  },
+  "/root-driver": {
+    "title": "root-driver – Let any agent use your Mac’s apps · Sankhya AI Labs",
+    "description": "root-driver lets Claude Code, Codex, Cursor and any MCP agent read a Mac app's window and click, type and fill forms in it in the background, without moving your cursor or taking focus. One signed app, one permission grant, every agent. Open source.",
+    "image": "/brand/sankhya-social-card.jpg",
+    "imageAlt": "root-driver, background computer use for any agent on a Mac"
+  },
+  "/chamber": {
+    "title": "Chamber – Where your team’s coding agents talk · Sankhya AI Labs",
+    "description": "Chamber is Slack for coding agents: your agent asks a teammate's agent and gets the answer back, file attached, and the people see every talk. Sealed on your machine, relayed through your own Cloudflare. Open source, free for the Mac.",
+    "image": "/brand/sankhya-social-card.jpg",
+    "imageAlt": "Chamber, the shared workspace for a team's coding agents"
+  },
+  "/dhee": {
+    "title": "Dhee – Typed memory for agents · Sankhya AI Labs",
+    "description": "Dhee keeps an agent's memory as typed facts, replaces a fact when it changes, and works out what is holding and what is slipping. 99.4% R@5 on LongMemEval. Open source; the memory in Tura and root.",
+    "image": "/brand/sankhya-social-card.jpg",
+    "imageAlt": "Dhee, the open-source memory from Sankhya AI Labs"
+  },
+  "/tura-s1": {
+    "title": "Tura-S1 – A decision in one forward pass · Sankhya AI Labs",
+    "description": "Tura-S1-4B is an open-weights decision model: it scores every option an agent has, which tool next or reply, in one forward pass. 98.5% on agent steps it never saw, 178 ms on one L40S. Apache-2.0.",
+    "image": "/brand/sankhya-social-card.jpg",
+    "imageAlt": "Tura-S1-4B, a decision model from Sankhya AI Labs"
+  }
+}

@@ -11,7 +11,7 @@ export function AccountHeader() {
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <div className="flex h-8 items-center justify-center border-b border-white/10 bg-[#080706] px-5 font-mono text-[9px] font-bold uppercase tracking-[0.09em] text-[#f8ead8] md:text-[10px]">
-        Sankhya AI Labs · the makers of Manu
+        Sankhya AI Labs
       </div>
       <nav className="h-16 border-b border-[#cbc5ba] bg-[#f0ede6]/90 backdrop-blur-2xl md:h-14" aria-label="Primary navigation">
         <div className="mx-auto flex h-full max-w-[1540px] items-center justify-between">
@@ -23,8 +23,7 @@ export function AccountHeader() {
             </span>
           </a>
           <div className="flex items-center pr-2">
-            <a className={link} href="/">Manu</a>
-            <a className={`${link} hidden sm:inline-flex`} href="/about">About</a>
+            <a className={link} href="/manu">Manu</a>
             <NavLink className={link} to="/account">Account</NavLink>
           </div>
         </div>
@@ -39,7 +38,7 @@ export function AccountFooter() {
       <div className="mx-auto flex max-w-[1540px] flex-wrap items-center justify-between gap-3">
         <span>© {new Date().getFullYear()} Sankhya AI Labs</span>
         <span className="flex gap-5">
-          <a href="/" className="hover:text-[#050505]">Manu</a>
+          <a href="/manu" className="hover:text-[#050505]">Manu</a>
           <a href="mailto:hello@sankhyaailabs.com" className="hover:text-[#050505]">hello@sankhyaailabs.com</a>
         </span>
       </div>

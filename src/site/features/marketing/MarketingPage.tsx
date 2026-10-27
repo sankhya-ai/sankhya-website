@@ -108,7 +108,7 @@ export function MarketingPage() {
             </h1>
             <div className="hero__actions">
               <WaitlistButton tone="ink" arrow={false} />
-              <ButtonLink href="/#how-it-works" tone="outline" arrow>
+              <ButtonLink href="/manu#how-it-works" tone="outline" arrow>
                 See how it works
               </ButtonLink>
             </div>

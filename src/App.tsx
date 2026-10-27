@@ -9,15 +9,24 @@ import '@fontsource/averia-serif-libre/latin-300.css';
 import '@fontsource/averia-serif-libre/latin-300-italic.css';
 import '@fontsource-variable/roboto-flex/wght.css';
 import '@/site/styles/global.css';
+import '@/site/styles/products.css';
+import SEO_ROUTES from '@/site/config/seo-routes.json';
 
-import { AboutPage } from '@/site/features/about/AboutPage';
+import { ChamberPage } from '@/site/features/chamber/ChamberPage';
+import { DheePage } from '@/site/features/dhee/DheePage';
+import { LabPage } from '@/site/features/lab/LabPage';
 import { MarketingPage } from '@/site/features/marketing/MarketingPage';
 import { ModelPage } from '@/site/features/model/ModelPage';
+import { RootPage } from '@/site/features/root/RootPage';
+import { RootDriverPage } from '@/site/features/root-driver/RootDriverPage';
+import { TuraS1Page } from '@/site/features/tura-s1/TuraS1Page';
 
 /**
  * Two halves in one deployment.
  *
- * The public site is Manu, from Sankhya AI Labs: `/` and `/about`. The account
+ * The public site is Sankhya AI Labs: the lab at `/`, Manu at `/manu`, and a
+ * page for each of the parts we make (`/root`, `/root-driver`, `/chamber`, `/dhee`, `/tura-s1`,
+ * which moved here from turalearn.com). Tura itself lives on turalearn.com. The account
  * area (`/account/*`) and the privacy policy stay as they were: customers sign
  * in, pay and hand off to the desktop apps there, and the API behind them
  * (`api/`) is unchanged. The account half brings its own Tailwind sheet and is
@@ -27,11 +36,43 @@ const AccountApp = lazy(() => import('@/account/AccountApp').then((module) => ({
 
 const LOCAL_HOSTNAMES = new Set(['localhost', '127.0.0.1', '[::1]']);
 
-const TITLES: Record<string, string> = {
-  '/': 'Manu – Case diary for Indian courts',
-  '/about': 'About Manu – Sankhya AI Labs',
-  '/manu-s1': 'Manu-S1 – A fast decision model for Indian court procedure',
-};
+/** Each public page's title, description and card; also read at build by scripts/prerender-heads.mjs. */
+const SEO = SEO_ROUTES as Record<string, { title: string; description: string; image: string; imageAlt: string; keywords?: string }>;
+const SITE_URL = 'https://www.sankhyaailabs.com';
+
+/** Sets one attribute on a head element, creating the element if the page has none. */
+function setHead(selector: string, tag: 'meta' | 'link', identity: Record<string, string>, attribute: string, value: string) {
+  let element = document.head.querySelector(selector);
+  if (!element) {
+    element = document.createElement(tag);
+    for (const [key, val] of Object.entries(identity)) element.setAttribute(key, val);
+    document.head.appendChild(element);
+  }
+  element.setAttribute(attribute, value);
+}
+
+function meta(key: string, content: string, attribute: 'name' | 'property' = 'name') {
+  setHead(`meta[${attribute}="${key}"]`, 'meta', { [attribute]: key }, 'content', content);
+}
+
+/** The head a crawler or a link preview reads, kept right as the page changes in the app. */
+function applySeo(pathname: string) {
+  const page = SEO[pathname] ?? SEO['/'];
+  const url = `${SITE_URL}${pathname === '/' ? '/' : pathname}`;
+  document.title = page.title;
+  meta('description', page.description);
+  if (page.keywords) meta('keywords', page.keywords);
+  setHead('link[rel="canonical"]', 'link', { rel: 'canonical' }, 'href', url);
+  meta('og:title', page.title, 'property');
+  meta('og:description', page.description, 'property');
+  meta('og:url', url, 'property');
+  meta('og:image', `${SITE_URL}${page.image}`, 'property');
+  meta('og:image:alt', page.imageAlt, 'property');
+  meta('twitter:title', page.title);
+  meta('twitter:description', page.description);
+  meta('twitter:image', `${SITE_URL}${page.image}`);
+  meta('twitter:image:alt', page.imageAlt);
+}
 
 function isAccountPath(pathname: string) {
   return pathname === '/account' || pathname.startsWith('/account/') || pathname === '/privacy';
@@ -53,7 +94,7 @@ function useHalfBoundary(accountHalf: boolean) {
 function useSitePageChange(pathname: string, hash: string, active: boolean) {
   useEffect(() => {
     if (!active) return;
-    document.title = TITLES[pathname] ?? TITLES['/'];
+    applySeo(pathname);
     if (!hash) window.scrollTo(0, 0);
   }, [active, pathname, hash]);
 }
@@ -81,8 +122,13 @@ function App() {
       ) : (
         <Routes>
           <Route path="/manu-s1" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><ModelPage /></ReactLenis>} />
-          <Route path="/about" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><AboutPage /></ReactLenis>} />
-          <Route path="/" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><MarketingPage /></ReactLenis>} />
+          <Route path="/manu" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><MarketingPage /></ReactLenis>} />
+          <Route path="/root" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><RootPage /></ReactLenis>} />
+          <Route path="/root-driver" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><RootDriverPage /></ReactLenis>} />
+          <Route path="/chamber" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><ChamberPage /></ReactLenis>} />
+          <Route path="/dhee" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><DheePage /></ReactLenis>} />
+          <Route path="/tura-s1" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><TuraS1Page /></ReactLenis>} />
+          <Route path="/" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><LabPage /></ReactLenis>} />
           {/* The old product and blog pages are gone; their addresses land on the home page. */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

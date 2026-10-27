@@ -50,6 +50,34 @@
       "destination": "/api/web?op=read"
     },
     {
+      "source": "/manu",
+      "destination": "/manu/index.html"
+    },
+    {
+      "source": "/manu-s1",
+      "destination": "/manu-s1/index.html"
+    },
+    {
+      "source": "/root",
+      "destination": "/root/index.html"
+    },
+    {
+      "source": "/root-driver",
+      "destination": "/root-driver/index.html"
+    },
+    {
+      "source": "/chamber",
+      "destination": "/chamber/index.html"
+    },
+    {
+      "source": "/dhee",
+      "destination": "/dhee/index.html"
+    },
+    {
+      "source": "/tura-s1",
+      "destination": "/tura-s1/index.html"
+    },
+    {
       "source": "/((?!api/|.*\\..*).*)",
       "destination": "/index.html"
     }

@@ -28,6 +28,10 @@
   --navy: #2b2019;
   /* The painted tiles' own paper, so a section on one has no visible edge. */
   --paper-painted: #f3eada;
+  /* Tura's tones, which the lab's pages wear (see .lab-tone below). */
+  --paper-blue: #eaf3f6;
+  --blue: #8db8d5;
+  --blue-dark: #356f96;
   --radius-lg: 32px;
   --radius-md: 22px;
   --radius-sm: 14px;
@@ -976,3 +980,60 @@ button.button-link:disabled { cursor: default; opacity: .6; transform: none; }
 .site-nav__menu b i { border-radius: 999px; padding: 2px 7px; background: var(--orange-deep); color: white; font-size: 10px; font-style: normal; font-weight: 600; }
 .site-nav__menu small { display: block; margin-top: 2px; color: var(--ink-faint); font-size: 12px; }
 .mobile-menu a small { display: block; color: var(--ink-faint); font-size: 12px; font-weight: 400; }
+
+/* ── The lab: its lockup, and the products menu in groups ─────────────── */
+/* The lab's own lockup: one name, no divider. */
+.brand--lab .brand__by { gap: 0; margin-left: -4px; color: var(--ink-soft); font-family: var(--font-display); font-size: 23px; font-weight: 300; letter-spacing: -.015em; }
+.brand--lab .brand__by::before { display: none; }
+@media (max-width: 720px) { .brand--lab .brand__by { font-size: 19px; } }
+
+.site-nav__menu--grouped { width: min(600px, calc(100vw - 48px)); grid-template-columns: 1fr 1fr; gap: 6px 10px; padding: 12px; }
+.site-nav__group { display: grid; align-content: start; gap: 2px; }
+.site-nav__group > p { margin: 6px 12px 4px; color: var(--ink-faint); font: 600 10px/1 'Manu Pixel', monospace; letter-spacing: .12em; text-transform: uppercase; }
+.site-nav__menu-out { margin-left: -2px; color: var(--ink-faint); }
+.site-nav__menu--grouped { left: auto; right: -140px; }
+.mobile-menu__group { display: grid; }
+.mobile-menu__group > p { margin: 12px 12px 2px; color: var(--ink-faint); font: 600 10px/1 'Manu Pixel', monospace; letter-spacing: .12em; text-transform: uppercase; }
+.mobile-menu small { display: block; color: var(--ink-faint); font-size: 12px; font-weight: 400; }
+
+
+/* ── Tura's colours, for everything but Manu ─────────────────────────────
+   Manu keeps Sankhya's orange. The lab's own pages and the products that
+   moved here from turalearn.com wear Tura's paper and its four pastels:
+   sky blue, rose, sage and saffron. Only the logo stays orange. */
+.lab-tone {
+  --orange-soft: #8db8d5;
+  --orange-deep: #356f96;
+  --paper-peach: #eaf3f6;
+  --navy: #10293e;
+  --tone-blue: #d7e8f1;
+  --tone-blue-ink: #356f96;
+  --tone-rose: #efd9d1;
+  --tone-rose-ink: #9a5440;
+  --tone-sage: #dfe3cc;
+  --tone-sage-ink: #5f6a2c;
+  --tone-sand: #f3e2c7;
+  --tone-sand-ink: #93622a;
+}
+.lab-tone ::selection { background: rgba(141, 184, 213, .42); }
+.lab-tone .site-nav { background: linear-gradient(90deg, rgba(246,244,238,.94), rgba(215,232,241,.9) 52%, rgba(244,238,219,.92)); }
+.lab-tone .site-footer { background: #d8eaf0; }
+.lab-tone .site-footer__wordmark { color: #80abc1; }
+
+/* The footer's wordmark is the lab's name in Devanagari, सांख्य, in Baloo 2
+   (the wordmark face, which carries Devanagari). Large, whole, left-aligned
+   with the content, on the last row so it sits just above the footer's edge. */
+.site-footer:has(.site-footer__wordmark[lang='hi']) .site-footer__bottom { display: none; }
+.site-footer__top:has(.site-footer__wordmark[lang='hi']) { min-height: 0; padding-bottom: 0; }
+.site-footer__wordmark[lang='hi'] { position: relative; bottom: auto; left: auto; grid-column: 1 / -1; grid-row: auto; order: 10; margin: -.06em 0 -.14em -.03em; font-family: 'Baloo 2', var(--font-sans); font-size: clamp(6rem, 21vw, 20rem); font-weight: 700; letter-spacing: 0; line-height: 1.1; }
+@media (max-width: 720px) { .site-footer__wordmark[lang='hi'] { margin: 12px 0 8px; font-size: clamp(5rem, 30vw, 9rem); } }
+
+/* Eight products in two short columns, so the footer stays low. */
+.site-footer__nav.site-footer__nav--two { display: grid; grid-template-columns: auto auto; grid-template-rows: auto repeat(4, auto); grid-auto-flow: column; gap: 11px 36px; align-content: start; }
+.site-footer__nav--two > p { grid-row: 1; grid-column: 1 / -1; }
+
+/* The brand on a product's pages is three links (mark and lab → home, the
+   product's name → its page); they keep the lockup's spacing and colour. */
+span.brand > a { display: inline-flex; align-items: center; color: inherit; }
+span.brand > a.brand__by { color: var(--ink-faint); }
+span.brand > a:hover strong, span.brand > a.brand__by:hover { color: var(--ink); }
