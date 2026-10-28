@@ -10,7 +10,6 @@ export function ChamberHeader() {
       </a>
       <nav aria-label="Chamber">
         <a href="/#what">Features</a>
-        <a href="/#pricing">Pricing</a>
         <a href="/#self-host">Self-host</a>
         <a href={CHAMBER_GITHUB} target="_blank" rel="noopener noreferrer" className="cx-nav__gh"><GitHubMark /> GitHub</a>
       </nav>

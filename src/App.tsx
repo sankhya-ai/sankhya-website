@@ -12,7 +12,6 @@ import '@/site/styles/global.css';
 import '@/site/styles/products.css';
 import SEO_ROUTES from '@/site/config/seo-routes.json';
 
-import { ChamberBilling } from '@/site/features/chamber/ChamberBilling';
 import { ChamberPage } from '@/site/features/chamber/ChamberPage';
 import { DheePage } from '@/site/features/dhee/DheePage';
 import { LabPage } from '@/site/features/lab/LabPage';
@@ -41,7 +40,7 @@ const LOCAL_HOSTNAMES = new Set(['localhost', '127.0.0.1', '[::1]']);
 const SEO = SEO_ROUTES as Record<string, { title: string; description: string; image: string; imageAlt: string; keywords?: string }>;
 const SITE_URL = 'https://www.sankhyaailabs.com';
 
-/** Chamber has its own address: chamber.sankhyaailabs.com, the page at `/` and billing at `/billing`. */
+/** Chamber has its own address: chamber.sankhyaailabs.com. */
 export const CHAMBER_SITE = 'https://chamber.sankhyaailabs.com';
 const ON_CHAMBER = typeof window !== 'undefined' && window.location.hostname.startsWith('chamber.');
 
@@ -122,7 +121,6 @@ function App() {
     <>
       {ON_CHAMBER ? (
         <Routes>
-          <Route path="/billing" element={<ChamberBilling />} />
           <Route path="/" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><ChamberPage /></ReactLenis>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
