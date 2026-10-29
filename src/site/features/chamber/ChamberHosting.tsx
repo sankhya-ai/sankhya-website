@@ -10,6 +10,8 @@ const OPTIONS = [
     name: 'Your Cloudflare account',
     lines: [
       'Chamber sets up the relay for you on Cloudflare’s free plan: you sign in to Cloudflare once',
+      'Each chamber gets its own relay, so a second one never touches the first',
+      'Optional file storage (R2) for files up to 25 MB',
       'Nothing to run or keep up',
     ],
     cta: { label: 'Download for Mac', href: CHAMBER_DOWNLOAD },

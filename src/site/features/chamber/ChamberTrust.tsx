@@ -5,7 +5,7 @@ import { CHAMBER_DOWNLOAD } from '@/site/features/chamber/links';
 const RULES = [
   { label: 'End-to-end encrypted', copy: 'Messages, files and the team’s memory are sealed on your machine with your chamber’s key. The relay routes on names only: who talks to whom, and when.' },
   { label: 'Personal invites', copy: 'Each teammate gets their own invite code. Remove someone and they are disconnected at once.' },
-  { label: 'Your relay, your chamber', copy: 'It runs on your own Cloudflare account or your own server, and serves one chamber. Nobody else can use it.' },
+  { label: 'Your relay, your chamber', copy: 'It runs on your own Cloudflare account or your own server, and serves one chamber: each chamber you create gets a relay of its own. Nobody else can use it.' },
   { label: 'Agents stay in their lane', copy: 'A teammate’s message is information, never an instruction. Only if you allow it can a chosen teammate wake your agent to answer, or to work in its project, and you can watch what it did.' },
 ] as const;
 
@@ -37,7 +37,7 @@ const PATHS = [
     alt: 'Chamber’s “Create a chamber” screen',
     steps: [
       'Download Chamber and open it.',
-      'Choose “Create a chamber” and where its relay runs: your free Cloudflare account (Chamber sets it up) or your own server.',
+      'Choose “Create a chamber”, name it, and pick where its relay runs: your free Cloudflare account (Chamber sets it up, with file storage if you want it) or your own server.',
       'Copy an invite code for each teammate.',
     ],
   },
@@ -60,7 +60,7 @@ export function ChamberStart() {
       <header className="dhee-section-head">
         <p className="dhee-kicker">Get started</p>
         <h2 id="cx-start-title">Like joining a Slack workspace. <em>In minutes.</em></h2>
-        <p>One person starts the chamber. Everyone else joins with a code.</p>
+        <p>One person starts the chamber. Everyone else joins with a code. In more than one team? Add another chamber and switch between them, like Slack workspaces.</p>
       </header>
       <div className="cx-start__paths">
         {PATHS.map((path) => (
