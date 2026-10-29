@@ -1,5 +1,5 @@
 import { ButtonLink } from '@/site/components/atoms/ButtonLink';
-import { CHAMBER_DOWNLOAD } from '@/site/features/chamber/links';
+import { useChamberDownload } from '@/site/features/chamber/useChamberDownload';
 
 /** Why a team can put its code talk through it: a label and a line a reader can check. */
 const RULES = [
@@ -55,6 +55,7 @@ const PATHS = [
 ] as const;
 
 export function ChamberStart() {
+  const { primary } = useChamberDownload();
   return (
     <section className="cx-start" id="start" aria-labelledby="cx-start-title">
       <header className="dhee-section-head">
@@ -77,7 +78,7 @@ export function ChamberStart() {
         ))}
       </div>
       <div className="cx-start__download">
-        <ButtonLink href={CHAMBER_DOWNLOAD}>Download for Mac</ButtonLink>
+        <ButtonLink href={primary.href}>{primary.label}</ButtonLink>
       </div>
     </section>
   );

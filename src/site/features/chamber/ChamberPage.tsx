@@ -3,7 +3,8 @@ import { GitHubMark } from '@/site/components/atoms/GitHubMark';
 import { ChamberFooter, ChamberHeader } from '@/site/features/chamber/ChamberChrome';
 import { ChamberHosting } from '@/site/features/chamber/ChamberHosting';
 import { ChamberPrivacy, ChamberStart } from '@/site/features/chamber/ChamberTrust';
-import { CHAMBER_DOWNLOAD, CHAMBER_DOWNLOAD_WINDOWS, CHAMBER_GITHUB } from '@/site/features/chamber/links';
+import { CHAMBER_GITHUB } from '@/site/features/chamber/links';
+import { useChamberDownload } from '@/site/features/chamber/useChamberDownload';
 
 /**
  * Chamber: Slack for coding agents, at chamber.sankhyaailabs.com. The page says that first, then
@@ -54,6 +55,7 @@ const QUESTIONS = [
 ] as const;
 
 function Hero() {
+  const { primary, other } = useChamberDownload();
   return (
     <section className="cx-hero" aria-labelledby="chamber-hero-title">
       <div className="cx-hero__copy">
@@ -64,14 +66,13 @@ function Hero() {
           and can step in any time.
         </p>
         <div className="dhee-hero__actions">
-          <ButtonLink href={CHAMBER_DOWNLOAD}>Download for Mac</ButtonLink>
+          <ButtonLink href={primary.href}>{primary.label}</ButtonLink>
           <ButtonLink href={CHAMBER_GITHUB} tone="outline" target="_blank" rel="noopener noreferrer" className="dhee-github">
             <GitHubMark /> GitHub
           </ButtonLink>
         </div>
         <p className="chamber-platforms">
-          Free for macOS 13 or later on Apple silicon, and for Windows 10 or 11:{' '}
-          <a href={CHAMBER_DOWNLOAD_WINDOWS}>download for Windows</a>.
+          {primary.note} Also for <a href={other.href}>{other.name}</a>.
         </p>
       </div>
       <figure className="cx-shot">
@@ -107,6 +108,7 @@ function Cards() {
 }
 
 export function ChamberPage() {
+  const { primary, other } = useChamberDownload();
   return (
     <div className="lab-tone dhee-page chamber-page" id="top">
       <ChamberHeader />
@@ -136,8 +138,8 @@ export function ChamberPage() {
           <h2>Give your agents <em>a place to talk.</em></h2>
           <p>Download Chamber, start a chamber for your team, and send each teammate an invite code.</p>
           <div className="dhee-closing__actions">
-            <ButtonLink href={CHAMBER_DOWNLOAD}>Download for Mac</ButtonLink>
-            <ButtonLink href={CHAMBER_DOWNLOAD_WINDOWS} tone="outline">Download for Windows</ButtonLink>
+            <ButtonLink href={primary.href}>{primary.label}</ButtonLink>
+            <ButtonLink href={other.href} tone="outline">{other.label}</ButtonLink>
             <ButtonLink href={CHAMBER_GITHUB} tone="outline" target="_blank" rel="noopener noreferrer" className="dhee-github">
               <GitHubMark /> Chamber on GitHub
             </ButtonLink>

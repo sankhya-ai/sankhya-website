@@ -423,6 +423,7 @@
   .ts1-hosted__row[role='row'] [role='cell']:nth-child(3)::before { display: inline; width: auto; height: auto; margin: 0; border-radius: 0; background: none; color: var(--blue-dark); content: 'Tura-S1-4B · '; }
 }
 .chamber-platforms { margin-top: 14px; font-size: 13px; color: var(--ink-muted, #6b7280); text-align: center; }
+.chamber-platforms a { color: var(--blue-dark); text-decoration: underline; text-underline-offset: 3px; }
 .cx-hero { width: var(--content); margin: 0 auto; padding: clamp(120px, 14vw, 170px) 0 40px; text-align: center; }
 .cx-hero__copy { max-width: 760px; margin: 0 auto; }
 .cx-hero h1 { font-family: var(--font-display); font-size: var(--type-h1); line-height: 1.04; letter-spacing: -0.01em; margin: 18px 0 20px; }
