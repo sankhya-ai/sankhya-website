@@ -488,3 +488,43 @@
   .cx-nav nav { display: none; }
   .cx-nav { justify-content: space-between; }
 }
+
+/* ----- Chamber on a computer: every section is one screen (see .faq-section and SitePage). ----- */
+@media (min-width: 900px) {
+  .cx-hero { padding-top: clamp(104px, 17svh, 170px); padding-bottom: 0; }
+  .cx-hero h1 { margin: 14px 0 16px; }
+  .cx-hero .dhee-hero__actions { flex-wrap: wrap; justify-content: center; }
+  /* The app's screenshot: as large as fits below the header, never cut. */
+  .cx-shot { width: fit-content; max-width: 100%; margin-top: clamp(40px, 9svh, 96px); }
+  .cx-shot img { width: auto; max-width: 100%; max-height: calc(100svh - 128px); }
+  /* What it does: the heading, then one card per screen. */
+  .cx-cards, .cx-start { padding: var(--screen-pad) 0 0; }
+  .cx-rows { margin-top: clamp(24px, 5svh, 48px); gap: clamp(20px, 4svh, 40px); }
+  .cx-row { max-height: calc(100svh - 120px); padding: clamp(20px, 3.4svh, 40px); }
+  .cx-row h3 { font-size: clamp(24px, 4.4svh, 40px); }
+  .cx-row p { font-size: clamp(15px, 2.3svh, 18px); }
+  .cx-row img { max-height: calc(100svh - 190px); object-fit: cover; object-position: top left; }
+  .cx-cards__works { margin-top: clamp(20px, 4svh, 36px); }
+  /* Get started: the two paths, their screens cropped to the top so both fit side by side. */
+  .cx-start__paths { margin-top: clamp(20px, 4svh, 40px); }
+  .cx-path { padding: 12px 12px 20px; }
+  .cx-path img { height: clamp(120px, 30svh, 320px); object-fit: cover; object-position: top; }
+  .cx-path .dhee-kicker { margin: clamp(12px, 2.4svh, 22px) 10px 4px; }
+  .cx-path h3 { font-size: clamp(20px, 3.4svh, 28px); margin: 0 10px 8px; }
+  .cx-path ol { margin: 0 10px; font-size: clamp(14px, 2.1svh, 16px); line-height: 1.5; }
+  .cx-path li + li { margin-top: 4px; }
+  /* Where it runs. */
+  .cx-pricing { padding: var(--screen-pad) 0 0; }
+  .cx-plans { margin-top: clamp(24px, 5svh, 56px); }
+  .cx-plan { gap: 14px; padding: clamp(20px, 3.4svh, 30px) 24px; }
+  /* Private by design: small, four rules in a grid. */
+  .chamber-privacy { margin-top: var(--screen-pad); padding: clamp(40px, 8svh, 80px) 0; }
+  .chamber-privacy .dhee-section-head { gap: 12px; }
+  .chamber-privacy__rows { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 48px; margin-top: clamp(24px, 5svh, 48px); }
+  .chamber-privacy__rows > div { display: block; padding: clamp(14px, 2.6svh, 22px) 0; }
+  .chamber-privacy__rows > div:nth-last-child(2) { border-bottom: 1px solid rgba(255,255,255,.12); }
+  .chamber-privacy__rows dt { margin-bottom: 6px; font-size: clamp(18px, 2.8svh, 22px); }
+  .chamber-privacy__rows dd { font-size: clamp(14px, 2.1svh, 15px); line-height: 1.55; }
+  .chamber-page .faq-section { padding: var(--screen-pad) 0; }
+  .chamber-closing { padding: clamp(40px, 9svh, 100px) 28px; }
+}

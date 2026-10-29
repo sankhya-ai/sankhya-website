@@ -122,6 +122,7 @@ export function DheeRules() {
         <ol className="dhee-rules__steps">
           {RULES.map((item, index) => (
             <li
+              data-snap
               key={item.title}
               ref={(node) => { stepRefs.current[index] = node; }}
               className={pinned && index === active ? 'is-active' : undefined}

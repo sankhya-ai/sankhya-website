@@ -35,7 +35,7 @@ export function S1Benchmarks() {
         </p>
       </header>
 
-      <div className="ts1-bars" role="list">
+      <div className="ts1-bars" data-snap role="list">
         {BARS.map((bar) => (
           <div className="ts1-bars__row" role="listitem" key={bar.label}>
             <div className="ts1-bars__label">
@@ -51,7 +51,7 @@ export function S1Benchmarks() {
         <p className="ts1-bars__legend"><span><i className="is-base" />Plumb-4B, the base</span><span><i className="is-ours" />Tura-S1-4B</span></p>
       </div>
 
-      <div className="dhee-differences ts1-table" role="table" aria-label="Tura-S1-4B compared with Plumb-4B">
+      <div className="dhee-differences ts1-table" data-snap role="table" aria-label="Tura-S1-4B compared with Plumb-4B">
         <div className="dhee-differences__row dhee-differences__row--head" role="row">
           <span role="columnheader">Benchmark</span>
           <span role="columnheader">Plumb-4B</span>

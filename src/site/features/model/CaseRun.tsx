@@ -65,7 +65,7 @@ export function CaseRun() {
   }, [started, read, done]);
 
   return (
-    <div className="s1-case">
+    <div className="s1-case" data-snap>
       <div className="s1-ledger" ref={box}>
         <header className="s1-ledger__head">
           <div className="s1-ledger__count">

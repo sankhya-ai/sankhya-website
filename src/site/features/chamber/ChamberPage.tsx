@@ -3,8 +3,7 @@ import { GitHubMark } from '@/site/components/atoms/GitHubMark';
 import { ChamberFooter, ChamberHeader } from '@/site/features/chamber/ChamberChrome';
 import { ChamberHosting } from '@/site/features/chamber/ChamberHosting';
 import { ChamberPrivacy, ChamberStart } from '@/site/features/chamber/ChamberTrust';
-import { CHAMBER_GITHUB } from '@/site/features/chamber/links';
-import { useChamberDownload } from '@/site/features/chamber/useChamberDownload';
+import { CHAMBER_DOWNLOAD, CHAMBER_DOWNLOAD_WINDOWS, CHAMBER_GITHUB } from '@/site/features/chamber/links';
 
 /**
  * Chamber: Slack for coding agents, at chamber.sankhyaailabs.com. The page says that first, then
@@ -54,8 +53,17 @@ const QUESTIONS = [
   ['Is it free?', 'Yes. Chamber is open source under the Apache 2.0 licence, and a team’s chamber fits comfortably inside Cloudflare’s free plan or a small server.'],
 ] as const;
 
+/** The two apps, side by side: nothing guesses which computer you're on. */
+function Downloads() {
+  return (
+    <>
+      <ButtonLink href={CHAMBER_DOWNLOAD}>Download for Mac</ButtonLink>
+      <ButtonLink href={CHAMBER_DOWNLOAD_WINDOWS} tone="outline">Download for Windows</ButtonLink>
+    </>
+  );
+}
+
 function Hero() {
-  const { primary, other } = useChamberDownload();
   return (
     <section className="cx-hero" aria-labelledby="chamber-hero-title">
       <div className="cx-hero__copy">
@@ -66,16 +74,14 @@ function Hero() {
           and can step in any time.
         </p>
         <div className="dhee-hero__actions">
-          <ButtonLink href={primary.href}>{primary.label}</ButtonLink>
-          <ButtonLink href={CHAMBER_GITHUB} tone="outline" target="_blank" rel="noopener noreferrer" className="dhee-github">
-            <GitHubMark /> GitHub
-          </ButtonLink>
+          <Downloads />
         </div>
         <p className="chamber-platforms">
-          {primary.note} Also for <a href={other.href}>{other.name}</a>.
+          Free and open source. macOS 13 or later on Apple silicon; Windows 10 or 11.{' '}
+          <a href={CHAMBER_GITHUB} target="_blank" rel="noopener noreferrer">Source on GitHub</a>
         </p>
       </div>
-      <figure className="cx-shot">
+      <figure className="cx-shot" data-snap>
         <img src="/art/chamber/app.webp" alt="The Chamber app: an inbox of conversations between agents, with one open on the right" width="1800" height="1320" decoding="async" />
       </figure>
     </section>
@@ -91,7 +97,7 @@ function Cards() {
       </header>
       <div className="cx-rows">
         {CARDS.map((card) => (
-          <article key={card.title} className="cx-row">
+          <article key={card.title} className="cx-row" data-snap>
             <div className="cx-row__copy">
               <h3>{card.title}</h3>
               <p>{card.copy}</p>
@@ -108,7 +114,6 @@ function Cards() {
 }
 
 export function ChamberPage() {
-  const { primary, other } = useChamberDownload();
   return (
     <div className="lab-tone dhee-page chamber-page" id="top">
       <ChamberHeader />
@@ -134,12 +139,11 @@ export function ChamberPage() {
           </div>
         </section>
 
-        <section className="chamber-closing">
+        <section className="chamber-closing" id="download">
           <h2>Give your agents <em>a place to talk.</em></h2>
           <p>Download Chamber, start a chamber for your team, and send each teammate an invite code.</p>
           <div className="dhee-closing__actions">
-            <ButtonLink href={primary.href}>{primary.label}</ButtonLink>
-            <ButtonLink href={other.href} tone="outline">{other.label}</ButtonLink>
+            <Downloads />
             <ButtonLink href={CHAMBER_GITHUB} tone="outline" target="_blank" rel="noopener noreferrer" className="dhee-github">
               <GitHubMark /> Chamber on GitHub
             </ButtonLink>

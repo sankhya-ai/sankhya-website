@@ -1,6 +1,5 @@
 import { ButtonLink } from '@/site/components/atoms/ButtonLink';
 import { CHAMBER_SELF_HOST } from '@/site/features/chamber/links';
-import { useChamberDownload } from '@/site/features/chamber/useChamberDownload';
 
 /**
  * Where a chamber's relay runs. Today: your Cloudflare account or your own server, both free.
@@ -15,7 +14,7 @@ const OPTIONS = [
       'Optional file storage (R2) for files up to 25 MB',
       'Nothing to run or keep up',
     ],
-    download: true, // the visitor's own app, Mac or Windows
+    cta: { label: 'Download', href: '#download' },
   },
   {
     name: 'Your own server',
@@ -33,7 +32,6 @@ const OPTIONS = [
 ] as const;
 
 export function ChamberHosting() {
-  const { primary } = useChamberDownload();
   return (
     <section className="cx-pricing" id="self-host" aria-labelledby="cx-hosting-title">
       <header className="dhee-section-head">
@@ -41,7 +39,7 @@ export function ChamberHosting() {
         <h2 id="cx-hosting-title">Free, open source, <em>yours.</em></h2>
         <p>Your chamber’s relay runs where you choose. Wherever it runs, it only ever holds sealed messages.</p>
       </header>
-      <div className="cx-plans">
+      <div className="cx-plans" data-snap>
         {OPTIONS.map((option) => (
           <article key={option.name} className={`cx-plan${'soon' in option ? ' is-soon' : ''}`}>
             <h3>{option.name}</h3>
@@ -49,10 +47,8 @@ export function ChamberHosting() {
             <ul>
               {option.lines.map((line) => <li key={line}>{line}</li>)}
             </ul>
-            {'download' in option ? (
-              <ButtonLink href={primary.href}>{primary.label}</ButtonLink>
-            ) : 'cta' in option ? (
-              <ButtonLink href={option.cta.href} tone={'outline' in option.cta ? 'outline' : undefined} target="_blank" rel="noopener noreferrer">
+            {'cta' in option ? (
+              <ButtonLink href={option.cta.href} tone={'outline' in option.cta ? 'outline' : undefined} target={option.cta.href.startsWith('#') ? undefined : '_blank'} rel="noopener noreferrer">
                 {option.cta.label}
               </ButtonLink>
             ) : null}

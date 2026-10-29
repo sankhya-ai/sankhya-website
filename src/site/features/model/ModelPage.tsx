@@ -180,7 +180,7 @@ export function ModelPage() {
               Measured on cases <em>it never saw.</em>
             </h2>
           </header>
-          <div className="s1-results">
+          <div className="s1-results" data-snap>
             <ResultsChart />
             <aside className="s1-speed">
               <p className="s1-speed__eyebrow">Speed</p>
@@ -211,7 +211,7 @@ export function ModelPage() {
             </h2>
           </header>
           <CaseRun />
-          <div className="s1-hc">
+          <div className="s1-hc" data-snap>
             <table>
               <thead>
                 <tr>

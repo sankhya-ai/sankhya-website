@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useRef } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router';
 import { Analytics } from '@vercel/analytics/react';
-import { ReactLenis } from 'lenis/react';
+import { SitePage } from '@/site/components/SitePage';
 // The public site's faces and sheet (Tura's design): Baloo 2 for the wordmark,
 // Averia Serif Libre for display, Roboto Flex for everything else.
 import '@fontsource/baloo-2/700.css';
@@ -121,7 +121,7 @@ function App() {
     <>
       {ON_CHAMBER ? (
         <Routes>
-          <Route path="/" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><ChamberPage /></ReactLenis>} />
+          <Route path="/" element={<SitePage><ChamberPage /></SitePage>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       ) : accountHalf ? (
@@ -130,13 +130,13 @@ function App() {
         </Suspense>
       ) : (
         <Routes>
-          <Route path="/manu-s1" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><ModelPage /></ReactLenis>} />
-          <Route path="/manu" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><MarketingPage /></ReactLenis>} />
-          <Route path="/root" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><RootPage /></ReactLenis>} />
-          <Route path="/root-driver" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><RootDriverPage /></ReactLenis>} />
-          <Route path="/dhee" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><DheePage /></ReactLenis>} />
-          <Route path="/tura-s1" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><TuraS1Page /></ReactLenis>} />
-          <Route path="/" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><LabPage /></ReactLenis>} />
+          <Route path="/manu-s1" element={<SitePage><ModelPage /></SitePage>} />
+          <Route path="/manu" element={<SitePage><MarketingPage /></SitePage>} />
+          <Route path="/root" element={<SitePage><RootPage /></SitePage>} />
+          <Route path="/root-driver" element={<SitePage><RootDriverPage /></SitePage>} />
+          <Route path="/dhee" element={<SitePage><DheePage /></SitePage>} />
+          <Route path="/tura-s1" element={<SitePage><TuraS1Page /></SitePage>} />
+          <Route path="/" element={<SitePage><LabPage /></SitePage>} />
           {/* The old product and blog pages are gone; their addresses land on the home page. */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

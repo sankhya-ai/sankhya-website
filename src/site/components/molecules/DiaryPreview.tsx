@@ -56,7 +56,7 @@ export function DiaryPreview() {
         <WaitlistButton />
       </header>
 
-      <div ref={stageRef} className="course-preview__stage">
+      <div ref={stageRef} className="course-preview__stage" data-snap>
         <img className="course-preview__paint" src="/art/paper/paper-threads.webp" alt="" width="1518" height="584" loading="lazy" decoding="async" />
         <div ref={screenRef} className="course-preview__screen">
           <img

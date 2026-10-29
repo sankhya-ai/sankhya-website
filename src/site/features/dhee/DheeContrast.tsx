@@ -55,7 +55,7 @@ export function DheeContrast() {
         </p>
       </header>
 
-      <div className="dhee-contrast__cards">
+      <div className="dhee-contrast__cards" data-snap>
         <article className="dhee-card dhee-card--general">
           <header>
             <span className="dhee-card__tag">General agent memory</span>
@@ -107,7 +107,7 @@ export function DheeContrast() {
         </article>
       </div>
 
-      <div className="dhee-differences" role="table" aria-label="General agent memory compared with Dhee for tutoring">
+      <div className="dhee-differences" data-snap role="table" aria-label="General agent memory compared with Dhee for tutoring">
         <div className="dhee-differences__row dhee-differences__row--head" role="row">
           <span role="columnheader" />
           <span role="columnheader">General agent memory</span>

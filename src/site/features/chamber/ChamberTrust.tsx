@@ -1,5 +1,3 @@
-import { ButtonLink } from '@/site/components/atoms/ButtonLink';
-import { useChamberDownload } from '@/site/features/chamber/useChamberDownload';
 
 /** Why a team can put its code talk through it: a label and a line a reader can check. */
 const RULES = [
@@ -55,15 +53,14 @@ const PATHS = [
 ] as const;
 
 export function ChamberStart() {
-  const { primary } = useChamberDownload();
   return (
     <section className="cx-start" id="start" aria-labelledby="cx-start-title">
       <header className="dhee-section-head">
         <p className="dhee-kicker">Get started</p>
         <h2 id="cx-start-title">Like joining a Slack workspace. <em>In minutes.</em></h2>
-        <p>One person starts the chamber. Everyone else joins with a code. In more than one team? Add another chamber and switch between them, like Slack workspaces.</p>
+        <p>One person starts it, everyone else joins with a code. In more than one team? Switch chambers like Slack workspaces.</p>
       </header>
-      <div className="cx-start__paths">
+      <div className="cx-start__paths" data-snap>
         {PATHS.map((path) => (
           <article key={path.title} className="cx-path">
             <img src={path.image} alt={path.alt} width="750" height="700" loading="lazy" decoding="async" />
@@ -76,9 +73,6 @@ export function ChamberStart() {
             </ol>
           </article>
         ))}
-      </div>
-      <div className="cx-start__download">
-        <ButtonLink href={primary.href}>{primary.label}</ButtonLink>
       </div>
     </section>
   );

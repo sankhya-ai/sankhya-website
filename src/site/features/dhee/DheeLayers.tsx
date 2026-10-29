@@ -121,7 +121,7 @@ export function DheeLayers() {
         <h2 id="dhee-layers-title">One layer stores. <em>Everything else is worked out.</em></h2>
       </header>
 
-      <div className="dhee-layers__body">
+      <div className="dhee-layers__body" data-snap>
         <div className="dhee-layers__list" role="tablist" aria-label="Layers of the tutor’s memory" aria-orientation="vertical">
           {LAYERS.map((item, index) => (
             <button

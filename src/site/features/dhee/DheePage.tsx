@@ -43,7 +43,7 @@ export function DheePage() {
             </div>
           </div>
 
-          <figure className="dhee-hero__field">
+          <figure className="dhee-hero__field" data-snap>
             <MemoryField className="dhee-hero__canvas" />
             <figcaption>
               <span>One student’s library, as Tura draws it. Each ring is a topic; each dot around it, one key point.</span>

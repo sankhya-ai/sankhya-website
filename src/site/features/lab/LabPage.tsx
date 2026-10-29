@@ -21,11 +21,11 @@ import '@/site/features/lab/lab.css';
  * Every line is true of what ships today.
  */
 
-function SiteLink({ href, className, children }: { href: string; className?: string; children: ReactNode }) {
+function SiteLink({ href, className, children, ...rest }: { href: string; className?: string; children: ReactNode; 'data-snap'?: boolean }) {
   return isExternal(href) ? (
-    <a className={className} href={href} target="_blank" rel="noopener">{children}</a>
+    <a className={className} href={href} target="_blank" rel="noopener" {...rest}>{children}</a>
   ) : (
-    <Link className={className} to={href}>{children}</Link>
+    <Link className={className} to={href} {...rest}>{children}</Link>
   );
 }
 
@@ -194,7 +194,7 @@ export function LabPage() {
             </figure>
           </div>
 
-          <div className="lab-stack__body">
+          <div className="lab-stack__body" data-snap>
             <ol className="lab-stack__layers">
               {STACK.map((layer, index) => (
                 <li key={layer.name} className={`lab-layer tone-${layer.tone}`}>
@@ -229,7 +229,7 @@ export function LabPage() {
           </header>
           <div className="lab-show__grid">
             {SHOWCASE.map((item) => (
-              <SiteLink key={item.name} href={item.href} className={`lab-show__card tone-${item.tone}${item.wide ? ' is-wide' : ''}`}>
+              <SiteLink key={item.name} href={item.href} className={`lab-show__card tone-${item.tone}${item.wide ? ' is-wide' : ''}`} data-snap>
                 <div className="lab-show__copy">
                   <p>{item.kicker}</p>
                   <h3>{item.title}</h3>

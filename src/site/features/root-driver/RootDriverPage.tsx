@@ -103,7 +103,7 @@ export function RootDriverPage() {
           </header>
 
           <ol className="rd-steps">
-            <li>
+            <li data-snap>
               <span className="rd-steps__no">01</span>
               <div>
                 <h3>Install</h3>
@@ -116,7 +116,7 @@ export function RootDriverPage() {
                 <Code text={FROM_SOURCE} label="Build and install from source" />
               </div>
             </li>
-            <li>
+            <li data-snap>
               <span className="rd-steps__no">02</span>
               <div>
                 <h3>Allow it, once</h3>
@@ -124,21 +124,21 @@ export function RootDriverPage() {
                 <Code text="root-driver doctor" label="Check permissions and setup" />
               </div>
             </li>
-            <li>
+            <li data-snap>
               <span className="rd-steps__no">03</span>
               <div>
                 <h3>Connect your agent</h3>
                 <p>The installer already connected the agents it found. To add one later, run its line from the table below. It only adds its own entry, running it twice changes nothing, and <code>root-driver uninstall</code> takes it out.</p>
               </div>
             </li>
-            <li>
+            <li data-snap>
               <span className="rd-steps__no">04</span>
               <div>
                 <h3>Ask</h3>
                 <blockquote>Open Calculator, work out 6 × 7, and check that it shows 42.</blockquote>
               </div>
             </li>
-            <li>
+            <li data-snap>
               <span className="rd-steps__no">05</span>
               <div>
                 <h3>Check the result</h3>
@@ -193,7 +193,7 @@ export function RootDriverPage() {
             <p className="dhee-kicker">How it works</p>
             <h2 id="rd-how-title">One app holds the permissions, <em>every agent shares them.</em></h2>
           </header>
-          <div className="rd-how">
+          <div className="rd-how" data-snap>
             {HOW.map(([title, copy]) => (
               <article key={title}>
                 <h3>{title}</h3>
@@ -201,7 +201,7 @@ export function RootDriverPage() {
               </article>
             ))}
           </div>
-          <div className="rd-limits">
+          <div className="rd-limits" data-snap>
             <h3>What it cannot do yet</h3>
             <ul>{LIMITS.map((limit) => <li key={limit}>{limit}</li>)}</ul>
           </div>

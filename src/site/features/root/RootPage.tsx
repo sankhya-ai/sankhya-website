@@ -109,7 +109,7 @@ function Hero() {
         <Download />
         <p className="root-hero__note">Free · no account · macOS 13+ on Apple silicon</p>
       </div>
-      <div className="root-hero__app">
+      <div className="root-hero__app" data-snap>
         <RootAppScreen />
       </div>
     </section>
@@ -166,7 +166,7 @@ function Features() {
       </header>
       <div className="chamber-features__list">
         {rows.map((feature, index) => (
-          <article key={feature.title} className={`chamber-feature${index % 2 ? ' is-flipped' : ''}`}>
+          <article key={feature.title} className={`chamber-feature${index % 2 ? ' is-flipped' : ''}`} data-snap>
             <div className="chamber-feature__copy">
               <p className="chamber-feature__kicker">{feature.kicker}</p>
               <h3>{feature.title}</h3>

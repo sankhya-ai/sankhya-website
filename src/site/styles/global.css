@@ -1037,3 +1037,43 @@ button.button-link:disabled { cursor: default; opacity: .6; transform: none; }
 span.brand > a { display: inline-flex; align-items: center; color: inherit; }
 span.brand > a.brand__by { color: var(--ink-faint); }
 span.brand > a:hover strong, span.brand > a.brand__by:hover { color: var(--ink); }
+
+/* ----- Screens. On a computer every section fits the window, so wherever you stop it reads whole
+   (SitePage eases the nearest one into place). Headings and spacing follow the window's height as
+   well as its width: a short laptop window gets smaller type, not cut-off sections. ----- */
+@media (min-width: 900px) {
+  :root {
+    --type-h1: clamp(36px, min(calc(44px + 20 * (100vw - 390px) / 1050), 7.6svh), 64px);
+    --type-h2: clamp(24px, min(calc(28px + 8 * (100vw - 390px) / 1050), 4.8svh), 36px);
+    --type-h2-lg: clamp(28px, min(calc(32px + 12 * (100vw - 390px) / 1050), 5.6svh), 44px);
+    --type-statement: clamp(26px, min(calc(32px + 8 * (100vw - 390px) / 1050), 5svh), 40px);
+    --type-lead: clamp(15px, min(calc(16px + 2 * (100vw - 390px) / 1050), 2.4svh), 18px);
+    /* A section's breathing room above and below, by the window's height. */
+    --screen-pad: clamp(48px, 10svh, 120px);
+  }
+  /* Questions: compact rows in two columns, so a dozen fit on one screen. */
+  .faq-section { width: min(1180px, var(--content)); padding: var(--screen-pad) 0; }
+  .faq-section__heading { margin-bottom: clamp(24px, 5svh, 72px); }
+  .faq-section summary { min-height: clamp(48px, 7svh, 72px); }
+  .faq-section__list { column-count: 2; column-gap: 48px; }
+  .faq-section__list details { break-inside: avoid; }
+  .faq-section__list details p { margin-right: 12px; }
+}
+@media (min-width: 900px) {
+  /* Manu's diary preview: the painted stage and the app inside it fit one screen. */
+  .course-preview__stage { margin-top: clamp(24px, 4svh, 72px); padding: clamp(20px, 4svh, 64px) clamp(28px, 5vw, 72px); }
+  .course-preview__screen { max-height: calc(100svh - 150px); overflow: hidden; }
+}
+
+/* ----- Short windows (a laptop with the browser not full screen): the same sections, tighter, so they
+   still fit. Pictures inside a section's items are capped and cropped from the top (screenshots keep
+   what matters), never the text. ----- */
+@media (min-width: 900px) and (max-height: 760px) {
+  .dhee-section-head, .s1-head { gap: 12px; }
+  .dhee-section-head + *, .s1-head + * { margin-top: clamp(20px, 4svh, 48px); }
+  [data-snap] img, [data-snap] video { max-height: calc(100svh - 230px); object-fit: cover; object-position: top; }
+}
+@media (min-width: 900px) {
+  /* Manu's painted sections: a screen tall, never taller than the window. */
+  .paper-section__inner { min-height: min(clamp(600px, 54vw, 780px), 100svh); padding: clamp(64px, 11svh, 140px) 0; }
+}

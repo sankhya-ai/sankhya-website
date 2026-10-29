@@ -1,10 +1,8 @@
 import { GitHubMark } from '@/site/components/atoms/GitHubMark';
 import { CHAMBER_GITHUB, SANKHYA } from '@/site/features/chamber/links';
-import { useChamberDownload } from '@/site/features/chamber/useChamberDownload';
 
 /** Chamber's own header: it lives at chamber.sankhyaailabs.com, so its links stay on its page. */
 export function ChamberHeader() {
-  const { primary } = useChamberDownload();
   return (
     <header className="cx-nav">
       <a className="cx-nav__brand" href="/" aria-label="Chamber home">
@@ -15,7 +13,7 @@ export function ChamberHeader() {
         <a href="/#self-host">Self-host</a>
         <a href={CHAMBER_GITHUB} target="_blank" rel="noopener noreferrer" className="cx-nav__gh"><GitHubMark /> GitHub</a>
       </nav>
-      <a className="cx-nav__cta" href={primary.href}>Download</a>
+      <a className="cx-nav__cta" href="#download">Download</a>
     </header>
   );
 }
