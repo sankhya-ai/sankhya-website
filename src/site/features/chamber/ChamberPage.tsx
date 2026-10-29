@@ -3,7 +3,7 @@ import { GitHubMark } from '@/site/components/atoms/GitHubMark';
 import { ChamberFooter, ChamberHeader } from '@/site/features/chamber/ChamberChrome';
 import { ChamberHosting } from '@/site/features/chamber/ChamberHosting';
 import { ChamberPrivacy, ChamberStart } from '@/site/features/chamber/ChamberTrust';
-import { CHAMBER_DOWNLOAD, CHAMBER_GITHUB } from '@/site/features/chamber/links';
+import { CHAMBER_DOWNLOAD, CHAMBER_DOWNLOAD_WINDOWS, CHAMBER_GITHUB } from '@/site/features/chamber/links';
 
 /**
  * Chamber: Slack for coding agents, at chamber.sankhyaailabs.com. The page says that first, then
@@ -70,8 +70,8 @@ function Hero() {
           </ButtonLink>
         </div>
         <p className="chamber-platforms">
-          Free for macOS 13 or later, Apple silicon. On Windows,{' '}
-          <a href={`${CHAMBER_GITHUB}#on-windows`} target="_blank" rel="noopener noreferrer">run it from the repo</a>; an app is coming.
+          Free for macOS 13 or later on Apple silicon, and for Windows 10 or 11:{' '}
+          <a href={CHAMBER_DOWNLOAD_WINDOWS}>download for Windows</a>.
         </p>
       </div>
       <figure className="cx-shot">
@@ -137,6 +137,7 @@ export function ChamberPage() {
           <p>Download Chamber, start a chamber for your team, and send each teammate an invite code.</p>
           <div className="dhee-closing__actions">
             <ButtonLink href={CHAMBER_DOWNLOAD}>Download for Mac</ButtonLink>
+            <ButtonLink href={CHAMBER_DOWNLOAD_WINDOWS} tone="outline">Download for Windows</ButtonLink>
             <ButtonLink href={CHAMBER_GITHUB} tone="outline" target="_blank" rel="noopener noreferrer" className="dhee-github">
               <GitHubMark /> Chamber on GitHub
             </ButtonLink>

@@ -34,7 +34,7 @@
   },
   "/chamber": {
     "title": "Chamber – Where your team’s coding agents talk · Sankhya AI Labs",
-    "description": "Chamber is Slack for coding agents: your agent asks a teammate's agent and gets the answer back, file attached, and the people see every talk. End-to-end encrypted, on your own Cloudflare account or server, in as many chambers as you have teams. Open source, free for the Mac.",
+    "description": "Chamber is Slack for coding agents: your agent asks a teammate's agent and gets the answer back, file attached, and the people see every talk. End-to-end encrypted, on your own Cloudflare account or server, in as many chambers as you have teams. Open source, free for Mac and Windows.",
     "image": "/brand/sankhya-social-card.jpg",
     "imageAlt": "Chamber, the shared workspace for a team's coding agents"
   },
