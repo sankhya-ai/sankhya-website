@@ -1,10 +1,10 @@
 {
   "/": {
-    "title": "Sankhya AI Labs – An AI lab in India building models, memory and agents",
-    "description": "Sankhya AI Labs is an AI lab in India that builds AI from the model up: our own decision models (Tura-S1, Manu-S1), memory (Dhee) and agents (root, root-driver, Chamber), shipped as products: Tura, a tutor for students, and Manu, a case diary for Indian courts.",
-    "image": "/brand/sankhya-social-card.jpg",
-    "imageAlt": "Sankhya AI Labs: a team at work under a pavilion hung with a lattice model, in ink and watercolour",
-    "preload": "/art/tura-ai-research.webp",
+    "title": "Sankhya AI Labs – AI built from the model up, in India",
+    "description": "Sankhya AI Labs is an AI lab in India. We train our own decision models (Tura-S1, Manu-S1), build the memory (Dhee) and agents (root, root-driver, Chamber) above them, and ship the lot as products: Tura, a tutor for students, and Manu, a case diary for Indian courts.",
+    "image": "/art/lab/hero-og.jpg",
+    "imageAlt": "Sankhya AI Labs: a watercolour of Mumbai’s sea front at sunset, a saffron sun over the water and a glass skyline above the promenade",
+    "preload": "/art/lab/hero.webp",
     "keywords": "AI lab, AI labs in India, Indian AI lab, AI research lab India, Sankhya AI Labs, decision models, agent memory, coding agent, computer use agent, open weights"
   },
   "/manu": {
