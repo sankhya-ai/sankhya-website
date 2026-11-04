@@ -115,7 +115,8 @@ a.lab-grid__card:hover h3 svg { transform: translate(3px, -3px); }
 .lab-grid--lab .lab-grid__card--4 .lab-grid__step { color: var(--tone-sand-ink); }
 
 /* ── What we make: the heading over the three painted groups ───────────── */
-.lab-products { --lp-accent: var(--tone-blue-ink); padding: clamp(80px, 13svh, 136px) var(--lp-gutter); background: var(--tone-blue); }
+/* It starts in the paper the hero fades into and washes into the blue. */
+.lab-products { --lp-accent: var(--tone-blue-ink); padding: clamp(80px, 13svh, 136px) var(--lp-gutter); background: linear-gradient(180deg, var(--lp-paper) 0, var(--tone-blue) clamp(120px, 18svh, 200px)); }
 .lab-products__head { display: grid; max-width: 760px; gap: clamp(14px, 2.2svh, 20px); margin-bottom: clamp(32px, 6svh, 56px); justify-items: start; }
 .lab-products__head > p:not(.lab-kicker) { max-width: 36em; color: var(--lp-ink-soft); font-size: clamp(16px, 1.2vw, 18px); line-height: 1.6; }
 
@@ -170,13 +171,14 @@ a.lab-grid__card:hover h3 svg { transform: translate(3px, -3px); }
 
 /* ── Closing: a card washed in all four of Tura's pastels ──────────────── */
 .lab-closing { padding: clamp(72px, 12svh, 120px) var(--lp-gutter) clamp(56px, 9svh, 96px); background: var(--lp-paper); }
-.lab-closing__copy { display: grid; max-width: none; margin: 0; padding: clamp(48px, 9svh, 96px) clamp(28px, 6vw, 96px); border-radius: 32px; justify-items: center; gap: 18px; text-align: center;
-  background:
-    radial-gradient(ellipse 55% 70% at 8% 18%, var(--tone-blue) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 70% at 92% 14%, var(--tone-rose) 0%, transparent 70%),
-    radial-gradient(ellipse 55% 75% at 14% 96%, var(--tone-sage) 0%, transparent 70%),
-    radial-gradient(ellipse 55% 75% at 90% 92%, var(--tone-sand) 0%, transparent 70%),
-    #f1efe6; }
+/* Contact: Bengaluru, whole (1672:941), under a faint grid, with the words on
+   a card floating in the middle, as the products' panels do. */
+.lab-closing__frame { position: relative; display: grid; aspect-ratio: 1672 / 941; overflow: hidden; border-radius: 24px; place-items: center; box-shadow: 0 24px 60px -34px rgba(16, 41, 62, .45); }
+.lab-closing__painting { position: absolute; inset: 0; width: 100%; height: 100%; }
+.lab-closing__frame::before { position: absolute; z-index: 1; inset: 0; content: ''; pointer-events: none;
+  background-image: linear-gradient(rgba(255, 255, 255, .42) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .42) 1px, transparent 1px);
+  background-size: 10% 14.2857%; background-position: -1px -1px; }
+.lab-closing__copy { position: relative; z-index: 2; display: grid; width: min(620px, calc(100% - 48px)); justify-items: center; gap: 16px; border: 1px solid rgba(16, 41, 62, .14); padding: clamp(28px, 4vw, 52px) clamp(24px, 4vw, 56px); background: rgba(255, 253, 248, .94); box-shadow: 0 28px 80px rgba(20, 42, 50, .18); backdrop-filter: blur(5px); text-align: center; }
 .lab-closing h2 { font-size: clamp(38px, min(5vw, 9svh), 72px); }
 .lab-closing__copy > p:not(.lab-kicker) { max-width: 28em; color: var(--lp-ink-soft); font-size: clamp(16px, 1.4vw, 19px); line-height: 1.6; }
 .lab-mail { display: inline-flex; align-items: center; gap: 10px; margin-top: 8px; border-radius: 999px; padding: 15px 26px; background: var(--lp-indigo-deep); color: var(--lp-paper); font-size: 15px; font-weight: 560; letter-spacing: .02em; transition: background 200ms ease, gap 240ms var(--lp-ease); }
@@ -249,7 +251,10 @@ a.lab-grid__card:hover h3 svg { transform: translate(3px, -3px); }
   .lab-results { padding-top: 72px; }
   .lab-results__grid { grid-template-columns: 1fr; }
   .lab-closing { padding-top: 56px; padding-bottom: 56px; }
-  .lab-closing__copy { border-radius: 24px; }
+  .lab-closing__frame { aspect-ratio: auto; padding: calc((100vw - 2 * var(--lp-gutter)) * 941 / 1672) 0 0; border-radius: 18px; background: var(--tone-blue); }
+  .lab-closing__painting { bottom: auto; height: auto; aspect-ratio: 1672 / 941; }
+  .lab-closing__frame::before { display: none; }
+  .lab-closing__copy { width: auto; margin: 12px; }
 }
 @media (max-width: 520px) {
 }

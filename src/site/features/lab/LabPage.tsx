@@ -14,8 +14,8 @@ import '@/site/features/lab/lab.css';
  *
  * Six paintings carry it (public/art/lab) on Tura's paper and its four pastels
  * (sky blue, rose, sage, sand), one tone to a section, and no two sections hang them the
- * same way: the hero is the whole painting with words on its sky; Bengaluru
- * carries the lab's statement as cards on a grid over it (Tura's How it works); India Gate, the Sea Link and the
+ * same way: the hero is the whole painting with words on its sky; the
+ * products follow it directly; India Gate, the Sea Link and the
  * Taj Mahal head the three panels of a sideways accordion of products;
  * Jantar Mantar is a framed plate beside
  * the results. Every painting is shown whole, never cropped, and carries no caption.
@@ -94,13 +94,6 @@ const CHAPTERS: readonly Chapter[] = [
   },
 ];
 
-const FOUNDATIONS: readonly { name: string; line: string }[] = [
-  { name: 'Our own servers', line: 'Tura, its study sessions and every student’s library run on machines we operate.' },
-  { name: 'Training runs', line: 'Fine-tunes on GPUs we rent by the hour, from data we label ourselves.' },
-  { name: 'Held-out evaluations', line: 'Built from real work: Tura’s agent decisions, High Court orders, a real trial file.' },
-  { name: 'Native apps', line: 'root, Chamber and root-driver ship as signed Mac apps.' },
-];
-
 const METRICS: readonly Metric[] = [
   { value: 98.5, decimals: 1, suffix: '%', label: 'Tura-S1, agent steps', note: 'Which tool next, or reply, on decisions it never saw. Its base model: 49.6%.' },
   { value: 91.8, decimals: 1, suffix: '%', label: 'Manu-S1, court orders', note: 'On 2,346 High Court orders it never saw.' },
@@ -148,73 +141,6 @@ function useReveal() {
     };
   }, []);
   return root;
-}
-
-type Painting = { src: string; srcSet?: string; alt: string; width: number; height: number };
-type GridCard = { key: string; step?: string; name: string; line: string; href?: string };
-
-/**
- * Tura's "How it works" component (turalearn.com): a painting at its own
- * proportions (never cropped) under a faint grid, with an intro card and
- * cards placed on the grid. `layout` picks where the cards sit; below 1200px the painting sits on top and the
- * cards follow it.
- */
-function PaintedGrid({ id, layout, painting, kicker, title, titleId, text, cards }: {
-  id: string;
-  layout: string;
-  painting: Painting;
-  kicker: string;
-  title: ReactNode;
-  titleId: string;
-  text?: ReactNode;
-  cards: readonly GridCard[];
-}) {
-  return (
-    <section
-      className={`lab-grid lab-grid--${layout}`}
-      id={id}
-      aria-labelledby={titleId}
-      style={{ '--ratio': painting.width / painting.height } as CSSProperties}
-    >
-      <img
-        className="lab-grid__painting"
-        src={painting.src}
-        srcSet={painting.srcSet}
-        sizes={painting.srcSet ? '100vw' : undefined}
-        alt={painting.alt}
-        width={painting.width}
-        height={painting.height}
-        loading="lazy"
-        decoding="async"
-      />
-      <div className="lab-grid__wash" aria-hidden="true" />
-      <div className="lab-grid__grid">
-        <header className="lab-grid__intro">
-          <p className="lab-kicker">{kicker}</p>
-          <h2 id={titleId}>{title}</h2>
-          {text ? <p>{text}</p> : null}
-        </header>
-        {cards.map((card, index) => {
-          const body = (
-            <>
-              {card.step ? <span className="lab-grid__step">{card.step}</span> : null}
-              <h3>
-                {card.name}
-                {card.href ? <ArrowUpRight size={16} strokeWidth={1.8} aria-hidden="true" /> : null}
-              </h3>
-              <p>{card.line}</p>
-            </>
-          );
-          const className = `lab-grid__card lab-grid__card--${index + 1}`;
-          return card.href ? (
-            <SiteLink key={card.key} href={card.href} className={className}>{body}</SiteLink>
-          ) : (
-            <article key={card.key} className={className}>{body}</article>
-          );
-        })}
-      </div>
-    </section>
-  );
 }
 
 /**
@@ -306,7 +232,7 @@ export function LabPage() {
               Our own models, memory and agents, on servers we run. Today they work as a tutor for students and a case
               diary for Indian courts.
             </p>
-            <a className="lab-hero__more" href="#lab">
+            <a className="lab-hero__more" href="#products">
               Read on <ArrowDown size={15} strokeWidth={1.8} aria-hidden="true" />
             </a>
           </div>
@@ -316,29 +242,6 @@ export function LabPage() {
             ))}
           </nav>
         </section>
-
-        <PaintedGrid
-          id="lab"
-          layout="lab"
-          painting={{
-            src: '/art/lab/bengaluru.webp',
-            srcSet: '/art/lab/bengaluru-960.webp 960w, /art/lab/bengaluru.webp 1672w',
-            alt: 'Watercolour of Bengaluru: the Vidhana Soudha among flame trees, a metro train crossing glass offices, and a faint network dome over the city',
-            width: 1672,
-            height: 941,
-          }}
-          kicker="The lab"
-          titleId="lab-statement-title"
-          title={<>Made in India, <em>for India and the world.</em></>}
-          text={
-            <>
-              We start from open base models and build everything above them: the decision models, the memory, the
-              agents, the servers and the products. We release what we can: our models have open weights, and Chamber
-              is open source.
-            </>
-          }
-          cards={FOUNDATIONS.map((item, index) => ({ key: item.name, step: String(index + 1).padStart(2, '0'), name: item.name, line: item.line }))}
-        />
 
         <section className="lab-products" id="products" aria-labelledby="lab-products-title">
           <div className="lab-products__head">
@@ -380,6 +283,18 @@ export function LabPage() {
         </section>
 
         <section className="lab-closing" aria-labelledby="lab-closing-title">
+          <div className="lab-closing__frame">
+          <img
+            className="lab-closing__painting"
+            src="/art/lab/bengaluru.webp"
+            srcSet="/art/lab/bengaluru-960.webp 960w, /art/lab/bengaluru.webp 1672w"
+            sizes="100vw"
+            alt="Watercolour of Bengaluru: the Vidhana Soudha among flame trees, a metro train crossing glass offices, and a faint network dome over the city"
+            width="1672"
+            height="941"
+            loading="lazy"
+            decoding="async"
+          />
           <div className="lab-closing__copy">
             <p className="lab-kicker" data-reveal>Contact</p>
             <h2 id="lab-closing-title" data-reveal>Write to the lab.</h2>
@@ -388,6 +303,7 @@ export function LabPage() {
               {CONTACT_EMAIL}
               <ArrowUpRight size={16} strokeWidth={1.8} aria-hidden="true" />
             </a>
+          </div>
           </div>
         </section>
       </main>
