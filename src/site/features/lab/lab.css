@@ -74,18 +74,23 @@
    section is the painting's own 1672:941, so it is never cropped. */
 .lab-grid { position: relative; aspect-ratio: 1672 / 941; overflow: hidden; background: var(--tone-blue); isolation: isolate; }
 .lab-grid__painting, .lab-grid__wash { position: absolute; inset: 0; width: 100%; height: 100%; }
-.lab-grid__wash { z-index: 1; background: linear-gradient(90deg, rgba(16, 41, 62, .14), transparent 46%, rgba(16, 41, 62, .06)), linear-gradient(0deg, rgba(16, 41, 62, .1), transparent 36%); pointer-events: none; }
-.lab-grid__grid { --g-edge: clamp(28px, 3.4vw, 60px); --g-edge-y: clamp(44px, 4.2vw, 70px); position: absolute; z-index: 2; inset: 0; display: grid; grid-template-columns: var(--g-edge) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) var(--g-edge); grid-template-rows: var(--g-edge-y) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) var(--g-edge-y);
+/* The wash also joins the section to its neighbours: the top fades into the
+   paper the hero fades into, the bottom into the products' blue. */
+.lab-grid__wash { z-index: 1; background: linear-gradient(180deg, var(--lp-paper) 0%, rgba(246, 244, 238, .75) 5%, rgba(246, 244, 238, 0) 16%, rgba(215, 232, 241, 0) 86%, rgba(215, 232, 241, .8) 95%, var(--tone-blue) 100%), linear-gradient(90deg, rgba(16, 41, 62, .1), transparent 46%, rgba(16, 41, 62, .05)); pointer-events: none; }
+.lab-grid__grid { --g-edge: clamp(28px, 3.4vw, 60px); --g-edge-y: clamp(44px, 4.2vw, 70px); position: absolute; z-index: 2; inset: 0; display: grid; grid-template-columns: var(--g-edge) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) var(--g-edge); grid-template-rows: var(--g-edge-y) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) var(--g-edge-y); }
+/* The grid's lines, on their own layer so they fade in below the paper at the
+   top without fading the cards. */
+.lab-grid__grid::before { position: absolute; z-index: -1; inset: 0; content: '';
   background-image: linear-gradient(rgba(255, 255, 255, .45) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .45) 1px, transparent 1px);
   background-size: 100% calc((100% - (2 * var(--g-edge-y))) / 7), calc((100% - (2 * var(--g-edge))) / 10) 100%;
   background-position: 0 var(--g-edge-y), var(--g-edge) 0;
-}
-.lab-grid__intro, .lab-grid__card { border: 1px solid rgba(16, 41, 62, .14); background: rgba(255, 253, 248, .94); box-shadow: 0 18px 50px rgba(20, 42, 50, .08); backdrop-filter: blur(5px); }
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 14%, #000 84%, transparent 96%); mask-image: linear-gradient(180deg, transparent 0, #000 14%, #000 84%, transparent 96%); }
+.lab-grid__intro, .lab-grid__card { transform-origin: center; border: 1px solid rgba(16, 41, 62, .14); background: rgba(255, 253, 248, .94); box-shadow: 0 18px 50px rgba(20, 42, 50, .08); backdrop-filter: blur(5px); }
 .lab-grid__intro { display: grid; grid-area: 2 / 2 / 5 / 6; align-self: center; align-content: start; gap: 12px; margin-right: clamp(18px, 2.2vw, 40px); padding: clamp(20px, 1.8vw, 28px); }
 .lab-grid__intro h2 { font-size: clamp(26px, 2.4vw, 38px); line-height: 1.12; }
 .lab-grid__intro > p:last-child { max-width: 34em; color: var(--lp-ink-soft); font-size: clamp(13.5px, 1.05vw, 15px); line-height: 1.55; }
 .lab-grid__card { position: relative; display: flex; align-self: center; margin: clamp(6px, .7vw, 12px); flex-direction: column; padding: clamp(16px, 1.4vw, 22px); outline: 0; transition: box-shadow 400ms ease, background 400ms ease, transform 400ms var(--lp-ease); }
-.lab-grid__card:is(:hover, :focus-visible) { z-index: 10; background: rgba(255, 253, 248, .985); box-shadow: 0 28px 80px rgba(20, 42, 50, .2); transform: translateY(-4px); }
+.lab-grid__card:is(:hover, :focus-visible) { z-index: 10; background: rgba(255, 253, 248, .985); box-shadow: 0 32px 90px rgba(20, 42, 50, .24); transform: translateY(-6px) scale(1.05); }
 .lab-grid__card:focus-visible { outline: 3px solid var(--lp-indigo); outline-offset: 3px; }
 .lab-grid__step { margin-bottom: 8px; font: 600 12px/1 var(--font-sans); letter-spacing: .14em; }
 .lab-grid__card--1 .lab-grid__step { color: var(--tone-blue-ink); }
@@ -188,8 +193,9 @@
 @media (max-width: 1199px) {
   .lab-grid { aspect-ratio: auto; padding: calc(56.3vw + 20px) var(--lp-gutter) 56px; background: var(--tone-blue); }
   .lab-grid__painting { height: auto; aspect-ratio: 1672 / 941; }
-  .lab-grid__wash { display: none; }
-  .lab-grid__grid { position: relative; inset: auto; grid-template-columns: 1fr 1fr; grid-template-rows: none; gap: 14px; background-image: none; }
+  .lab-grid__wash { bottom: auto; height: calc(56.3vw + 1px); background: linear-gradient(180deg, var(--lp-paper) 0%, rgba(246, 244, 238, 0) 16%, rgba(215, 232, 241, 0) 82%, var(--tone-blue) 100%); }
+  .lab-grid__grid { position: relative; inset: auto; grid-template-columns: 1fr 1fr; grid-template-rows: none; gap: 14px; }
+  .lab-grid__grid::before { display: none; }
   .lab-grid__intro { grid-area: auto; grid-column: 1 / -1; margin: 0; }
   .lab-grid__card { grid-area: auto; align-self: stretch; margin: 0; }
   .lab-grid__card--1 { order: 1; } .lab-grid__card--2 { order: 2; } .lab-grid__card--3 { order: 3; } .lab-grid__card--4 { order: 4; }
@@ -246,3 +252,6 @@
 .lab-results .metrics-row dd strong { background: linear-gradient(100deg, var(--tone-blue-ink) 10%, var(--tone-rose-ink) 95%); -webkit-background-clip: text; background-clip: text; }
 
 .lab-closing { --lp-accent: var(--tone-blue-ink); }
+
+@media (prefers-reduced-motion: reduce) { .lab-grid__card:is(:hover, :focus-visible) { transform: none; } }
+@media (max-width: 1199px) { .lab-grid__card:is(:hover, :focus-visible) { transform: translateY(-3px) scale(1.02); } }
