@@ -72,14 +72,14 @@
 .lab-hero__index a:hover { color: var(--lp-accent); }
 .lab-hero__caption { position: absolute; z-index: 2; right: var(--lp-gutter); bottom: clamp(22px, 4svh, 40px); color: var(--lp-ink); }
 
-/* ── The lab, on Bengaluru: cards on a grid over the painting ───────────
-   Tura's "How it works" component (turalearn.com), on the lab's palette. The
-   section is the painting's own 1672:941, so it is never cropped. */
-.lab-grid { position: relative; aspect-ratio: 1672 / 941; overflow: hidden; background: var(--tone-blue); isolation: isolate; }
+/* ── Painted grids: Tura's "How it works" component (turalearn.com) ──────
+   The lab on Bengaluru, then each group of products on its own painting. A
+   section is its painting's own proportions (--ratio), so it is never cropped;
+   --fade-top and --fade-bottom are the colours it fades into at each end. */
+.lab-grid { --fade-top: var(--tone-blue); --fade-bottom: var(--tone-blue); position: relative; aspect-ratio: var(--ratio); overflow: hidden; background: var(--tone-blue); isolation: isolate; }
 .lab-grid__painting, .lab-grid__wash { position: absolute; inset: 0; width: 100%; height: 100%; }
-/* The wash also joins the section to its neighbours: the top fades into the
-   paper the hero fades into, the bottom into the products' blue. */
-.lab-grid__wash { z-index: 1; background: linear-gradient(180deg, var(--lp-paper) 0%, rgba(246, 244, 238, .75) 5%, rgba(246, 244, 238, 0) 16%, rgba(215, 232, 241, 0) 86%, rgba(215, 232, 241, .8) 95%, var(--tone-blue) 100%), linear-gradient(90deg, rgba(16, 41, 62, .1), transparent 46%, rgba(16, 41, 62, .05)); pointer-events: none; }
+/* The wash joins the section to its neighbours at both ends. */
+.lab-grid__wash { z-index: 1; background: linear-gradient(180deg, var(--fade-top) 0%, color-mix(in srgb, var(--fade-top) 75%, transparent) 5%, transparent 16%, transparent 86%, color-mix(in srgb, var(--fade-bottom) 80%, transparent) 95%, var(--fade-bottom) 100%), linear-gradient(90deg, rgba(16, 41, 62, .1), transparent 46%, rgba(16, 41, 62, .05)); pointer-events: none; }
 .lab-grid__grid { --g-edge: clamp(28px, 3.4vw, 60px); --g-edge-y: clamp(44px, 4.2vw, 70px); position: absolute; z-index: 2; inset: 0; display: grid; grid-template-columns: var(--g-edge) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) var(--g-edge); grid-template-rows: var(--g-edge-y) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) var(--g-edge-y); }
 /* The grid's lines, on their own layer so they fade in below the paper at the
    top without fading the cards. */
@@ -89,57 +89,52 @@
   background-position: 0 var(--g-edge-y), var(--g-edge) 0;
   -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 14%, #000 84%, transparent 96%); mask-image: linear-gradient(180deg, transparent 0, #000 14%, #000 84%, transparent 96%); }
 .lab-grid__intro, .lab-grid__card { transform-origin: center; border: 1px solid rgba(16, 41, 62, .14); background: rgba(255, 253, 248, .94); box-shadow: 0 18px 50px rgba(20, 42, 50, .08); backdrop-filter: blur(5px); }
-.lab-grid__intro { display: grid; grid-area: 2 / 2 / 5 / 6; align-self: center; align-content: start; gap: 12px; margin-right: clamp(18px, 2.2vw, 40px); padding: clamp(20px, 1.8vw, 28px); }
+.lab-grid__intro { display: grid; align-self: center; align-content: start; gap: 12px; margin-right: clamp(18px, 2.2vw, 40px); padding: clamp(20px, 1.8vw, 28px); }
 .lab-grid__intro h2 { font-size: clamp(26px, 2.4vw, 38px); line-height: 1.12; }
 .lab-grid__intro > p:last-child { max-width: 34em; color: var(--lp-ink-soft); font-size: clamp(13.5px, 1.05vw, 15px); line-height: 1.55; }
 .lab-grid__card { position: relative; display: flex; align-self: center; margin: clamp(6px, .7vw, 12px); flex-direction: column; padding: clamp(16px, 1.4vw, 22px); outline: 0; transition: box-shadow 400ms ease, background 400ms ease, transform 400ms var(--lp-ease); }
 .lab-grid__card:is(:hover, :focus-visible) { z-index: 10; background: rgba(255, 253, 248, .985); box-shadow: 0 32px 90px rgba(20, 42, 50, .24); transform: translateY(-6px) scale(1.05); }
 .lab-grid__card:focus-visible { outline: 3px solid var(--lp-indigo); outline-offset: 3px; }
 .lab-grid__step { margin-bottom: 8px; font: 600 12px/1 var(--font-sans); letter-spacing: .14em; }
-.lab-grid__card--1 .lab-grid__step { color: var(--tone-blue-ink); }
-.lab-grid__card--2 .lab-grid__step { color: var(--tone-rose-ink); }
-.lab-grid__card--3 .lab-grid__step { color: var(--tone-sage-ink); }
-.lab-grid__card--4 .lab-grid__step { color: var(--tone-sand-ink); }
-.lab-grid__card h3 { margin: 0 0 8px; font-family: var(--font-display); font-size: clamp(19px, 1.6vw, 24px); font-weight: 300; letter-spacing: -.01em; line-height: 1.2; }
+.lab-grid__card h3 { display: flex; align-items: center; gap: 6px; margin: 0 0 8px; font-family: var(--font-display); font-size: clamp(19px, 1.6vw, 24px); font-weight: 300; letter-spacing: -.01em; line-height: 1.2; }
 .lab-grid__card p { max-width: 30em; color: var(--lp-ink-soft); font-size: clamp(13.5px, 1vw, 15px); line-height: 1.5; }
-.lab-grid__card--1 { grid-area: 6 / 2 / 8 / 5; }
-.lab-grid__card--2 { grid-area: 4 / 6 / 6 / 9; }
-.lab-grid__card--3 { grid-area: 6 / 9 / 8 / 12; }
-.lab-grid__card--4 { grid-area: 2 / 8 / 4 / 12; }
 
-/* ── Products: a sideways accordion, one panel open ────────────────────── */
-.lab-products { padding: clamp(80px, 13svh, 136px) var(--lp-gutter); background: var(--lp-paper-deep); }
-.lab-products__head { display: grid; max-width: 760px; gap: clamp(14px, 2.2svh, 20px); margin-bottom: clamp(32px, 6svh, 56px); justify-items: start; }
+a.lab-grid__card h3 svg { color: var(--lp-accent); transition: transform 260ms var(--lp-ease); }
+a.lab-grid__card:hover h3 svg { transform: translate(3px, -3px); }
+
+/* Where each section's cards sit (grid lines: columns 2–12, rows 2–9). */
+.lab-grid--lab { --fade-top: var(--lp-paper); }
+.lab-grid--lab .lab-grid__intro { grid-area: 2 / 2 / 5 / 6; }
+.lab-grid--lab .lab-grid__card--1 { grid-area: 6 / 2 / 8 / 5; }
+.lab-grid--lab .lab-grid__card--2 { grid-area: 4 / 6 / 6 / 9; }
+.lab-grid--lab .lab-grid__card--3 { grid-area: 6 / 9 / 8 / 12; }
+.lab-grid--lab .lab-grid__card--4 { grid-area: 2 / 8 / 4 / 12; }
+.lab-grid--lab .lab-grid__card--1 .lab-grid__step { color: var(--tone-blue-ink); }
+.lab-grid--lab .lab-grid__card--2 .lab-grid__step { color: var(--tone-rose-ink); }
+.lab-grid--lab .lab-grid__card--3 .lab-grid__step { color: var(--tone-sage-ink); }
+.lab-grid--lab .lab-grid__card--4 .lab-grid__step { color: var(--tone-sand-ink); }
+/* For people, on India Gate: the gate stays clear in the middle. */
+.lab-grid--people { --lp-accent: var(--tone-rose-ink); --lp-accent-dot: #dba593; }
+.lab-grid--people .lab-grid__intro { grid-area: 2 / 2 / 5 / 6; }
+.lab-grid--people .lab-grid__card--1 { grid-area: 6 / 2 / 8 / 5; }
+.lab-grid--people .lab-grid__card--2 { grid-area: 5 / 9 / 7 / 12; }
+/* Agents, on the Sea Link: the words on the right, the bridge left open. */
+.lab-grid--agents { --lp-accent: var(--tone-blue-ink); --lp-accent-dot: #8db8d5; }
+.lab-grid--agents .lab-grid__intro { grid-area: 2 / 8 / 5 / 12; margin: 0 0 0 clamp(18px, 2.2vw, 40px); }
+.lab-grid--agents .lab-grid__card--1 { grid-area: 6 / 2 / 8 / 5; }
+.lab-grid--agents .lab-grid__card--2 { grid-area: 6 / 5 / 8 / 8; }
+.lab-grid--agents .lab-grid__card--3 { grid-area: 5 / 9 / 7 / 12; }
+/* Memory and models, on the Taj Mahal: the cards frame it on both sides. */
+.lab-grid--models { --lp-accent: var(--tone-sage-ink); --lp-accent-dot: #b4c08a; --fade-bottom: var(--lp-paper); }
+.lab-grid--models .lab-grid__intro { grid-area: 2 / 2 / 5 / 6; }
+.lab-grid--models .lab-grid__card--1 { grid-area: 6 / 2 / 8 / 5; }
+.lab-grid--models .lab-grid__card--2 { grid-area: 2 / 9 / 4 / 12; }
+.lab-grid--models .lab-grid__card--3 { grid-area: 6 / 9 / 8 / 12; }
+
+/* ── What we make: the heading over the three painted groups ───────────── */
+.lab-products { padding: clamp(80px, 13svh, 136px) var(--lp-gutter) clamp(24px, 4svh, 40px); background: var(--tone-blue); }
+.lab-products__head { display: grid; max-width: 760px; gap: clamp(14px, 2.2svh, 20px); justify-items: start; }
 .lab-products__head > p:not(.lab-kicker) { max-width: 36em; color: var(--lp-ink-soft); font-size: clamp(16px, 1.2vw, 18px); line-height: 1.6; }
-.lab-panels { display: flex; min-height: 440px; gap: 12px; container-type: inline-size; }
-.lab-panel { position: relative; display: flex; min-width: 0; flex: 1 1 0; overflow: hidden; border: 1px solid var(--lp-line); border-radius: 18px; background: var(--lp-paper); transition: flex-grow 700ms var(--lp-ease), border-color 300ms ease; }
-.lab-panel.is-open { flex-grow: 7; border-color: rgba(27, 39, 64, .28); box-shadow: 0 18px 48px -28px rgba(27, 39, 64, .35); }
-/* A closed panel is a strip of its tone, with a number and a name. */
-.lab-panel__tab { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 22px 0; border: 0; background: none; color: var(--lp-ink); cursor: pointer; font: inherit; }
-.lab-panel:not(.is-open):hover { filter: brightness(1.02) saturate(1.15); }
-.lab-panel.is-open .lab-panel__tab { display: none; }
-.lab-panel__n { color: var(--lp-accent); font: 600 13px/1 var(--font-sans); letter-spacing: .12em; }
-.lab-panel__label { font-family: var(--font-display); font-size: 22px; font-weight: 300; letter-spacing: -.01em; white-space: nowrap; writing-mode: vertical-rl; transform: rotate(180deg); }
-/* The open panel: its whole painting on the left, the words on the right. */
-.lab-panel__body { display: grid; width: 100%; min-width: calc((100cqw - 24px) * 7 / 9 - 2px); grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); align-items: center; opacity: 0; visibility: hidden; transition: opacity 300ms ease, visibility 0s 300ms; }
-.lab-panel.is-open .lab-panel__body { opacity: 1; visibility: visible; transition: opacity 600ms 220ms ease, visibility 0s; }
-.lab-panel__art { padding: 16px 0 16px 16px; }
-.lab-panel__art img { border-radius: 12px; }
-.lab-panel__text { display: flex; min-width: 0; flex-direction: column; justify-content: center; gap: clamp(14px, 2.4svh, 22px); padding: clamp(24px, 4svh, 40px) clamp(24px, 2.6vw, 40px) clamp(24px, 4svh, 40px) clamp(20px, 2vw, 32px); }
-.lab-panel h3 { margin: 0; font-family: var(--font-display); font-size: clamp(26px, min(2.3vw, 4.4svh), 36px); font-weight: 300; letter-spacing: -.024em; line-height: 1.08; text-wrap: balance; }
-.lab-panel h3 em { color: var(--lp-accent); font-style: italic; font-weight: 300; }
-.lab-panel .lab-items { margin: 0; }
-
-.lab-items { display: grid; width: 100%; padding: 0; list-style: none; }
-.lab-items li { border-top: 1px solid var(--lp-line); }
-.lab-items li:last-child { border-bottom: 1px solid var(--lp-line); }
-.lab-items a { display: grid; gap: 4px; padding: clamp(9px, 1.5svh, 14px) 0; transition: padding 260ms var(--lp-ease); }
-.lab-items b { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-display); font-size: clamp(19px, 2.5svh, 23px); font-weight: 300; letter-spacing: -.015em; transition: color 200ms ease; }
-.lab-items b svg { color: var(--lp-accent); transition: transform 260ms var(--lp-ease); }
-.lab-items span { max-width: 36em; color: var(--lp-ink-soft); font-size: clamp(13.5px, 2svh, 15px); line-height: 1.45; }
-.lab-items a:hover { padding-left: 8px; }
-.lab-items a:hover b { color: var(--lp-accent); }
-.lab-items a:hover b svg { transform: translate(3px, -3px); }
 
 /* ── Results: a card beside a framed plate, the numbers under both ──────── */
 .lab-results { padding: clamp(96px, 15svh, 150px) var(--lp-gutter) clamp(72px, 11svh, 110px); background: var(--lp-paper); }
@@ -186,22 +181,22 @@
   .lab-hero__copy > :nth-child(4) { animation-delay: 340ms; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .lab-panel, .lab-panel__body { transition: none; }
-}
+  }
 @keyframes lab-settle { from { opacity: 0; transform: scale(1.035); } to { opacity: 1; transform: none; } }
 @keyframes lab-rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 
 /* ── The lab below 1200px: the cards no longer fit on the painting, so the
    whole painting sits on top and the cards follow it, two to a row. ── */
 @media (max-width: 1199px) {
-  .lab-grid { aspect-ratio: auto; padding: calc(56.3vw + 20px) var(--lp-gutter) 56px; background: var(--tone-blue); }
-  .lab-grid__painting { height: auto; aspect-ratio: 1672 / 941; }
-  .lab-grid__wash { bottom: auto; height: calc(56.3vw + 1px); background: linear-gradient(180deg, var(--lp-paper) 0%, rgba(246, 244, 238, 0) 16%, rgba(215, 232, 241, 0) 82%, var(--tone-blue) 100%); }
+  .lab-grid { aspect-ratio: auto; padding: calc(100vw / var(--ratio) + 20px) var(--lp-gutter) 56px; background: var(--tone-blue); }
+  .lab-grid--models { background: var(--lp-paper); }
+  .lab-grid__painting { height: auto; aspect-ratio: var(--ratio); }
+  .lab-grid__wash { bottom: auto; height: calc(100vw / var(--ratio) + 1px); background: linear-gradient(180deg, var(--fade-top) 0%, transparent 16%, transparent 82%, var(--tone-blue) 100%); }
+  .lab-grid--models .lab-grid__wash { background: linear-gradient(180deg, var(--fade-top) 0%, transparent 16%, transparent 82%, var(--lp-paper) 100%); }
   .lab-grid__grid { position: relative; inset: auto; grid-template-columns: 1fr 1fr; grid-template-rows: none; gap: 14px; }
   .lab-grid__grid::before { display: none; }
-  .lab-grid__intro { grid-area: auto; grid-column: 1 / -1; margin: 0; }
-  .lab-grid__card { grid-area: auto; align-self: stretch; margin: 0; }
-  .lab-grid__card--1 { order: 1; } .lab-grid__card--2 { order: 2; } .lab-grid__card--3 { order: 3; } .lab-grid__card--4 { order: 4; }
+  .lab-grid .lab-grid__intro { grid-area: auto; grid-column: 1 / -1; margin: 0; }
+  .lab-grid .lab-grid__card { grid-area: auto; align-self: stretch; margin: 0; }
 }
 @media (max-width: 640px) {
   .lab-grid__grid { grid-template-columns: 1fr; }
@@ -213,24 +208,18 @@
   .lab-page h2 { font-size: clamp(30px, 8.4vw, 44px); }
 
   .lab-hero { min-height: 0; aspect-ratio: auto; display: flex; justify-content: flex-start; }
-  .lab-hero__art { inset: 0 0 auto 0; bottom: auto; aspect-ratio: 2 / 1; }
+  /* The painting starts under the navbar, so none of it hides behind the bar. */
+  .lab-hero__art { inset: 61px 0 auto 0; bottom: auto; aspect-ratio: 2 / 1; }
   .lab-page .lab-hero__art img { object-position: 50% 50%; }
   .lab-hero__art::after { background: linear-gradient(0deg, var(--lp-paper) 0%, rgba(246, 244, 238, 0) 14%); }
-  .lab-hero__copy { width: auto; max-width: none; margin: 0 var(--lp-gutter); padding: calc(50vw + 20px) 0 24px; }
+  .lab-hero__copy { width: auto; max-width: none; margin: 0 var(--lp-gutter); padding: calc(50vw + 81px) 0 24px; }
   .lab-hero h1 { font-size: clamp(38px, 11.4vw, 60px); }
   .lab-hero__index { position: relative; inset: auto; margin: 0 var(--lp-gutter); padding: 4px 0 28px; gap: 8px 20px; }
   .lab-hero__index a { font-size: 12px; }
 
 
-  /* The accordion becomes a stack of open cards. */
-  .lab-products { padding-top: 72px; padding-bottom: 72px; }
-  .lab-panels { height: auto; flex-direction: column; gap: 16px; }
-  .lab-panel, .lab-panel.is-open { flex: none; }
-  .lab-panel__tab { display: none; }
-  .lab-panel__body, .lab-panel.is-open .lab-panel__body { min-width: 0; grid-template-columns: 1fr; opacity: 1; visibility: visible; }
-  .lab-panel__art { padding: 12px 12px 0; }
-  .lab-panel__text { gap: 14px; padding: 20px; }
-
+  .lab-products { padding-top: 72px; padding-bottom: 8px; }
+            
   .lab-results { padding-top: 72px; }
   .lab-results__grid { grid-template-columns: 1fr; }
   .lab-closing { padding-top: 56px; padding-bottom: 56px; }
@@ -241,14 +230,6 @@
 
 /* ── One of Tura's pastels to each section ─────────────────────────────── */
 
-.lab-products { --lp-accent: var(--tone-blue-ink); background: var(--tone-blue); }
-.lab-panel--rose { --panel: var(--tone-rose); --lp-accent: var(--tone-rose-ink); --lp-accent-dot: #dba593; }
-.lab-panel--blue { --panel: #eaf3f6; --lp-accent: var(--tone-blue-ink); --lp-accent-dot: #8db8d5; }
-.lab-panel--sage { --panel: var(--tone-sage); --lp-accent: var(--tone-sage-ink); --lp-accent-dot: #b4c08a; }
-.lab-panel { background: var(--panel); border-color: color-mix(in srgb, var(--lp-accent) 22%, transparent); }
-.lab-panel.is-open { border-color: color-mix(in srgb, var(--lp-accent) 34%, transparent); }
-.lab-panel__n { color: var(--lp-accent); }
-.lab-panel .lab-items li, .lab-panel .lab-items li:last-child { border-color: color-mix(in srgb, var(--lp-accent) 24%, transparent); }
 
 .lab-results { --lp-accent: var(--tone-rose-ink); --lp-accent-dot: #dba593; }
 .lab-results__card { background: var(--tone-rose); border-color: color-mix(in srgb, var(--tone-rose-ink) 20%, transparent); }

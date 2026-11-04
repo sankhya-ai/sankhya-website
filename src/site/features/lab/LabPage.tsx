@@ -1,5 +1,5 @@
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useRef, type CSSProperties, type ReactNode } from 'react';
 import { Link } from 'react-router';
 
 import { MetricsRow, type Metric } from '@/site/components/molecules/MetricsRow';
@@ -16,8 +16,8 @@ import '@/site/features/lab/lab.css';
  * (sky blue, rose, sage, sand), one tone to a section, and no two sections hang them the
  * same way: the hero is the whole painting with words on its sky; Bengaluru
  * carries the lab's statement as cards on a grid over it (Tura's How it works); India Gate, the Sea Link and the
- * Taj Mahal head the three panels of a sideways accordion of products (one open
- * at a time); Jantar Mantar is a framed plate beside
+ * Taj Mahal carry the three groups of products the same way, each with its
+ * cards in a different place; Jantar Mantar is a framed plate beside
  * the results. Every painting is shown whole, never cropped, and carries no caption.
  * Every claim is true of what ships today.
  */
@@ -33,7 +33,6 @@ function SiteLink({ href, className, children }: { href: string; className?: str
 type Item = { name: string; href: string; line: string };
 type Chapter = {
   id: string;
-  tone: 'rose' | 'blue' | 'sage';
   plate: string;
   kicker: string;
   title: ReactNode;
@@ -44,7 +43,6 @@ type Chapter = {
 const CHAPTERS: readonly Chapter[] = [
   {
     id: 'people',
-    tone: 'rose',
     plate: 'I',
     kicker: 'For people',
     title: <>For the student with an exam, <em>and the advocate with a docket.</em></>,
@@ -60,7 +58,6 @@ const CHAPTERS: readonly Chapter[] = [
   },
   {
     id: 'agents',
-    tone: 'blue',
     plate: 'II',
     kicker: 'Agents',
     title: <>Agents that use your Mac, <em>and ask your team.</em></>,
@@ -77,7 +74,6 @@ const CHAPTERS: readonly Chapter[] = [
   },
   {
     id: 'models',
-    tone: 'sage',
     plate: 'III',
     kicker: 'Memory and models',
     title: <>Models that decide fast, <em>and a memory that keeps up.</em></>,
@@ -150,63 +146,71 @@ function useReveal() {
   return root;
 }
 
+type Painting = { src: string; srcSet?: string; alt: string; width: number; height: number };
+type GridCard = { key: string; step?: string; name: string; line: string; href?: string };
+
 /**
- * The products as a sideways accordion: one panel open, wide, with its painting
- * and products; the others are narrow strips with a number and a name. Every
- * panel's words are in the page whether it is open or not. On phones the
- * panels simply stack, all open.
+ * Tura's "How it works" component (turalearn.com): a painting at its own
+ * proportions (never cropped) under a faint grid, with an intro card and
+ * cards placed on the grid. `layout` picks where the cards sit, so no two
+ * sections hang the same way; below 1200px the painting sits on top and the
+ * cards follow it.
  */
-function ProductPanels() {
-  const [open, setOpen] = useState(0);
+function PaintedGrid({ id, layout, painting, kicker, title, titleId, text, cards }: {
+  id: string;
+  layout: string;
+  painting: Painting;
+  kicker: string;
+  title: ReactNode;
+  titleId: string;
+  text?: ReactNode;
+  cards: readonly GridCard[];
+}) {
   return (
-    <div className="lab-panels">
-      {CHAPTERS.map((chapter, index) => {
-        const isOpen = index === open;
-        return (
-          <article
-            key={chapter.id}
-            id={chapter.id}
-            className={`lab-panel lab-panel--${chapter.tone}${isOpen ? ' is-open' : ''}`}
-            aria-labelledby={`lab-${chapter.id}-title`}
-            onMouseEnter={() => setOpen(index)}
-          >
-            <button
-              type="button"
-              className="lab-panel__tab"
-              aria-expanded={isOpen}
-              aria-controls={`lab-${chapter.id}-body`}
-              onClick={() => setOpen(index)}
-              onFocus={() => setOpen(index)}
-            >
-              <span className="lab-panel__n">{String(index + 1).padStart(2, '0')}</span>
-              <span className="lab-panel__label">{chapter.kicker}</span>
-            </button>
-            <div className="lab-panel__body" id={`lab-${chapter.id}-body`}>
-              <figure className="lab-panel__art">
-                <img src={chapter.art.src} alt={chapter.art.alt} width="885" height="441" loading="lazy" decoding="async" />
-              </figure>
-              <div className="lab-panel__text">
-                <p className="lab-kicker">{String(index + 1).padStart(2, '0')} · {chapter.kicker}</p>
-                <h3 id={`lab-${chapter.id}-title`}>{chapter.title}</h3>
-                <ul className="lab-items">
-                  {chapter.items.map((item) => (
-                    <li key={item.name}>
-                      <SiteLink href={item.href}>
-                        <b>
-                          {item.name}
-                          <ArrowUpRight size={16} strokeWidth={1.8} aria-hidden="true" />
-                        </b>
-                        <span>{item.line}</span>
-                      </SiteLink>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </article>
-        );
-      })}
-    </div>
+    <section
+      className={`lab-grid lab-grid--${layout}`}
+      id={id}
+      aria-labelledby={titleId}
+      style={{ '--ratio': painting.width / painting.height } as CSSProperties}
+    >
+      <img
+        className="lab-grid__painting"
+        src={painting.src}
+        srcSet={painting.srcSet}
+        sizes={painting.srcSet ? '100vw' : undefined}
+        alt={painting.alt}
+        width={painting.width}
+        height={painting.height}
+        loading="lazy"
+        decoding="async"
+      />
+      <div className="lab-grid__wash" aria-hidden="true" />
+      <div className="lab-grid__grid">
+        <header className="lab-grid__intro">
+          <p className="lab-kicker">{kicker}</p>
+          <h2 id={titleId}>{title}</h2>
+          {text ? <p>{text}</p> : null}
+        </header>
+        {cards.map((card, index) => {
+          const body = (
+            <>
+              {card.step ? <span className="lab-grid__step">{card.step}</span> : null}
+              <h3>
+                {card.name}
+                {card.href ? <ArrowUpRight size={16} strokeWidth={1.8} aria-hidden="true" /> : null}
+              </h3>
+              <p>{card.line}</p>
+            </>
+          );
+          const className = `lab-grid__card lab-grid__card--${index + 1}`;
+          return card.href ? (
+            <SiteLink key={card.key} href={card.href} className={className}>{body}</SiteLink>
+          ) : (
+            <article key={card.key} className={className}>{body}</article>
+          );
+        })}
+      </div>
+    </section>
   );
 }
 
@@ -248,46 +252,28 @@ export function LabPage() {
           </nav>
         </section>
 
-        {/* The lab, on Bengaluru: Tura's "How it works" component. The painting
-          * fills the section at its own proportions under a faint grid; the
-          * statement and the four foundations are cards placed on that grid,
-          * each sized to its words; the one under the pointer lifts. Below
-          * 1200px the painting sits on top and the cards follow it.
-          * `lab-grid__card--1..4` place the cards. */}
-        <section className="lab-grid" id="lab" aria-labelledby="lab-statement-title">
-          <img
-            className="lab-grid__painting"
-            src="/art/lab/bengaluru.webp"
-            srcSet="/art/lab/bengaluru-960.webp 960w, /art/lab/bengaluru.webp 1672w"
-            sizes="100vw"
-            alt="Watercolour of Bengaluru: the Vidhana Soudha among flame trees, a metro train crossing glass offices, and a faint network dome over the city"
-            width="1672"
-            height="941"
-            loading="lazy"
-            decoding="async"
-          />
-          <div className="lab-grid__wash" aria-hidden="true" />
-          <div className="lab-grid__grid">
-            <header className="lab-grid__intro">
-              <p className="lab-kicker">The lab</p>
-              <h2 id="lab-statement-title">
-                Made in India, <em>for India and the world.</em>
-              </h2>
-              <p>
-                We start from open base models and build everything above them: the decision models, the memory, the
-                agents, the servers and the products. We release what we can: our models have open weights, and Chamber
-                is open source.
-              </p>
-            </header>
-            {FOUNDATIONS.map((item, index) => (
-              <article key={item.name} className={`lab-grid__card lab-grid__card--${index + 1}`}>
-                <span className="lab-grid__step">{String(index + 1).padStart(2, '0')}</span>
-                <h3>{item.name}</h3>
-                <p>{item.line}</p>
-              </article>
-            ))}
-          </div>
-        </section>
+        <PaintedGrid
+          id="lab"
+          layout="lab"
+          painting={{
+            src: '/art/lab/bengaluru.webp',
+            srcSet: '/art/lab/bengaluru-960.webp 960w, /art/lab/bengaluru.webp 1672w',
+            alt: 'Watercolour of Bengaluru: the Vidhana Soudha among flame trees, a metro train crossing glass offices, and a faint network dome over the city',
+            width: 1672,
+            height: 941,
+          }}
+          kicker="The lab"
+          titleId="lab-statement-title"
+          title={<>Made in India, <em>for India and the world.</em></>}
+          text={
+            <>
+              We start from open base models and build everything above them: the decision models, the memory, the
+              agents, the servers and the products. We release what we can: our models have open weights, and Chamber
+              is open source.
+            </>
+          }
+          cards={FOUNDATIONS.map((item, index) => ({ key: item.name, step: String(index + 1).padStart(2, '0'), name: item.name, line: item.line }))}
+        />
 
         <section className="lab-products" id="products" aria-labelledby="lab-products-title">
           <div className="lab-products__head">
@@ -297,8 +283,19 @@ export function LabPage() {
             </h2>
             <p data-reveal>Two products people use every day, the agents our own team works in, and the models and memory under all of them.</p>
           </div>
-          <ProductPanels />
         </section>
+        {CHAPTERS.map((chapter, index) => (
+          <PaintedGrid
+            key={chapter.id}
+            id={chapter.id}
+            layout={chapter.id}
+            painting={{ src: chapter.art.src, alt: chapter.art.alt, width: 885, height: 441 }}
+            kicker={`${String(index + 1).padStart(2, '0')} · ${chapter.kicker}`}
+            titleId={`lab-${chapter.id}-title`}
+            title={chapter.title}
+            cards={chapter.items.map((item) => ({ key: item.name, name: item.name, line: item.line, href: item.href }))}
+          />
+        ))}
 
         <section className="lab-results" id="results" aria-labelledby="lab-results-title">
           <div className="lab-results__grid">
