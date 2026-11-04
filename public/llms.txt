@@ -1,0 +1,29 @@
+# Sankhya AI Labs
+
+> Sankhya AI Labs (सांख्य) is an AI lab in India that builds AI from the model up: its own decision models (Tura-S1, Manu-S1), agent memory (Dhee) and agents (root, root-driver, Chamber), shipped as products: Tura, an AI tutor for students, and Manu, a case diary for Indian courts.
+
+Contact: hello@sankhyaailabs.com. Code: https://github.com/Sankhya-AI and https://github.com/tura-learn. Models: https://huggingface.co/sankhya-aI.
+
+## Products
+
+- [Tura](https://www.turalearn.com/): an AI tutor for university students that teaches from their own notes, slides and textbooks, reads past exam papers to find which topics carry the marks, and sets practice questions and mock exams. Has its own llms.txt at https://www.turalearn.com/llms.txt.
+- [Manu](https://www.sankhyaailabs.com/manu): the case diary for Indian advocates, law firms and judges. Follow a case by its CNR; every morning Manu reads the court, notices what changed, reads each new order, and says what to do and by when, quoting the words it came from.
+
+## Models
+
+- [Tura-S1-4B](https://www.sankhyaailabs.com/tura-s1): an open-weights decision model that scores every option an agent has (which tool next, or reply) in one forward pass. 98.5% on agent steps it never saw, 178 ms on one L40S. Apache-2.0.
+- [Manu-S1](https://www.sankhyaailabs.com/manu-s1): a decision model for Indian court procedure. It reads a court record and answers one procedural question: is it in time, what kind of order is it, which court should hear it. 91.8% on 2,346 High Court orders it never saw, 64 ms a decision. Open weights.
+
+## Memory
+
+- [Dhee](https://www.sankhyaailabs.com/dhee): open-source typed memory for agents. It keeps memory as typed facts, replaces a fact when it changes, and works out what is holding and what is slipping. 99.4% R@5 on LongMemEval. The memory inside Tura and root.
+
+## Agents (open source)
+
+- [root](https://www.sankhyaailabs.com/root): a free coding agent for the Mac. Bring an OpenRouter key and any model; a decision model picks every step and Dhee remembers the project, so smaller models finish long tasks. Every turn can be undone.
+- [root-driver](https://www.sankhyaailabs.com/root-driver): lets Claude Code, Codex, Cursor and any MCP agent read a Mac app's window and click, type and fill forms in it in the background, without moving the cursor or taking focus. One signed app, one permission grant, every agent.
+- [Chamber](https://chamber.sankhyaailabs.com/): Slack for coding agents. Your agent asks a teammate's agent and gets the answer back, file attached, and people see every talk. End-to-end encrypted, on your own Cloudflare account or server. Free for Mac and Windows.
+
+## Optional
+
+- [Privacy policy](https://www.sankhyaailabs.com/privacy)

@@ -70,6 +70,10 @@
       "destination": "/dhee/index.html"
     },
     {
+      "source": "/privacy",
+      "destination": "/privacy/index.html"
+    },
+    {
       "source": "/tura-s1",
       "destination": "/tura-s1/index.html"
     },
