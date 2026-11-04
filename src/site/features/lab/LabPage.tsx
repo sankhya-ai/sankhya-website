@@ -219,9 +219,9 @@ function PaintedGrid({ id, layout, painting, kicker, title, titleId, text, cards
 
 /**
  * The products as a sideways accordion: one panel open (hover, click or focus
- * opens another), the rest narrow numbered strips. The open panel shows its
- * painting whole beside its heading, then its products as small cards in
- * columns, the same cards as the lab's grid. On phones the panels stack, all
+ * opens another), the rest narrow numbered strips. The open panel is its
+ * painting, whole, with a faint grid over it and its heading and products
+ * floating on it as cards, as the lab's grid does. On phones the panels stack, all
  * open. Every panel's words are in the page whether it is open or not.
  */
 function ProductPanels() {
@@ -251,28 +251,26 @@ function ProductPanels() {
               <span className="lab-panel__label">{chapter.kicker}</span>
             </button>
             <div className="lab-panel__body" id={`lab-${chapter.id}-body`}>
-              <div className="lab-panel__top">
-                <figure className="lab-panel__art">
-                  <img src={chapter.art.src} alt={chapter.art.alt} width="885" height="441" loading="lazy" decoding="async" />
-                </figure>
+              <img className="lab-panel__painting" src={chapter.art.src} alt={chapter.art.alt} width="885" height="441" loading="lazy" decoding="async" />
+              <div className="lab-panel__float">
                 <div className="lab-panel__head">
                   <p className="lab-kicker">{n} · {chapter.kicker}</p>
                   <h3 id={`lab-${chapter.id}-title`}>{chapter.title}</h3>
                 </div>
+                <ul className="lab-panel__cards" style={{ '--cols': chapter.items.length } as CSSProperties}>
+                  {chapter.items.map((item) => (
+                    <li key={item.name}>
+                      <SiteLink href={item.href} className="lab-grid__card lab-panel__card">
+                        <h3>
+                          {item.name}
+                          <ArrowUpRight size={16} strokeWidth={1.8} aria-hidden="true" />
+                        </h3>
+                        <p>{item.line}</p>
+                      </SiteLink>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className="lab-panel__cards" style={{ '--cols': chapter.items.length } as CSSProperties}>
-                {chapter.items.map((item) => (
-                  <li key={item.name}>
-                    <SiteLink href={item.href} className="lab-grid__card lab-panel__card">
-                      <h3>
-                        {item.name}
-                        <ArrowUpRight size={16} strokeWidth={1.8} aria-hidden="true" />
-                      </h3>
-                      <p>{item.line}</p>
-                    </SiteLink>
-                  </li>
-                ))}
-              </ul>
             </div>
           </article>
         );
