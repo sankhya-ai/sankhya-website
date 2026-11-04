@@ -12,12 +12,14 @@ import '@/site/features/lab/lab.css';
 /**
  * Sankhya AI Labs' home: watercolour on paper.
  *
- * Six paintings carry it (public/art/lab), and no two sections hang them the
+ * Six paintings carry it (public/art/lab) on Tura's paper and its four pastels
+ * (sky blue, rose, sage, sand), one tone to a section, and no two sections hang them the
  * same way: the hero is the whole painting with words on its sky; Bengaluru is
  * a panorama band under the lab's statement; India Gate, the Sea Link and the
  * Taj Mahal head the three panels of a sideways accordion of products (one open
  * at a time); Jantar Mantar is a framed plate beside
- * the results. Every claim is true of what ships today.
+ * the results. Every painting is shown whole, never cropped, and carries no caption.
+ * Every claim is true of what ships today.
  */
 
 function SiteLink({ href, className, children }: { href: string; className?: string; children: ReactNode }) {
@@ -31,6 +33,7 @@ function SiteLink({ href, className, children }: { href: string; className?: str
 type Item = { name: string; href: string; line: string };
 type Chapter = {
   id: string;
+  tone: 'rose' | 'blue' | 'sage';
   plate: string;
   kicker: string;
   title: ReactNode;
@@ -41,6 +44,7 @@ type Chapter = {
 const CHAPTERS: readonly Chapter[] = [
   {
     id: 'people',
+    tone: 'rose',
     plate: 'I',
     kicker: 'For people',
     title: <>For the student with an exam, <em>and the advocate with a docket.</em></>,
@@ -56,6 +60,7 @@ const CHAPTERS: readonly Chapter[] = [
   },
   {
     id: 'agents',
+    tone: 'blue',
     plate: 'II',
     kicker: 'Agents',
     title: <>Agents that use your Mac, <em>and ask your team.</em></>,
@@ -72,6 +77,7 @@ const CHAPTERS: readonly Chapter[] = [
   },
   {
     id: 'models',
+    tone: 'sage',
     plate: 'III',
     kicker: 'Memory and models',
     title: <>Models that decide fast, <em>and a memory that keeps up.</em></>,
@@ -160,7 +166,7 @@ function ProductPanels() {
           <article
             key={chapter.id}
             id={chapter.id}
-            className={`lab-panel${isOpen ? ' is-open' : ''}`}
+            className={`lab-panel lab-panel--${chapter.tone}${isOpen ? ' is-open' : ''}`}
             aria-labelledby={`lab-${chapter.id}-title`}
             onMouseEnter={() => setOpen(index)}
           >
@@ -178,9 +184,9 @@ function ProductPanels() {
             <div className="lab-panel__body" id={`lab-${chapter.id}-body`}>
               <figure className="lab-panel__art">
                 <img src={chapter.art.src} alt={chapter.art.alt} width="885" height="441" loading="lazy" decoding="async" />
-                <figcaption className="lab-caption">Plate {chapter.plate} · {chapter.art.caption}</figcaption>
               </figure>
               <div className="lab-panel__text">
+                <p className="lab-kicker">{String(index + 1).padStart(2, '0')} · {chapter.kicker}</p>
                 <h3 id={`lab-${chapter.id}-title`}>{chapter.title}</h3>
                 <ul className="lab-items">
                   {chapter.items.map((item) => (
@@ -240,7 +246,6 @@ export function LabPage() {
               <SiteLink key={product.name} href={product.href}>{product.name}</SiteLink>
             ))}
           </nav>
-          <p className="lab-caption lab-hero__caption" aria-hidden="true">Mumbai, at sunset</p>
         </section>
 
         <section className="lab-statement" id="lab" aria-labelledby="lab-statement-title">
@@ -266,7 +271,6 @@ export function LabPage() {
               loading="lazy"
               decoding="async"
             />
-            <figcaption className="lab-caption">Bengaluru</figcaption>
           </figure>
           <ol className="lab-foundations" aria-label="What the lab runs on">
             {FOUNDATIONS.map((item, index) => (
@@ -311,7 +315,6 @@ export function LabPage() {
                 loading="lazy"
                 decoding="async"
               />
-              <figcaption className="lab-caption">Plate IV · Jantar Mantar, where the sky was measured</figcaption>
             </figure>
           </div>
           <div className="lab-results__numbers" data-reveal>
@@ -321,7 +324,6 @@ export function LabPage() {
 
         <section className="lab-closing" aria-labelledby="lab-closing-title">
           <div className="lab-closing__copy">
-            <div className="lab-closing__sun" aria-hidden="true" />
             <p className="lab-kicker" data-reveal>Contact</p>
             <h2 id="lab-closing-title" data-reveal>Write to the lab.</h2>
             <p data-reveal>About a model, a repository, or putting one of our products to work where you are.</p>
