@@ -14,8 +14,8 @@ import '@/site/features/lab/lab.css';
  *
  * Six paintings carry it (public/art/lab) on Tura's paper and its four pastels
  * (sky blue, rose, sage, sand), one tone to a section, and no two sections hang them the
- * same way: the hero is the whole painting with words on its sky; Bengaluru is
- * a panorama band under the lab's statement; India Gate, the Sea Link and the
+ * same way: the hero is the whole painting with words on its sky; Bengaluru
+ * carries the lab's statement as cards on a grid over it (Tura's How it works); India Gate, the Sea Link and the
  * Taj Mahal head the three panels of a sideways accordion of products (one open
  * at a time); Jantar Mantar is a framed plate beside
  * the results. Every painting is shown whole, never cropped, and carries no caption.
@@ -248,39 +248,44 @@ export function LabPage() {
           </nav>
         </section>
 
-        <section className="lab-statement" id="lab" aria-labelledby="lab-statement-title">
-          <div className="lab-statement__copy">
-            <p className="lab-kicker" data-reveal>The lab</p>
-            <h2 id="lab-statement-title" data-reveal>
-              Made in India, <em>for India and the world.</em>
-            </h2>
-            <p data-reveal>
-              We start from open base models and build everything above them: the decision models, the memory, the agents,
-              the servers and the products. We begin with the courts, classrooms and codebases we know first, and we
-              release what we can: our models have open weights, and Chamber is open source.
-            </p>
-          </div>
-          <figure className="lab-statement__art" data-reveal>
-            <img
-              src="/art/lab/bengaluru.webp"
-              srcSet="/art/lab/bengaluru-960.webp 960w, /art/lab/bengaluru.webp 1672w"
-              sizes="100vw"
-              alt="Watercolour of Bengaluru: the Vidhana Soudha among flame trees, a metro train crossing glass offices, and a faint network dome over the city"
-              width="1672"
-              height="941"
-              loading="lazy"
-              decoding="async"
-            />
-          </figure>
-          <ol className="lab-foundations" aria-label="What the lab runs on">
+        {/* The lab, on Bengaluru: Tura's "How it works" component. The painting
+          * fills the section at its own proportions under a faint grid; the
+          * statement and the four foundations are cards placed on that grid,
+          * and the one under the pointer (or keyboard focus) widens its columns.
+          * `lab-grid__card--1..4` place the cards; `tabIndex` lets focus open one. */}
+        <section className="lab-grid" id="lab" aria-labelledby="lab-statement-title">
+          <img
+            className="lab-grid__painting"
+            src="/art/lab/bengaluru.webp"
+            srcSet="/art/lab/bengaluru-960.webp 960w, /art/lab/bengaluru.webp 1672w"
+            sizes="100vw"
+            alt="Watercolour of Bengaluru: the Vidhana Soudha among flame trees, a metro train crossing glass offices, and a faint network dome over the city"
+            width="1672"
+            height="941"
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="lab-grid__wash" aria-hidden="true" />
+          <div className="lab-grid__grid">
+            <header className="lab-grid__intro">
+              <p className="lab-kicker">The lab</p>
+              <h2 id="lab-statement-title">
+                Made in India, <em>for India and the world.</em>
+              </h2>
+              <p>
+                We start from open base models and build everything above them: the decision models, the memory, the
+                agents, the servers and the products. We release what we can: our models have open weights, and Chamber
+                is open source.
+              </p>
+            </header>
             {FOUNDATIONS.map((item, index) => (
-              <li key={item.name} data-reveal>
-                <span className="lab-foundations__n">{String(index + 1).padStart(2, '0')}</span>
-                <b>{item.name}</b>
-                <span>{item.line}</span>
-              </li>
+              <article key={item.name} className={`lab-grid__card lab-grid__card--${index + 1}`} tabIndex={0}>
+                <span className="lab-grid__step">{String(index + 1).padStart(2, '0')}</span>
+                <h3>{item.name}</h3>
+                <p>{item.line}</p>
+              </article>
             ))}
-          </ol>
+          </div>
         </section>
 
         <section className="lab-products" id="products" aria-labelledby="lab-products-title">
