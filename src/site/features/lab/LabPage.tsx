@@ -1,5 +1,5 @@
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
-import { useEffect, useRef, type CSSProperties, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Link } from 'react-router';
 
 import { MetricsRow, type Metric } from '@/site/components/molecules/MetricsRow';
@@ -12,11 +12,12 @@ import '@/site/features/lab/lab.css';
 /**
  * Sankhya AI Labs' home: watercolour on paper.
  *
- * Six paintings carry it (public/art/lab): the hero, Bengaluru behind the lab's
- * statement, India Gate, the Sea Link and the Taj Mahal beside the three groups
- * of products, and Jantar Mantar beside the results. Each bleeds off the page
- * and fades into the paper, so a section is a painting with words on it, not a
- * card with a picture in it. Every claim is true of what ships today.
+ * Six paintings carry it (public/art/lab), and no two sections hang them the
+ * same way: the hero is the whole painting with words on its sky; Bengaluru is
+ * a panorama band under the lab's statement; India Gate, the Sea Link and the
+ * Taj Mahal head the three panels of a sideways accordion of products (one open
+ * at a time); Jantar Mantar is a framed plate beside
+ * the results. Every claim is true of what ships today.
  */
 
 function SiteLink({ href, className, children }: { href: string; className?: string; children: ReactNode }) {
@@ -31,10 +32,9 @@ type Item = { name: string; href: string; line: string };
 type Chapter = {
   id: string;
   plate: string;
-  side: 'left' | 'right';
   kicker: string;
   title: ReactNode;
-  art: { src: string; alt: string; caption: string; pos: string };
+  art: { src: string; alt: string; caption: string };
   items: readonly Item[];
 };
 
@@ -42,14 +42,12 @@ const CHAPTERS: readonly Chapter[] = [
   {
     id: 'people',
     plate: 'I',
-    side: 'right',
     kicker: 'For people',
     title: <>For the student with an exam, <em>and the advocate with a docket.</em></>,
     art: {
       src: '/art/lab/india-gate.webp',
       alt: 'Watercolour of India Gate at sunset under a saffron sun, with a faint AI chip and a bar chart drawn in the sky beside it',
       caption: 'India Gate, New Delhi',
-      pos: '52%',
     },
     items: [
       { name: 'Manu', href: '/manu', line: 'A case diary for Indian courts. Give it a CNR; each morning it reads every new order and shows the words each line came from.' },
@@ -59,14 +57,12 @@ const CHAPTERS: readonly Chapter[] = [
   {
     id: 'agents',
     plate: 'II',
-    side: 'left',
     kicker: 'Agents',
     title: <>Agents that use your Mac, <em>and ask your team.</em></>,
     art: {
       src: '/art/lab/sea-link.webp',
       alt: 'Watercolour of the Bandra–Worli Sea Link at dusk, a glass skyline beside it and translucent data panels showing a dotted map of India',
       caption: 'Bandra–Worli Sea Link, Mumbai',
-      pos: '58%',
     },
     items: [
       { name: 'root', href: '/root', line: 'The coding agent our team works in. Any model, every turn undoable, free for the Mac.' },
@@ -77,14 +73,12 @@ const CHAPTERS: readonly Chapter[] = [
   {
     id: 'models',
     plate: 'III',
-    side: 'right',
     kicker: 'Memory and models',
     title: <>Models that decide fast, <em>and a memory that keeps up.</em></>,
     art: {
       src: '/art/lab/taj-mahal.webp',
       alt: 'Watercolour of the Taj Mahal seen down its long reflecting pool, a thin line of data waves drifting across the sky',
       caption: 'The Taj Mahal, Agra',
-      pos: '66%',
     },
     items: [
       { name: 'Dhee', href: '/dhee', line: 'What a student knows in Tura, what a codebase expects in root. Kept as typed facts, replaced when they change.' },
@@ -110,11 +104,13 @@ const METRICS: readonly Metric[] = [
 
 const HERO_NAV: readonly { name: string; href: string }[] = [
   { name: 'Manu', href: '/manu' },
+  { name: 'Tura', href: TURA_URL },
   { name: 'root', href: '/root' },
   { name: 'root-driver', href: '/root-driver' },
   { name: 'Chamber', href: 'https://chamber.sankhyaailabs.com' },
   { name: 'Dhee', href: '/dhee' },
   { name: 'Tura-S1', href: '/tura-s1' },
+  { name: 'Manu-S1', href: '/manu-s1' },
 ];
 
 /**
@@ -146,6 +142,66 @@ function useReveal() {
     };
   }, []);
   return root;
+}
+
+/**
+ * The products as a sideways accordion: one panel open, wide, with its painting
+ * and products; the others are narrow strips with a number and a name. Every
+ * panel's words are in the page whether it is open or not. On phones the
+ * panels simply stack, all open.
+ */
+function ProductPanels() {
+  const [open, setOpen] = useState(0);
+  return (
+    <div className="lab-panels">
+      {CHAPTERS.map((chapter, index) => {
+        const isOpen = index === open;
+        return (
+          <article
+            key={chapter.id}
+            id={chapter.id}
+            className={`lab-panel${isOpen ? ' is-open' : ''}`}
+            aria-labelledby={`lab-${chapter.id}-title`}
+            onMouseEnter={() => setOpen(index)}
+          >
+            <button
+              type="button"
+              className="lab-panel__tab"
+              aria-expanded={isOpen}
+              aria-controls={`lab-${chapter.id}-body`}
+              onClick={() => setOpen(index)}
+              onFocus={() => setOpen(index)}
+            >
+              <span className="lab-panel__n">{String(index + 1).padStart(2, '0')}</span>
+              <span className="lab-panel__label">{chapter.kicker}</span>
+            </button>
+            <div className="lab-panel__body" id={`lab-${chapter.id}-body`}>
+              <figure className="lab-panel__art">
+                <img src={chapter.art.src} alt={chapter.art.alt} width="885" height="441" loading="lazy" decoding="async" />
+                <figcaption className="lab-caption">Plate {chapter.plate} · {chapter.art.caption}</figcaption>
+              </figure>
+              <div className="lab-panel__text">
+                <h3 id={`lab-${chapter.id}-title`}>{chapter.title}</h3>
+                <ul className="lab-items">
+                  {chapter.items.map((item) => (
+                    <li key={item.name}>
+                      <SiteLink href={item.href}>
+                        <b>
+                          {item.name}
+                          <ArrowUpRight size={16} strokeWidth={1.8} aria-hidden="true" />
+                        </b>
+                        <span>{item.line}</span>
+                      </SiteLink>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  );
 }
 
 export function LabPage() {
@@ -188,7 +244,18 @@ export function LabPage() {
         </section>
 
         <section className="lab-statement" id="lab" aria-labelledby="lab-statement-title">
-          <figure className="lab-statement__art">
+          <div className="lab-statement__copy">
+            <p className="lab-kicker" data-reveal>The lab</p>
+            <h2 id="lab-statement-title" data-reveal>
+              Made in India, <em>for India and the world.</em>
+            </h2>
+            <p data-reveal>
+              We start from open base models and build everything above them: the decision models, the memory, the agents,
+              the servers and the products. We begin with the courts, classrooms and codebases we know first, and we
+              release what we can: our models have open weights, and Chamber is open source.
+            </p>
+          </div>
+          <figure className="lab-statement__art" data-reveal>
             <img
               src="/art/lab/bengaluru.webp"
               srcSet="/art/lab/bengaluru-960.webp 960w, /art/lab/bengaluru.webp 1672w"
@@ -201,77 +268,51 @@ export function LabPage() {
             />
             <figcaption className="lab-caption">Bengaluru</figcaption>
           </figure>
-          <div className="lab-statement__copy">
-            <p className="lab-kicker" data-reveal>The lab</p>
-            <h2 id="lab-statement-title" data-reveal>
-              Made in India, <em>for India and the world.</em>
-            </h2>
-            <p data-reveal>
-              We start from open base models and build everything above them: the decision models, the memory, the agents,
-              the servers and the products. We begin with the courts, classrooms and codebases we know first, and we
-              release what we can: our models have open weights, and Chamber is open source.
-            </p>
-            <ul className="lab-foundations" aria-label="What the lab runs on" data-reveal>
-              {FOUNDATIONS.map((item) => (
-                <li key={item.name}>
-                  <b>{item.name}</b>
-                  <span>{item.line}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ol className="lab-foundations" aria-label="What the lab runs on">
+            {FOUNDATIONS.map((item, index) => (
+              <li key={item.name} data-reveal>
+                <span className="lab-foundations__n">{String(index + 1).padStart(2, '0')}</span>
+                <b>{item.name}</b>
+                <span>{item.line}</span>
+              </li>
+            ))}
+          </ol>
         </section>
 
-        <div id="products" className="lab-products">
-          {CHAPTERS.map((chapter) => (
-            <section
-              key={chapter.id}
-              className={`lab-chapter lab-chapter--${chapter.side}`}
-              id={chapter.id}
-              aria-labelledby={`lab-${chapter.id}-title`}
-            >
-              <figure className="lab-chapter__art" style={{ '--pos': chapter.art.pos } as CSSProperties} data-reveal>
-                <img src={chapter.art.src} alt={chapter.art.alt} width="885" height="441" loading="lazy" decoding="async" />
-                <figcaption className="lab-caption">Plate {chapter.plate} · {chapter.art.caption}</figcaption>
-              </figure>
-              <div className="lab-chapter__copy">
-                <p className="lab-kicker" data-reveal>{chapter.kicker}</p>
-                <h2 id={`lab-${chapter.id}-title`} data-reveal>{chapter.title}</h2>
-                <ul className="lab-items">
-                  {chapter.items.map((item) => (
-                    <li key={item.name} data-reveal>
-                      <SiteLink href={item.href}>
-                        <b>
-                          {item.name}
-                          <ArrowUpRight size={16} strokeWidth={1.8} aria-hidden="true" />
-                        </b>
-                        <span>{item.line}</span>
-                      </SiteLink>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </section>
-          ))}
-        </div>
-
-        <section className="lab-results lab-chapter lab-chapter--right" id="results" aria-labelledby="lab-results-title">
-          <figure className="lab-chapter__art" data-reveal>
-            <img
-              src="/art/lab/jantar-mantar.webp"
-              alt="Watercolour of the red sandstone instruments of Jantar Mantar among trees, the arcs and phases of the moon drawn faintly in the sky"
-              width="885"
-              height="441"
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption className="lab-caption">Plate IV · Jantar Mantar</figcaption>
-          </figure>
-          <div className="lab-chapter__copy">
-            <p className="lab-kicker" data-reveal>Results</p>
-            <h2 id="lab-results-title" data-reveal>
-              Measured on work <em>the models never saw.</em>
+        <section className="lab-products" id="products" aria-labelledby="lab-products-title">
+          <div className="lab-products__head">
+            <p className="lab-kicker" data-reveal>What we make</p>
+            <h2 id="lab-products-title" data-reveal>
+              Eight things, <em>one stack.</em>
             </h2>
+            <p data-reveal>Two products people use every day, the agents our own team works in, and the models and memory under all of them.</p>
+          </div>
+          <ProductPanels />
+        </section>
+
+        <section className="lab-results" id="results" aria-labelledby="lab-results-title">
+          <div className="lab-results__grid">
+            <div className="lab-results__card" data-reveal>
+              <p className="lab-kicker">Results</p>
+              <h2 id="lab-results-title">
+                Measured on work <em>the models never saw.</em>
+              </h2>
+              <p>
+                Every number is from a held-out set built from real work: agent decisions from Tura, orders from High
+                Courts, and the long-memory benchmark everyone uses.
+              </p>
+            </div>
+            <figure className="lab-plate" data-reveal>
+              <img
+                src="/art/lab/jantar-mantar.webp"
+                alt="Watercolour of the red sandstone instruments of Jantar Mantar among trees, the arcs and phases of the moon drawn faintly in the sky"
+                width="885"
+                height="441"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption className="lab-caption">Plate IV · Jantar Mantar, where the sky was measured</figcaption>
+            </figure>
           </div>
           <div className="lab-results__numbers" data-reveal>
             <MetricsRow metrics={METRICS} label="Sankhya's models and memory in numbers" />
@@ -279,8 +320,8 @@ export function LabPage() {
         </section>
 
         <section className="lab-closing" aria-labelledby="lab-closing-title">
-          <div className="lab-closing__sun" aria-hidden="true" />
           <div className="lab-closing__copy">
+            <div className="lab-closing__sun" aria-hidden="true" />
             <p className="lab-kicker" data-reveal>Contact</p>
             <h2 id="lab-closing-title" data-reveal>Write to the lab.</h2>
             <p data-reveal>About a model, a repository, or putting one of our products to work where you are.</p>
