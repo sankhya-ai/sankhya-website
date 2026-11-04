@@ -1,5 +1,5 @@
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
-import { useEffect, useRef, type CSSProperties, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import { Link } from 'react-router';
 
 import { MetricsRow, type Metric } from '@/site/components/molecules/MetricsRow';
@@ -16,8 +16,8 @@ import '@/site/features/lab/lab.css';
  * (sky blue, rose, sage, sand), one tone to a section, and no two sections hang them the
  * same way: the hero is the whole painting with words on its sky; Bengaluru
  * carries the lab's statement as cards on a grid over it (Tura's How it works); India Gate, the Sea Link and the
- * Taj Mahal carry the three groups of products the same way, each with its
- * cards in a different place; Jantar Mantar is a framed plate beside
+ * Taj Mahal head the three panels of a sideways accordion of products;
+ * Jantar Mantar is a framed plate beside
  * the results. Every painting is shown whole, never cropped, and carries no caption.
  * Every claim is true of what ships today.
  */
@@ -33,6 +33,7 @@ function SiteLink({ href, className, children }: { href: string; className?: str
 type Item = { name: string; href: string; line: string };
 type Chapter = {
   id: string;
+  tone: 'rose' | 'blue' | 'sage';
   plate: string;
   kicker: string;
   title: ReactNode;
@@ -43,6 +44,7 @@ type Chapter = {
 const CHAPTERS: readonly Chapter[] = [
   {
     id: 'people',
+    tone: 'rose',
     plate: 'I',
     kicker: 'For people',
     title: <>For the student with an exam, <em>and the advocate with a docket.</em></>,
@@ -58,6 +60,7 @@ const CHAPTERS: readonly Chapter[] = [
   },
   {
     id: 'agents',
+    tone: 'blue',
     plate: 'II',
     kicker: 'Agents',
     title: <>Agents that use your Mac, <em>and ask your team.</em></>,
@@ -74,6 +77,7 @@ const CHAPTERS: readonly Chapter[] = [
   },
   {
     id: 'models',
+    tone: 'sage',
     plate: 'III',
     kicker: 'Memory and models',
     title: <>Models that decide fast, <em>and a memory that keeps up.</em></>,
@@ -152,8 +156,7 @@ type GridCard = { key: string; step?: string; name: string; line: string; href?:
 /**
  * Tura's "How it works" component (turalearn.com): a painting at its own
  * proportions (never cropped) under a faint grid, with an intro card and
- * cards placed on the grid. `layout` picks where the cards sit, so no two
- * sections hang the same way; below 1200px the painting sits on top and the
+ * cards placed on the grid. `layout` picks where the cards sit; below 1200px the painting sits on top and the
  * cards follow it.
  */
 function PaintedGrid({ id, layout, painting, kicker, title, titleId, text, cards }: {
@@ -211,6 +214,70 @@ function PaintedGrid({ id, layout, painting, kicker, title, titleId, text, cards
         })}
       </div>
     </section>
+  );
+}
+
+/**
+ * The products as a sideways accordion: one panel open (hover, click or focus
+ * opens another), the rest narrow numbered strips. The open panel shows its
+ * painting whole beside its heading, then its products as small cards in
+ * columns, the same cards as the lab's grid. On phones the panels stack, all
+ * open. Every panel's words are in the page whether it is open or not.
+ */
+function ProductPanels() {
+  const [open, setOpen] = useState(0);
+  return (
+    <div className="lab-panels">
+      {CHAPTERS.map((chapter, index) => {
+        const isOpen = index === open;
+        const n = String(index + 1).padStart(2, '0');
+        return (
+          <article
+            key={chapter.id}
+            id={chapter.id}
+            className={`lab-panel lab-panel--${chapter.tone}${isOpen ? ' is-open' : ''}`}
+            aria-labelledby={`lab-${chapter.id}-title`}
+            onMouseEnter={() => setOpen(index)}
+          >
+            <button
+              type="button"
+              className="lab-panel__tab"
+              aria-expanded={isOpen}
+              aria-controls={`lab-${chapter.id}-body`}
+              onClick={() => setOpen(index)}
+              onFocus={() => setOpen(index)}
+            >
+              <span className="lab-panel__n">{n}</span>
+              <span className="lab-panel__label">{chapter.kicker}</span>
+            </button>
+            <div className="lab-panel__body" id={`lab-${chapter.id}-body`}>
+              <div className="lab-panel__top">
+                <figure className="lab-panel__art">
+                  <img src={chapter.art.src} alt={chapter.art.alt} width="885" height="441" loading="lazy" decoding="async" />
+                </figure>
+                <div className="lab-panel__head">
+                  <p className="lab-kicker">{n} · {chapter.kicker}</p>
+                  <h3 id={`lab-${chapter.id}-title`}>{chapter.title}</h3>
+                </div>
+              </div>
+              <ul className="lab-panel__cards" style={{ '--cols': chapter.items.length } as CSSProperties}>
+                {chapter.items.map((item) => (
+                  <li key={item.name}>
+                    <SiteLink href={item.href} className="lab-grid__card lab-panel__card">
+                      <h3>
+                        {item.name}
+                        <ArrowUpRight size={16} strokeWidth={1.8} aria-hidden="true" />
+                      </h3>
+                      <p>{item.line}</p>
+                    </SiteLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        );
+      })}
+    </div>
   );
 }
 
@@ -283,19 +350,8 @@ export function LabPage() {
             </h2>
             <p data-reveal>Two products people use every day, the agents our own team works in, and the models and memory under all of them.</p>
           </div>
+          <ProductPanels />
         </section>
-        {CHAPTERS.map((chapter, index) => (
-          <PaintedGrid
-            key={chapter.id}
-            id={chapter.id}
-            layout={chapter.id}
-            painting={{ src: chapter.art.src, alt: chapter.art.alt, width: 885, height: 441 }}
-            kicker={`${String(index + 1).padStart(2, '0')} · ${chapter.kicker}`}
-            titleId={`lab-${chapter.id}-title`}
-            title={chapter.title}
-            cards={chapter.items.map((item) => ({ key: item.name, name: item.name, line: item.line, href: item.href }))}
-          />
-        ))}
 
         <section className="lab-results" id="results" aria-labelledby="lab-results-title">
           <div className="lab-results__grid">
