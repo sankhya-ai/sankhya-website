@@ -116,7 +116,7 @@ a.lab-grid__card:hover h3 svg { transform: translate(3px, -3px); }
 
 /* ── What we make: the heading over the three painted groups ───────────── */
 /* It starts in the paper the hero fades into and washes into the blue. */
-.lab-products { --lp-accent: var(--tone-blue-ink); padding: clamp(80px, 13svh, 136px) var(--lp-gutter); background: linear-gradient(180deg, var(--lp-paper) 0, var(--tone-blue) clamp(120px, 18svh, 200px)); }
+.lab-products { --lp-accent: var(--tone-blue-ink); padding: clamp(80px, 13svh, 136px) var(--lp-gutter) clamp(112px, 16svh, 160px); background: linear-gradient(180deg, var(--lp-paper) 0, var(--tone-blue) clamp(120px, 18svh, 200px)); }
 .lab-products__head { display: grid; max-width: 760px; gap: clamp(14px, 2.2svh, 20px); margin-bottom: clamp(32px, 6svh, 56px); justify-items: start; }
 .lab-products__head > p:not(.lab-kicker) { max-width: 36em; color: var(--lp-ink-soft); font-size: clamp(16px, 1.2vw, 18px); line-height: 1.6; }
 
@@ -173,15 +173,15 @@ a.lab-grid__card:hover h3 svg { transform: translate(3px, -3px); }
 .lab-closing { padding: clamp(72px, 12svh, 120px) var(--lp-gutter) clamp(56px, 9svh, 96px); background: var(--lp-paper); }
 /* Contact: Bengaluru, whole (1672:941), under a faint grid, with the words on
    a card floating in the middle, as the products' panels do. */
-.lab-closing__frame { position: relative; display: grid; aspect-ratio: 1672 / 941; overflow: hidden; border-radius: 24px; place-items: center; box-shadow: 0 24px 60px -34px rgba(16, 41, 62, .45); }
+.lab-closing__frame { position: relative; display: grid; width: min(960px, 100%); margin: 0 auto; aspect-ratio: 1672 / 941; overflow: hidden; border-radius: 24px; place-items: center; box-shadow: 0 24px 60px -34px rgba(16, 41, 62, .45); }
 .lab-closing__painting { position: absolute; inset: 0; width: 100%; height: 100%; }
 .lab-closing__frame::before { position: absolute; z-index: 1; inset: 0; content: ''; pointer-events: none;
   background-image: linear-gradient(rgba(255, 255, 255, .42) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .42) 1px, transparent 1px);
   background-size: 10% 14.2857%; background-position: -1px -1px; }
-.lab-closing__copy { position: relative; z-index: 2; display: grid; width: min(620px, calc(100% - 48px)); justify-items: center; gap: 16px; border: 1px solid rgba(16, 41, 62, .14); padding: clamp(28px, 4vw, 52px) clamp(24px, 4vw, 56px); background: rgba(255, 253, 248, .94); box-shadow: 0 28px 80px rgba(20, 42, 50, .18); backdrop-filter: blur(5px); text-align: center; }
-.lab-closing h2 { font-size: clamp(38px, min(5vw, 9svh), 72px); }
-.lab-closing__copy > p:not(.lab-kicker) { max-width: 28em; color: var(--lp-ink-soft); font-size: clamp(16px, 1.4vw, 19px); line-height: 1.6; }
-.lab-mail { display: inline-flex; align-items: center; gap: 10px; margin-top: 8px; border-radius: 999px; padding: 15px 26px; background: var(--lp-indigo-deep); color: var(--lp-paper); font-size: 15px; font-weight: 560; letter-spacing: .02em; transition: background 200ms ease, gap 240ms var(--lp-ease); }
+.lab-closing__copy { position: relative; z-index: 2; display: grid; width: min(460px, calc(100% - 48px)); justify-items: center; gap: 12px; border: 1px solid rgba(16, 41, 62, .14); padding: clamp(22px, 2.6vw, 34px) clamp(20px, 2.6vw, 36px); background: rgba(255, 253, 248, .94); box-shadow: 0 28px 80px rgba(20, 42, 50, .18); backdrop-filter: blur(5px); text-align: center; }
+.lab-closing h2 { font-size: clamp(30px, min(3.2vw, 6svh), 44px); }
+.lab-closing__copy > p:not(.lab-kicker) { max-width: 26em; color: var(--lp-ink-soft); font-size: clamp(14.5px, 1.1vw, 16px); line-height: 1.55; }
+.lab-mail { display: inline-flex; align-items: center; gap: 10px; margin-top: 6px; border-radius: 999px; padding: 12px 22px; background: var(--lp-indigo-deep); color: var(--lp-paper); font-size: 14px; font-weight: 560; letter-spacing: .02em; transition: background 200ms ease, gap 240ms var(--lp-ease); }
 .lab-mail:hover { gap: 14px; background: var(--lp-ink); }
 .lab-page :focus-visible { outline: 3px solid var(--lp-indigo); outline-offset: 4px; border-radius: 4px; }
 

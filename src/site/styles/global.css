@@ -1078,19 +1078,20 @@ span.brand > a:hover strong, span.brand > a.brand__by:hover { color: var(--ink);
   .paper-section__inner { min-height: min(clamp(600px, 54vw, 780px), 100svh); padding: clamp(64px, 11svh, 140px) 0; }
 }
 
-/* ── The lab pages' navbar: a full-width bar, square, on Tura's paper ─────
+/* ── The navbar, on every page: a full-width bar, square, on Tura's paper ──
    Frosted paper across the whole window, a hairline under it, and a thin
    stripe of Tura's four pastels along its top edge. The logo and the links
-   line up with the page's own margins. Manu keeps its rounded bar. */
-.lab-tone .site-header { top: 0; left: 0; width: 100%; max-width: none; transform: none; }
-.lab-tone .site-nav { position: relative; min-height: 64px; border: 0; border-bottom: 1px solid rgba(16, 41, 62, .1); border-radius: 0; padding: 3px clamp(20px, 5.5vw, 88px) 0; background: rgba(246, 244, 238, .82); box-shadow: 0 10px 30px -18px rgba(16, 41, 62, .25); backdrop-filter: blur(18px) saturate(1.2); -webkit-backdrop-filter: blur(18px) saturate(1.2); }
-.lab-tone .site-nav::before { position: absolute; top: 0; right: 0; left: 0; height: 3px; background: linear-gradient(90deg, #a9cbe0 0 25%, #e3b9aa 25% 50%, #c3ca9c 50% 75%, #e8c995 75% 100%); content: ''; }
-.lab-tone .site-nav__links { gap: 34px; }
-.lab-tone .site-nav__links a, .lab-tone .site-nav__products-toggle { color: #33475a; }
-.lab-tone .site-nav__links a:hover, .lab-tone .site-nav__products-toggle:hover { color: #10293e; }
-.lab-tone .site-nav__links .site-nav__login { border-color: #10293e; border-radius: 0; background: #10293e; color: #f6f4ee; }
-.lab-tone .site-nav__links .site-nav__login:hover { border-color: #356f96; background: #356f96; color: #fff; }
-.lab-tone .site-nav__toggle { border-radius: 0; }
+   line up with the page's own margins. (`.site-header .site-nav` outranks the
+   older per-tone backgrounds above.) */
+.site-header { top: 0; left: 0; width: 100%; max-width: none; transform: none; }
+.site-header .site-nav { position: relative; min-height: 64px; border: 0; border-bottom: 1px solid rgba(16, 41, 62, .1); border-radius: 0; padding: 3px clamp(20px, 5.5vw, 88px) 0; background: rgba(246, 244, 238, .82); box-shadow: 0 10px 30px -18px rgba(16, 41, 62, .25); backdrop-filter: blur(18px) saturate(1.2); -webkit-backdrop-filter: blur(18px) saturate(1.2); }
+.site-header .site-nav::before { position: absolute; top: 0; right: 0; left: 0; height: 3px; background: linear-gradient(90deg, #a9cbe0 0 25%, #e3b9aa 25% 50%, #c3ca9c 50% 75%, #e8c995 75% 100%); content: ''; }
+.site-header .site-nav__links { gap: 34px; }
+.site-header .site-nav__links a, .site-header .site-nav__products-toggle { color: #33475a; }
+.site-header .site-nav__links a:hover, .site-header .site-nav__products-toggle:hover { color: #10293e; }
+.site-header .site-nav__links .site-nav__login { border-color: #10293e; border-radius: 0; background: #10293e; color: #f6f4ee; }
+.site-header .site-nav__links .site-nav__login:hover { border-color: #356f96; background: #356f96; color: #fff; }
+.site-header .site-nav__toggle { border-radius: 0; }
 @media (max-width: 900px) {
-  .lab-tone .site-nav { min-height: 58px; padding: 3px 12px 0 18px; }
+  .site-header .site-nav { min-height: 58px; padding: 3px 12px 0 18px; }
 }
