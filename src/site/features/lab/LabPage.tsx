@@ -251,8 +251,9 @@ export function LabPage() {
         {/* The lab, on Bengaluru: Tura's "How it works" component. The painting
           * fills the section at its own proportions under a faint grid; the
           * statement and the four foundations are cards placed on that grid,
-          * and the one under the pointer (or keyboard focus) widens its columns.
-          * `lab-grid__card--1..4` place the cards; `tabIndex` lets focus open one. */}
+          * each sized to its words; the one under the pointer lifts. Below
+          * 1200px the painting sits on top and the cards follow it.
+          * `lab-grid__card--1..4` place the cards. */}
         <section className="lab-grid" id="lab" aria-labelledby="lab-statement-title">
           <img
             className="lab-grid__painting"
@@ -279,7 +280,7 @@ export function LabPage() {
               </p>
             </header>
             {FOUNDATIONS.map((item, index) => (
-              <article key={item.name} className={`lab-grid__card lab-grid__card--${index + 1}`} tabIndex={0}>
+              <article key={item.name} className={`lab-grid__card lab-grid__card--${index + 1}`}>
                 <span className="lab-grid__step">{String(index + 1).padStart(2, '0')}</span>
                 <h3>{item.name}</h3>
                 <p>{item.line}</p>

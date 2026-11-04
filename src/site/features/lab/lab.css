@@ -79,17 +79,13 @@
   background-image: linear-gradient(rgba(255, 255, 255, .45) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .45) 1px, transparent 1px);
   background-size: 100% calc((100% - (2 * var(--g-edge-y))) / 7), calc((100% - (2 * var(--g-edge))) / 10) 100%;
   background-position: 0 var(--g-edge-y), var(--g-edge) 0;
-  transition: grid-template-columns 700ms var(--lp-ease), grid-template-rows 700ms var(--lp-ease); }
-.lab-grid__grid:has(.lab-grid__card--1:is(:hover, :focus-visible)) { grid-template-columns: var(--g-edge) minmax(0,1.38fr) minmax(0,1.38fr) minmax(0,1.38fr) minmax(0,.9fr) minmax(0,.9fr) minmax(0,.9fr) minmax(0,.9fr) minmax(0,.9fr) minmax(0,.9fr) minmax(0,.9fr) var(--g-edge); grid-template-rows: var(--g-edge-y) minmax(0,.8fr) minmax(0,.8fr) minmax(0,.8fr) minmax(0,.8fr) minmax(0,1.3fr) minmax(0,1.3fr) minmax(0,1.3fr) var(--g-edge-y); }
-.lab-grid__grid:has(.lab-grid__card--2:is(:hover, :focus-visible)) { grid-template-columns: var(--g-edge) minmax(0,.9fr) minmax(0,.9fr) minmax(0,.9fr) minmax(0,.9fr) minmax(0,1.38fr) minmax(0,1.38fr) minmax(0,1.38fr) minmax(0,.9fr) minmax(0,.9fr) minmax(0,.9fr) var(--g-edge); grid-template-rows: var(--g-edge-y) minmax(0,.8fr) minmax(0,.8fr) minmax(0,1.3fr) minmax(0,1.3fr) minmax(0,1.3fr) minmax(0,1.3fr) minmax(0,.8fr) var(--g-edge-y); }
-.lab-grid__grid:has(.lab-grid__card--3:is(:hover, :focus-visible)) { grid-template-columns: var(--g-edge) minmax(0,.9fr) minmax(0,.9fr) minmax(0,.9fr) minmax(0,.9fr) minmax(0,.9fr) minmax(0,.9fr) minmax(0,.9fr) minmax(0,1.38fr) minmax(0,1.38fr) minmax(0,1.38fr) var(--g-edge); grid-template-rows: var(--g-edge-y) minmax(0,.8fr) minmax(0,.8fr) minmax(0,.8fr) minmax(0,.8fr) minmax(0,1.3fr) minmax(0,1.3fr) minmax(0,1.3fr) var(--g-edge-y); }
-.lab-grid__grid:has(.lab-grid__card--4:is(:hover, :focus-visible)) { grid-template-columns: var(--g-edge) minmax(0,.9fr) minmax(0,.9fr) minmax(0,.9fr) minmax(0,.9fr) minmax(0,.9fr) minmax(0,.9fr) minmax(0,1.38fr) minmax(0,1.38fr) minmax(0,1.38fr) minmax(0,1.38fr) var(--g-edge); grid-template-rows: var(--g-edge-y) minmax(0,1.3fr) minmax(0,1.3fr) minmax(0,1.3fr) minmax(0,.8fr) minmax(0,.8fr) minmax(0,.8fr) minmax(0,.8fr) var(--g-edge-y); }
+}
 .lab-grid__intro, .lab-grid__card { border: 1px solid rgba(16, 41, 62, .14); background: rgba(255, 253, 248, .94); box-shadow: 0 18px 50px rgba(20, 42, 50, .08); backdrop-filter: blur(5px); }
 .lab-grid__intro { display: grid; grid-area: 2 / 2 / 5 / 6; align-self: center; align-content: start; gap: 12px; margin-right: clamp(18px, 2.2vw, 40px); padding: clamp(20px, 1.8vw, 28px); }
 .lab-grid__intro h2 { font-size: clamp(26px, 2.4vw, 38px); line-height: 1.12; }
 .lab-grid__intro > p:last-child { max-width: 34em; color: var(--lp-ink-soft); font-size: clamp(13.5px, 1.05vw, 15px); line-height: 1.55; }
-.lab-grid__card { position: relative; display: flex; margin: clamp(6px, .7vw, 12px); overflow: hidden; flex-direction: column; justify-content: center; padding: clamp(16px, 1.4vw, 22px); outline: 0; transition: box-shadow 500ms ease, background 500ms ease; }
-.lab-grid__card:is(:hover, :focus-visible) { z-index: 10; background: rgba(255, 253, 248, .985); box-shadow: 0 28px 80px rgba(20, 42, 50, .2); }
+.lab-grid__card { position: relative; display: flex; align-self: center; margin: clamp(6px, .7vw, 12px); flex-direction: column; padding: clamp(16px, 1.4vw, 22px); outline: 0; transition: box-shadow 400ms ease, background 400ms ease, transform 400ms var(--lp-ease); }
+.lab-grid__card:is(:hover, :focus-visible) { z-index: 10; background: rgba(255, 253, 248, .985); box-shadow: 0 28px 80px rgba(20, 42, 50, .2); transform: translateY(-4px); }
 .lab-grid__card:focus-visible { outline: 3px solid var(--lp-indigo); outline-offset: 3px; }
 .lab-grid__step { margin-bottom: 8px; font: 600 12px/1 var(--font-sans); letter-spacing: .14em; }
 .lab-grid__card--1 .lab-grid__step { color: var(--tone-blue-ink); }
@@ -99,13 +95,9 @@
 .lab-grid__card h3 { margin: 0 0 8px; font-family: var(--font-display); font-size: clamp(19px, 1.6vw, 24px); font-weight: 300; letter-spacing: -.01em; line-height: 1.2; }
 .lab-grid__card p { max-width: 30em; color: var(--lp-ink-soft); font-size: clamp(13.5px, 1vw, 15px); line-height: 1.5; }
 .lab-grid__card--1 { grid-area: 6 / 2 / 8 / 5; }
-.lab-grid__grid:has(.lab-grid__card--1:is(:hover, :focus-visible)) .lab-grid__card--1 { grid-area: 6 / 2 / 9 / 5; }
 .lab-grid__card--2 { grid-area: 4 / 6 / 6 / 9; }
-.lab-grid__grid:has(.lab-grid__card--2:is(:hover, :focus-visible)) .lab-grid__card--2 { grid-area: 4 / 6 / 7 / 9; }
 .lab-grid__card--3 { grid-area: 6 / 9 / 8 / 12; }
-.lab-grid__grid:has(.lab-grid__card--3:is(:hover, :focus-visible)) .lab-grid__card--3 { grid-area: 6 / 9 / 9 / 12; }
 .lab-grid__card--4 { grid-area: 2 / 8 / 4 / 12; }
-.lab-grid__grid:has(.lab-grid__card--4:is(:hover, :focus-visible)) .lab-grid__card--4 { grid-area: 2 / 8 / 5 / 12; }
 
 /* ── Products: a sideways accordion, one panel open ────────────────────── */
 .lab-products { padding: clamp(80px, 13svh, 136px) var(--lp-gutter); background: var(--lp-paper-deep); }
@@ -191,6 +183,21 @@
 @keyframes lab-settle { from { opacity: 0; transform: scale(1.035); } to { opacity: 1; transform: none; } }
 @keyframes lab-rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 
+/* ── The lab below 1200px: the cards no longer fit on the painting, so the
+   whole painting sits on top and the cards follow it, two to a row. ── */
+@media (max-width: 1199px) {
+  .lab-grid { aspect-ratio: auto; padding: calc(56.3vw + 20px) var(--lp-gutter) 56px; background: var(--tone-blue); }
+  .lab-grid__painting { height: auto; aspect-ratio: 1672 / 941; }
+  .lab-grid__wash { display: none; }
+  .lab-grid__grid { position: relative; inset: auto; grid-template-columns: 1fr 1fr; grid-template-rows: none; gap: 14px; background-image: none; }
+  .lab-grid__intro { grid-area: auto; grid-column: 1 / -1; margin: 0; }
+  .lab-grid__card { grid-area: auto; align-self: stretch; margin: 0; }
+  .lab-grid__card--1 { order: 1; } .lab-grid__card--2 { order: 2; } .lab-grid__card--3 { order: 3; } .lab-grid__card--4 { order: 4; }
+}
+@media (max-width: 640px) {
+  .lab-grid__grid { grid-template-columns: 1fr; }
+}
+
 /* ── Tablets and phones ────────────────────────────────────────────────── */
 @media (max-width: 899px) {
   .lab-page { --lp-head: 96px; }
@@ -204,13 +211,6 @@
   .lab-hero__index { position: relative; inset: auto; margin: 0 var(--lp-gutter); padding: 4px 0 28px; gap: 8px 20px; }
   .lab-hero__index a { font-size: 12px; }
 
-
-  /* The lab: the whole painting on top, then a plain stack of cards. */
-  .lab-grid { aspect-ratio: auto; padding: calc(56.3vw + 16px) var(--lp-gutter) 48px; background: var(--tone-blue); }
-  .lab-grid__painting { height: auto; aspect-ratio: 1672 / 941; }
-  .lab-grid__wash { display: none; }
-  .lab-grid__grid, .lab-grid__grid:has(.lab-grid__card:is(:hover, :focus-visible)) { position: relative; inset: auto; grid-template-columns: 1fr; grid-template-rows: none; gap: 12px; background-image: none; transition: none; }
-  .lab-grid__intro, .lab-grid__card, .lab-grid__grid:has(.lab-grid__card:is(:hover, :focus-visible)) .lab-grid__card { grid-area: auto; margin: 0; }
 
   /* The accordion becomes a stack of open cards. */
   .lab-products { padding-top: 72px; padding-bottom: 72px; }
