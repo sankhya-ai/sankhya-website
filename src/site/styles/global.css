@@ -1095,3 +1095,7 @@ span.brand > a:hover strong, span.brand > a.brand__by:hover { color: var(--ink);
 @media (max-width: 900px) {
   .site-header .site-nav { min-height: 58px; padding: 3px 12px 0 18px; }
 }
+
+/* An outside link in the footer: the name, then a small arrow on its line. */
+.site-footer__out { display: inline-flex; align-items: center; gap: 4px; }
+.site-footer__out svg { flex: none; opacity: .6; transform: translateY(1px); }

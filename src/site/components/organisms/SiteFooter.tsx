@@ -1,3 +1,4 @@
+import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router';
 
 import { COMPANY, CONTACT_EMAIL } from '@/site/config/site';
@@ -20,7 +21,7 @@ export function SiteFooter() {
           <div className="site-footer__nav site-footer__nav--two">
             <p>Products</p>
             {PRODUCTS.map(({ name, href }) =>
-              isExternal(href) ? <a key={name} href={href} target="_blank" rel="noopener">{name} ↗</a> : <Link key={name} to={href}>{name}</Link>,
+              isExternal(href) ? <a key={name} className="site-footer__out" href={href} target="_blank" rel="noopener">{name}<ArrowUpRight size={13} strokeWidth={2} aria-hidden="true" /></a> : <Link key={name} to={href}>{name}</Link>,
             )}
           </div>
           <div className="site-footer__nav">
