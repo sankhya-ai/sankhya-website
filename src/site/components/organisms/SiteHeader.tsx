@@ -4,8 +4,7 @@ import { Link, useLocation } from 'react-router';
 
 import { Brand } from '@/site/components/atoms/Brand';
 import { openWaitlist, WaitlistDialog } from '@/site/components/molecules/Waitlist';
-import { CONTACT_EMAIL } from '@/site/config/site';
-import { isExternal, PRODUCT_GROUPS, PRODUCTS, type Product } from '@/site/config/products';
+import { isExternal, PRODUCT_GROUPS, PRODUCTS, TURA_URL, type Product } from '@/site/config/products';
 
 /** Manu's own pages keep its name in the corner and its waitlist on the pill. */
 const MANU_PATHS = new Set(['/manu', '/manu-s1']);
@@ -62,8 +61,8 @@ export function SiteHeader() {
       Join waitlist
     </button>
   ) : (
-    <a className="site-nav__login" href={`mailto:${CONTACT_EMAIL}`}>
-      Write to us
+    <a className="site-nav__login" href={TURA_URL} target="_blank" rel="noopener noreferrer">
+      Try Tura
     </a>
   );
 
@@ -137,8 +136,8 @@ export function SiteHeader() {
               Join waitlist <span>↗</span>
             </button>
           ) : (
-            <a href={`mailto:${CONTACT_EMAIL}`}>
-              Write to us <span>↗</span>
+            <a href={TURA_URL} target="_blank" rel="noopener noreferrer">
+              Try Tura <span>↗</span>
             </a>
           )}
         </div>
