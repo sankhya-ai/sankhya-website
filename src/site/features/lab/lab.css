@@ -148,9 +148,6 @@ a.lab-grid__card:hover h3 svg { transform: translate(3px, -3px); }
 .lab-panel__cards li { display: flex; }
 .lab-panel .lab-panel__card { width: 100%; margin: 0; align-self: stretch; justify-content: flex-start; }
 .lab-panel .lab-panel__card:is(:hover, :focus-visible) { transform: translateY(-6px) scale(1.04); }
-.lab-panel--rose .lab-panel__cards { --cols: 3 !important; }
-.lab-panel--rose .lab-panel__cards li:first-child { grid-column: 1; }
-.lab-panel--rose .lab-panel__cards li:last-child { grid-column: 3; }
 
 /* ── Results: a card beside a framed plate, the numbers under both ──────── */
 .lab-results { padding: clamp(96px, 15svh, 150px) var(--lp-gutter) clamp(72px, 11svh, 110px); background: var(--lp-paper); }
@@ -246,8 +243,7 @@ a.lab-grid__card:hover h3 svg { transform: translate(3px, -3px); }
   .lab-panel__body::before { display: none; }
   .lab-panel__float { position: relative; inset: auto; gap: 12px; padding: 12px; }
   .lab-panel__head { max-width: none; }
-  .lab-panel__cards, .lab-panel--rose .lab-panel__cards { grid-template-columns: 1fr; }
-  .lab-panel--rose .lab-panel__cards li:first-child, .lab-panel--rose .lab-panel__cards li:last-child { grid-column: auto; }
+  .lab-panel__cards { grid-template-columns: 1fr; }
   .lab-results { padding-top: 72px; }
   .lab-results__grid { grid-template-columns: 1fr; }
   .lab-closing { padding-top: 56px; padding-bottom: 56px; }

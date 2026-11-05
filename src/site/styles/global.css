@@ -987,7 +987,7 @@ button.button-link:disabled { cursor: default; opacity: .6; transform: none; }
 .brand--lab .brand__by::before { display: none; }
 @media (max-width: 720px) { .brand--lab .brand__by { font-size: 19px; } }
 
-.site-nav__menu--grouped { width: min(600px, calc(100vw - 48px)); grid-template-columns: 1fr 1fr; gap: 6px 10px; padding: 12px; }
+.site-nav__menu--grouped { width: min(840px, calc(100vw - 48px)); grid-template-columns: repeat(3, 1fr); gap: 6px 10px; padding: 12px; }
 .site-nav__group { display: grid; align-content: start; gap: 2px; }
 .site-nav__group > p { margin: 6px 12px 4px; color: var(--ink-faint); font: 600 10px/1 'Manu Pixel', monospace; letter-spacing: .12em; text-transform: uppercase; }
 .site-nav__menu-out { margin-left: -2px; color: var(--ink-faint); }
@@ -1028,8 +1028,8 @@ button.button-link:disabled { cursor: default; opacity: .6; transform: none; }
 .site-footer__wordmark[lang='hi'] { position: relative; bottom: auto; left: auto; grid-column: 1 / -1; grid-row: auto; order: 10; margin: -.06em 0 -.14em -.03em; font-family: 'Baloo 2', var(--font-sans); font-size: clamp(6rem, 21vw, 20rem); font-weight: 700; letter-spacing: 0; line-height: 1.1; }
 @media (max-width: 720px) { .site-footer__wordmark[lang='hi'] { margin: 12px 0 8px; font-size: clamp(5rem, 30vw, 9rem); } }
 
-/* Eight products in two short columns, so the footer stays low. */
-.site-footer__nav.site-footer__nav--two { display: grid; grid-template-columns: auto auto; grid-template-rows: auto repeat(4, auto); grid-auto-flow: column; gap: 11px 36px; align-content: start; }
+/* Nine products in three columns of three, one per group, so the footer stays low. */
+.site-footer__nav.site-footer__nav--two { display: grid; grid-template-columns: auto auto auto; grid-template-rows: auto repeat(3, auto); grid-auto-flow: column; gap: 11px 36px; align-content: start; }
 .site-footer__nav--two > p { grid-row: 1; grid-column: 1 / -1; }
 
 /* The brand on a product's pages is three links (mark and lab → home, the

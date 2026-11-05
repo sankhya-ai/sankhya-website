@@ -47,7 +47,7 @@ const CHAPTERS: readonly Chapter[] = [
     tone: 'rose',
     plate: 'I',
     kicker: 'For people',
-    title: <>For the student with an exam, <em>and the advocate with a docket.</em></>,
+    title: <>For the student with an exam, the advocate with a docket, <em>and the builder with a goal.</em></>,
     art: {
       src: '/art/lab/india-gate.webp',
       alt: 'Watercolour of India Gate at sunset under a saffron sun, with a faint AI chip and a bar chart drawn in the sky beside it',
@@ -56,6 +56,7 @@ const CHAPTERS: readonly Chapter[] = [
     items: [
       { name: 'Manu', href: '/manu', line: 'A case diary for Indian courts. Give it a CNR; each morning it reads every new order and shows the words each line came from.' },
       { name: 'Tura', href: TURA_URL, line: 'A tutor that teaches from your own lecture notes, in the shape your past papers ask.' },
+      { name: 'Skye', href: 'https://skye.sankhyaailabs.com', line: 'A software team you text. Send a goal on iMessage or Telegram; it plans, builds, reviews and sends the pull request.' },
     ],
   },
   {
@@ -104,6 +105,7 @@ const METRICS: readonly Metric[] = [
 const HERO_NAV: readonly { name: string; href: string }[] = [
   { name: 'Manu', href: '/manu' },
   { name: 'Tura', href: TURA_URL },
+  { name: 'Skye', href: 'https://skye.sankhyaailabs.com' },
   { name: 'root', href: '/root' },
   { name: 'root-driver', href: '/root-driver' },
   { name: 'Chamber', href: 'https://chamber.sankhyaailabs.com' },
@@ -247,7 +249,7 @@ export function LabPage() {
           <div className="lab-products__head">
             <p className="lab-kicker" data-reveal>What we make</p>
             <h2 id="lab-products-title" data-reveal>
-              Eight things, <em>one stack.</em>
+              Nine things, <em>one stack.</em>
             </h2>
             <p data-reveal>Two products people use every day, the agents our own team works in, and the models and memory under all of them.</p>
           </div>
