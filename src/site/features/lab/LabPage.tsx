@@ -214,13 +214,29 @@ export function LabPage() {
             />
           </figure>
           <div className="lab-hero__copy">
+            {/* A wash of paper-coloured paint behind the words, ragged at the edge like a brush wiped across the
+                painting, so the rest of the painting shows. */}
+            <svg className="lab-hero__wash" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+              <defs>
+                <filter id="lab-hero-wash" x="-15%" y="-15%" width="130%" height="130%">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.0035 0.028" numOctaves="3" seed="4" />
+                  <feDisplacementMap in="SourceGraphic" scale="70" xChannelSelector="R" yChannelSelector="G" />
+                  <feGaussianBlur stdDeviation="9" />
+                </filter>
+                <radialGradient id="lab-hero-wash-fill" cx="44%" cy="54%" r="56%">
+                  <stop offset="0" stopColor="#f6f4ee" stopOpacity=".9" />
+                  <stop offset=".62" stopColor="#f6f4ee" stopOpacity=".82" />
+                  <stop offset="1" stopColor="#f6f4ee" stopOpacity="0" />
+                </radialGradient>
+              </defs>
+              <ellipse cx="470" cy="320" rx="480" ry="210" fill="url(#lab-hero-wash-fill)" filter="url(#lab-hero-wash)" />
+            </svg>
             <h1 id="lab-hero-title">
               Our tutor taught a model. <em>Now that model reads court orders.</em>
             </h1>
             <p className="lab-hero__lede">
-              We are an AI lab in India. Tura-S1 learned to pick an agent’s next step from the choices Tura made while
-              teaching students. Manu-S1 started as a copy of it and learned Indian court procedure. Skye, the coding
-              team you text, built this website.
+              We are an AI lab in India. We train small models on the decisions our own products make, then put them to
+              work.
             </p>
             <a className="lab-hero__more" href="#products">
               Read on <ArrowDown size={15} strokeWidth={1.8} aria-hidden="true" />

@@ -59,8 +59,9 @@
    the sun, the skyline and the promenade stay in view. */
 .lab-hero { position: relative; display: flex; min-height: 100svh; flex-direction: column; justify-content: center; overflow: hidden; background: var(--lp-paper); }
 .lab-hero__art { position: absolute; inset: 0; }
-.lab-page .lab-hero__art img { height: 100%; object-fit: cover; object-position: 82% 60%; }
-.lab-hero__art::after { position: absolute; inset: 0; background: linear-gradient(90deg, var(--lp-paper) 0%, rgba(246, 244, 238, .82) 22%, rgba(246, 244, 238, 0) 52%), linear-gradient(0deg, var(--lp-paper) 0%, rgba(246, 244, 238, 0) 24%); content: ''; }
+.lab-page .lab-hero__art img { height: 100%; object-fit: cover; object-position: 62% 60%; }
+.lab-hero__art::after { position: absolute; inset: 0; background: linear-gradient(0deg, var(--lp-paper) 0%, rgba(246, 244, 238, 0) 18%); content: ''; }
+.lab-hero__wash { position: absolute; z-index: -1; top: -18%; right: -22%; bottom: -16%; left: -14%; width: auto; height: auto; pointer-events: none; }
 .lab-hero__copy { position: relative; z-index: 2; display: grid; width: 100%; max-width: 680px; margin-left: var(--lp-gutter); padding: var(--lp-head) 0 clamp(72px, 12svh, 120px); justify-items: start; gap: clamp(16px, 2.6svh, 26px); }
 .lab-hero h1 { max-width: 15em; font-size: clamp(32px, min(3.4vw, 6.2svh), 54px); line-height: 1.12; letter-spacing: -.01em; }
 .lab-hero h1 em { display: inline; }
@@ -224,6 +225,7 @@ a.lab-grid__card:hover h3 svg { transform: translate(3px, -3px); }
   .lab-hero__art { inset: 61px 0 auto 0; bottom: auto; aspect-ratio: 2 / 1; }
   .lab-page .lab-hero__art img { object-position: 50% 50%; }
   .lab-hero__art::after { background: linear-gradient(0deg, var(--lp-paper) 0%, rgba(246, 244, 238, 0) 14%); }
+  .lab-hero__wash { display: none; }
   .lab-hero__copy { width: auto; max-width: none; margin: 0 var(--lp-gutter); padding: calc(50vw + 81px) 0 24px; }
   .lab-hero h1 { font-size: clamp(28px, 8vw, 38px); }
     
