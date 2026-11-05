@@ -181,6 +181,15 @@ a.lab-grid__card:hover h3 svg { transform: translate(3px, -3px); }
 .lab-closing__copy > p:not(.lab-kicker) { max-width: 26em; color: var(--lp-ink-soft); font-size: clamp(14.5px, 1.1vw, 16px); line-height: 1.55; }
 .lab-mail { display: inline-flex; align-items: center; gap: 10px; margin-top: 6px; border-radius: 999px; padding: 12px 22px; background: var(--lp-indigo-deep); color: var(--lp-paper); font-size: 14px; font-weight: 560; letter-spacing: .02em; transition: background 200ms ease, gap 240ms var(--lp-ease); }
 .lab-mail:hover { gap: 14px; background: var(--lp-ink); }
+.lab-starts { display: grid; width: 100%; margin: 6px 0 0; padding: 0; list-style: none; text-align: left; }
+.lab-starts li + li { border-top: 1px solid var(--lp-line); }
+.lab-starts a { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 4px; color: var(--lp-ink); font-family: var(--font-display); font-size: clamp(18px, 1.5vw, 21px); transition: color 180ms ease, padding 240ms var(--lp-ease); }
+.lab-starts small { display: block; margin-bottom: 2px; color: var(--lp-ink-soft); font-family: var(--font-sans); font-size: 12.5px; letter-spacing: .02em; }
+.lab-starts svg { flex: none; color: var(--lp-accent); transition: transform 240ms var(--lp-ease); }
+.lab-starts a:hover { color: var(--lp-accent); padding-left: 8px; }
+.lab-starts a:hover svg { transform: translate(2px, -2px); }
+.lab-closing__else { margin-top: 4px; color: var(--lp-ink-soft); font-size: 13.5px; }
+.lab-closing__else a { color: var(--lp-ink); text-decoration: underline; text-decoration-color: var(--lp-line); text-underline-offset: 3px; }
 .lab-page :focus-visible { outline: 3px solid var(--lp-indigo); outline-offset: 4px; border-radius: 4px; }
 
 /* ── Scroll reveals: quiet, once, and only for those who allow motion ──── */
