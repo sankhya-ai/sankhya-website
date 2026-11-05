@@ -7,8 +7,13 @@
 // src/site/config/seo-routes.json, swapping in the route's title, description,
 // canonical address, social card, hero preload and structured data.
 // vercel.json serves dist/<route>/index.html for each of those addresses.
+//
+// It also puts each page's own body inside <div id="root">, rendered at build
+// time by src/prerender.tsx (built to dist-ssr/ first), so crawlers and AI
+// engines that do not run JavaScript read the page's words.
 import fs from 'node:fs';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const dist = path.join(root, 'dist');
@@ -17,6 +22,9 @@ const SITE = 'https://www.sankhyaailabs.com';
 const CHAMBER = 'https://chamber.sankhyaailabs.com/';
 const routes = JSON.parse(fs.readFileSync(path.join(root, 'src/site/config/seo-routes.json'), 'utf8'));
 const template = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
+const { render } = await import(pathToFileURL(path.join(root, 'dist-ssr', 'prerender.js')).href);
+// The privacy page is in the account half, whose Tailwind sheet is split into its own file.
+const accountSheet = fs.readdirSync(path.join(dist, 'assets')).find((name) => /^AccountApp-.*\.css$/.test(name));
 
 const ORG = {
   '@type': 'Organization',
@@ -61,6 +69,7 @@ const ENTITY = {
   '/root-driver': code('root-driver', routes['/root-driver'].description, `${SITE}/root-driver`, 'https://github.com/tura-learn/root-driver', { programmingLanguage: 'Swift', runtimePlatform: 'macOS' }),
   '/chamber': macApp('Chamber', routes['/chamber'].description, CHAMBER, { sameAs: 'https://github.com/tura-learn/chamber', license: 'https://www.apache.org/licenses/LICENSE-2.0' }),
   '/dhee': code('Dhee', routes['/dhee'].description, `${SITE}/dhee`, 'https://github.com/tura-learn/Dhee', { programmingLanguage: 'Python' }),
+  '/privacy': { '@type': 'WebPage', name: routes['/privacy'].title, description: routes['/privacy'].description, url: `${SITE}/privacy`, about: { '@id': `${SITE}/#org` }, isPartOf: { '@id': `${SITE}/#site` } },
   '/tura-s1': code('Tura-S1-4B', routes['/tura-s1'].description, `${SITE}/tura-s1`, 'https://huggingface.co/AshishDwi99/tura-s1-4b', { license: 'https://www.apache.org/licenses/LICENSE-2.0' }),
 };
 
@@ -99,6 +108,14 @@ function headFor(route, page) {
   } else if (page.preload) {
     html = html.replace('</head>', `    <link rel="preload" href="${page.preload}" as="image" type="image/webp" fetchpriority="high" />\n  </head>`);
   }
+
+  if (route === '/privacy' && accountSheet) {
+    html = html.replace('</head>', `    <link rel="stylesheet" href="/assets/${accountSheet}" />\n  </head>`);
+  }
+
+  const body = render(route);
+  if (!body) throw new Error(`prerender-heads: no page rendered for ${route}`);
+  html = replaceTag(html, /<div id="root"><\/div>/, `<div id="root">${body}</div>`, 'root element');
 
   const graph = { '@context': 'https://schema.org', '@graph': [ORG, SITE_ENTITY, ENTITY[route]].filter(Boolean) };
   html = replaceTag(html, /<script type="application\/ld\+json">[\s\S]*?<\/script>/, `<script type="application/ld+json">${JSON.stringify(graph)}</script>`, 'JSON-LD');

@@ -49,5 +49,11 @@
     "description": "Tura-S1-4B is an open-weights decision model: it scores every option an agent has, which tool next or reply, in one forward pass. 98.5% on agent steps it never saw, 178 ms on one L40S. Apache-2.0.",
     "image": "/brand/sankhya-social-card.jpg",
     "imageAlt": "Tura-S1-4B, a decision model from Sankhya AI Labs"
+  },
+  "/privacy": {
+    "title": "Privacy Policy — Sankhya AI Labs",
+    "description": "How Sankhya AI Labs and Chotu handle account, desktop, voice, memory, and Browser Hands data.",
+    "image": "/assets/sankhya-memory-fabric-hero.png",
+    "imageAlt": "Sankhya AI Labs privacy policy"
   }
 }
