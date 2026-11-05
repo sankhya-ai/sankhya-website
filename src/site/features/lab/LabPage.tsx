@@ -102,18 +102,6 @@ const METRICS: readonly Metric[] = [
   { value: 64, decimals: 0, suffix: ' ms', label: 'Manu-S1, one decision', note: 'Median, on one NVIDIA L40S.' },
 ];
 
-const HERO_NAV: readonly { name: string; href: string }[] = [
-  { name: 'Manu', href: '/manu' },
-  { name: 'Tura', href: TURA_URL },
-  { name: 'Skye', href: 'https://skye.sankhyaailabs.com' },
-  { name: 'root', href: '/root' },
-  { name: 'root-driver', href: '/root-driver' },
-  { name: 'Chamber', href: 'https://chamber.sankhyaailabs.com' },
-  { name: 'Dhee', href: '/dhee' },
-  { name: 'Tura-S1', href: '/tura-s1' },
-  { name: 'Manu-S1', href: '/manu-s1' },
-];
-
 /**
  * Elements marked data-reveal ease in once as they scroll into view. The hidden
  * starting state only exists once this has run (class is-armed) and only for
@@ -227,21 +215,17 @@ export function LabPage() {
           </figure>
           <div className="lab-hero__copy">
             <h1 id="lab-hero-title">
-              We build AI from the model up, <em>here in India.</em>
+              Our tutor taught a model. <em>Now that model reads court orders.</em>
             </h1>
             <p className="lab-hero__lede">
-              Our own models, memory and agents, on servers we run. Today they work as a tutor for students and a case
-              diary for Indian courts.
+              We are an AI lab in India. Tura-S1 learned to pick an agent’s next step from the choices Tura made while
+              teaching students. Manu-S1 started as a copy of it and learned Indian court procedure. Skye, the coding
+              team you text, built this website.
             </p>
             <a className="lab-hero__more" href="#products">
               Read on <ArrowDown size={15} strokeWidth={1.8} aria-hidden="true" />
             </a>
           </div>
-          <nav className="lab-hero__index" aria-label="Products">
-            {HERO_NAV.map((product) => (
-              <SiteLink key={product.name} href={product.href}>{product.name}</SiteLink>
-            ))}
-          </nav>
         </section>
 
         <section className="lab-products" id="products" aria-labelledby="lab-products-title">

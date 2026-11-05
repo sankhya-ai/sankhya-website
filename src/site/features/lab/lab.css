@@ -67,9 +67,6 @@
 .lab-hero__lede { max-width: 31em; color: var(--lp-ink-soft); font-size: clamp(16px, min(1.35vw, 2.6svh), 20px); line-height: 1.6; }
 .lab-hero__more { display: inline-flex; align-items: center; gap: 8px; margin-top: 4px; border-bottom: 1px solid currentColor; padding-bottom: 4px; color: var(--lp-ink); font-size: 14px; font-weight: 560; letter-spacing: .04em; transition: color 200ms ease, gap 200ms var(--lp-ease); }
 .lab-hero__more:hover { gap: 12px; color: var(--lp-accent); }
-.lab-hero__index { position: absolute; z-index: 2; bottom: clamp(22px, 4svh, 40px); left: var(--lp-gutter); right: var(--lp-gutter); display: flex; flex-wrap: wrap; gap: 8px 30px; }
-.lab-hero__index a { color: var(--lp-ink); font-size: 13px; font-weight: 560; letter-spacing: .12em; text-transform: uppercase; transition: color 180ms ease; }
-.lab-hero__index a:hover { color: var(--lp-accent); }
 .lab-hero__caption { position: absolute; z-index: 2; right: var(--lp-gutter); bottom: clamp(22px, 4svh, 40px); color: var(--lp-ink); }
 
 /* ── Painted grids: Tura's "How it works" component (turalearn.com) ──────
@@ -228,9 +225,7 @@ a.lab-grid__card:hover h3 svg { transform: translate(3px, -3px); }
   .lab-hero__art::after { background: linear-gradient(0deg, var(--lp-paper) 0%, rgba(246, 244, 238, 0) 14%); }
   .lab-hero__copy { width: auto; max-width: none; margin: 0 var(--lp-gutter); padding: calc(50vw + 81px) 0 24px; }
   .lab-hero h1 { font-size: clamp(38px, 11.4vw, 60px); }
-  .lab-hero__index { position: relative; inset: auto; margin: 0 var(--lp-gutter); padding: 4px 0 28px; gap: 8px 20px; }
-  .lab-hero__index a { font-size: 12px; }
-
+    
 
   .lab-products { padding-top: 72px; padding-bottom: 72px; }
             
