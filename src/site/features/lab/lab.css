@@ -64,7 +64,7 @@
 .lab-hero__copy { position: relative; z-index: 2; display: grid; width: 100%; max-width: 680px; margin-left: var(--lp-gutter); padding: var(--lp-head) 0 clamp(72px, 12svh, 120px); justify-items: start; gap: clamp(16px, 2.6svh, 26px); }
 .lab-hero h1 { max-width: 15em; font-size: clamp(32px, min(3.4vw, 6.2svh), 54px); line-height: 1.12; letter-spacing: -.01em; }
 .lab-hero h1 em { display: inline; }
-@media (min-width: 900px) { .lab-hero__copy { max-width: 820px; } .lab-hero h1 { max-width: none; } .lab-hero h1 em { display: block; } }
+@media (min-width: 900px) { .lab-hero { justify-content: flex-end; } .lab-hero__copy { max-width: 820px; padding-bottom: clamp(56px, 10svh, 112px); } .lab-hero h1 { max-width: none; } .lab-hero h1 em { display: block; } }
 .lab-hero__lede { max-width: 34em; color: var(--lp-ink-soft); font-size: clamp(15px, min(1.1vw, 2.2svh), 17px); line-height: 1.65; }
 .lab-hero__more { display: inline-flex; align-items: center; gap: 8px; margin-top: 4px; border-bottom: 1px solid currentColor; padding-bottom: 4px; color: var(--lp-ink); font-size: 14px; font-weight: 560; letter-spacing: .04em; transition: color 200ms ease, gap 200ms var(--lp-ease); }
 .lab-hero__more:hover { gap: 12px; color: var(--lp-accent); }
