@@ -95,13 +95,6 @@ const CHAPTERS: readonly Chapter[] = [
   },
 ];
 
-/** The closing's next steps: who you are, and the one thing to do about it. */
-const STARTS: readonly { who: string; action: string; href: string }[] = [
-  { who: 'Revising for an exam', action: 'Try Tura, free', href: TURA_URL },
-  { who: 'Shipping code', action: 'Text Skye, 7 days free', href: 'https://skye.sankhyaailabs.com' },
-  { who: 'Practising in an Indian court', action: 'Join Manu’s waitlist', href: '/manu' },
-];
-
 const METRICS: readonly Metric[] = [
   { value: 98.5, decimals: 1, suffix: '%', label: 'Tura-S1, agent steps', note: 'Which tool next, or reply, on decisions it never saw. Its base model: 49.6%.' },
   { value: 91.8, decimals: 1, suffix: '%', label: 'Manu-S1, court orders', note: 'On 2,346 High Court orders it never saw.' },
@@ -305,24 +298,20 @@ export function LabPage() {
             decoding="async"
           />
           <div className="lab-closing__copy">
-            <p className="lab-kicker" data-reveal>Where to start</p>
-            <h2 id="lab-closing-title" data-reveal>Start with the one that fits you.</h2>
-            <ul className="lab-starts" data-reveal>
-              {STARTS.map((start) => (
-                <li key={start.action}>
-                  <SiteLink href={start.href}>
-                    <span>
-                      <small>{start.who}</small>
-                      {start.action}
-                    </span>
-                    <ArrowUpRight size={17} strokeWidth={1.8} aria-hidden="true" />
-                  </SiteLink>
-                </li>
-              ))}
-            </ul>
-            <p className="lab-closing__else" data-reveal>
-              Anything else: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+            <h2 id="lab-closing-title" data-reveal>Run our work on your own machine.</h2>
+            <p data-reveal>
+              The agents and the memory are open source, and both models are open weights. Try them, and tell us what
+              you find.
             </p>
+            <div className="lab-closing__actions" data-reveal>
+              <a className="lab-cta" href="https://github.com/Sankhya-AI" target="_blank" rel="noopener noreferrer">
+                Our code on GitHub
+                <ArrowUpRight size={16} strokeWidth={1.8} aria-hidden="true" />
+              </a>
+              <a className="lab-cta lab-cta--quiet" href={`mailto:${CONTACT_EMAIL}`}>
+                Write to the lab
+              </a>
+            </div>
           </div>
           </div>
         </section>

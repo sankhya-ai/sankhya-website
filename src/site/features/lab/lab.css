@@ -171,25 +171,23 @@ a.lab-grid__card:hover h3 svg { transform: translate(3px, -3px); }
 .lab-closing { padding: clamp(72px, 12svh, 120px) var(--lp-gutter) clamp(56px, 9svh, 96px); background: var(--lp-paper); }
 /* Contact: Bengaluru, whole (1672:941), under a faint grid, with the words on
    a card floating in the middle, as the products' panels do. */
-.lab-closing__frame { position: relative; display: grid; width: min(960px, 100%); margin: 0 auto; aspect-ratio: 1672 / 941; overflow: hidden; border-radius: 24px; place-items: center; box-shadow: 0 24px 60px -34px rgba(16, 41, 62, .45); }
-.lab-closing__painting { position: absolute; inset: 0; width: 100%; height: 100%; }
-.lab-closing__frame::before { position: absolute; z-index: 1; inset: 0; content: ''; pointer-events: none;
-  background-image: linear-gradient(rgba(255, 255, 255, .42) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .42) 1px, transparent 1px);
-  background-size: 10% 14.2857%; background-position: -1px -1px; }
-.lab-closing__copy { position: relative; z-index: 2; display: grid; width: min(460px, calc(100% - 48px)); justify-items: center; gap: 12px; border: 1px solid rgba(16, 41, 62, .14); padding: clamp(22px, 2.6vw, 34px) clamp(20px, 2.6vw, 36px); background: rgba(255, 253, 248, .94); box-shadow: 0 28px 80px rgba(20, 42, 50, .18); backdrop-filter: blur(5px); text-align: center; }
-.lab-closing h2 { font-size: clamp(30px, min(3.2vw, 6svh), 44px); }
-.lab-closing__copy > p:not(.lab-kicker) { max-width: 26em; color: var(--lp-ink-soft); font-size: clamp(14.5px, 1.1vw, 16px); line-height: 1.55; }
+.lab-closing__frame { position: relative; display: grid; width: min(1320px, 100%); margin: 0 auto; aspect-ratio: 1672 / 941; place-items: center; }
+/* Thinned to nothing on all four sides, as the Results painting is, so it is painted onto the page, not framed. */
+.lab-closing__painting { position: absolute; inset: 0; width: 100%; height: 100%;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 12%, #000 84%, transparent 100%);
+  -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 12%, #000 84%, transparent 100%); mask-composite: intersect; }
+.lab-closing__copy { position: relative; z-index: 2; display: grid; width: min(620px, calc(100% - 48px)); justify-items: center; gap: 16px; padding: 48px 56px; text-align: center; }
+/* A pale wash of paper behind the words, soft at its edge, in place of a card. */
+.lab-closing__copy::before { position: absolute; z-index: -1; inset: -12% -22%; border-radius: 50%; background: radial-gradient(closest-side, rgba(246, 244, 238, .95) 0%, rgba(246, 244, 238, .9) 55%, rgba(246, 244, 238, 0) 100%); filter: blur(6px); content: ''; }
+.lab-closing h2 { font-size: clamp(30px, min(3.2vw, 6svh), 46px); line-height: 1.1; }
+.lab-closing__copy > p { max-width: 30em; color: var(--lp-ink-soft); font-size: clamp(15px, 1.15vw, 17px); line-height: 1.6; }
+.lab-closing__actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px 22px; margin-top: 8px; }
+.lab-cta { display: inline-flex; align-items: center; gap: 10px; border-radius: 999px; padding: 13px 24px; background: var(--lp-indigo-deep); color: var(--lp-paper); font-size: 14.5px; font-weight: 560; letter-spacing: .01em; transition: background 200ms ease, gap 240ms var(--lp-ease); }
+.lab-cta:hover { gap: 14px; background: var(--lp-ink); }
+.lab-cta--quiet { padding: 13px 4px; background: none; color: var(--lp-ink); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--lp-ink) 30%, transparent); text-underline-offset: 5px; }
+.lab-cta--quiet:hover { background: none; color: var(--lp-accent); }
 .lab-mail { display: inline-flex; align-items: center; gap: 10px; margin-top: 6px; border-radius: 999px; padding: 12px 22px; background: var(--lp-indigo-deep); color: var(--lp-paper); font-size: 14px; font-weight: 560; letter-spacing: .02em; transition: background 200ms ease, gap 240ms var(--lp-ease); }
 .lab-mail:hover { gap: 14px; background: var(--lp-ink); }
-.lab-starts { display: grid; width: 100%; margin: 6px 0 0; padding: 0; list-style: none; text-align: left; }
-.lab-starts li + li { border-top: 1px solid var(--lp-line); }
-.lab-starts a { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 4px; color: var(--lp-ink); font-family: var(--font-display); font-size: clamp(18px, 1.5vw, 21px); transition: color 180ms ease, padding 240ms var(--lp-ease); }
-.lab-starts small { display: block; margin-bottom: 2px; color: var(--lp-ink-soft); font-family: var(--font-sans); font-size: 12.5px; letter-spacing: .02em; }
-.lab-starts svg { flex: none; color: var(--lp-accent); transition: transform 240ms var(--lp-ease); }
-.lab-starts a:hover { color: var(--lp-accent); padding-left: 8px; }
-.lab-starts a:hover svg { transform: translate(2px, -2px); }
-.lab-closing__else { margin-top: 4px; color: var(--lp-ink-soft); font-size: 13.5px; }
-.lab-closing__else a { color: var(--lp-ink); text-decoration: underline; text-decoration-color: var(--lp-line); text-underline-offset: 3px; }
 .lab-page :focus-visible { outline: 3px solid var(--lp-indigo); outline-offset: 4px; border-radius: 4px; }
 
 /* ── Scroll reveals: quiet, once, and only for those who allow motion ──── */
@@ -259,10 +257,11 @@ a.lab-grid__card:hover h3 svg { transform: translate(3px, -3px); }
   .lab-results__copy { max-width: none; padding-top: 0; }
   .lab-results__numbers { margin-top: 0; }
   .lab-closing { padding-top: 56px; padding-bottom: 56px; }
-  .lab-closing__frame { aspect-ratio: auto; padding: calc((100vw - 2 * var(--lp-gutter)) * 941 / 1672) 0 0; border-radius: 18px; background: var(--tone-blue); }
-  .lab-closing__painting { bottom: auto; height: auto; aspect-ratio: 1672 / 941; }
-  .lab-closing__frame::before { display: none; }
-  .lab-closing__copy { width: auto; margin: 12px; }
+  .lab-closing__frame { aspect-ratio: auto; padding-top: calc((100vw - 2 * var(--lp-gutter)) * 941 / 1672); }
+  .lab-closing__painting { bottom: auto; height: auto; aspect-ratio: 1672 / 941;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 76%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 76%, transparent 100%); }
+  .lab-closing__copy { width: auto; margin-top: -12px; padding: 0; }
+  .lab-closing__copy::before { display: none; }
 }
 @media (max-width: 520px) {
 }
