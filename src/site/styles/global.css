@@ -630,6 +630,11 @@ h5 { font-size: var(--type-h5); }
 .system-card__reveal .step-card__file-item, .system-card__reveal .step-card__path-node { padding: 7px 10px; margin-bottom: 6px; }
 .system-card__reveal .step-card__path-list { gap: 0; }
 .system-card__reveal .step-card__stat-callout { padding: 8px 12px; }
+/* A screen with no hover shows what hover would reveal. */
+@media (hover: none) {
+  .system-card__reveal { max-height: none; opacity: 1; transform: none; margin-top: 18px; }
+  .system-card:is(:hover, :focus-visible) > p, .system-card > p { max-height: none; opacity: 1; transform: none; }
+}
 @media (max-width: 1000px) {
   .system-section { height: auto; min-height: 0; padding: 360px 24px 52px; background: #edf1e8; }
   .system-section__painting { height: 430px; object-position: center top; }
@@ -1099,3 +1104,8 @@ span.brand > a:hover strong, span.brand > a.brand__by:hover { color: var(--ink);
 /* An outside link in the footer: the name, then a small arrow on its line. */
 .site-footer__out { display: inline-flex; align-items: center; gap: 4px; }
 .site-footer__out svg { flex: none; opacity: .6; transform: translateY(1px); }
+/* On a phone the nine products take the full width, in three columns of three, with Open and Company
+   side by side below them. */
+@media (max-width: 720px) {
+  .site-footer__top .site-footer__nav--two { grid-column: 1 / -1; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 11px 16px; }
+}

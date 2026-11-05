@@ -103,7 +103,7 @@ export function DheeRules() {
       <header className="dhee-section-head">
         <p className="dhee-kicker">How it remembers</p>
         <h2 id="dhee-rules-title">Five rules <em>it follows.</em></h2>
-        <p>The tutor’s memory runs by these. Watch what each one does to the same library.</p>
+        <p>The tutor’s memory runs by these. The picture shows them at work on one student’s library.</p>
       </header>
 
       <div className="dhee-rules__body">

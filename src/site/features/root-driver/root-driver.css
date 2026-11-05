@@ -67,3 +67,7 @@
   .rd-table__row--head { display: none; }
 }
 .rd-steps > li > div { min-width: 0; }
+/* On a phone a long command wraps inside its box, clear of the copy button, instead of running under it. */
+@media (max-width: 720px) {
+  .rd-code pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+}

@@ -15,7 +15,7 @@
 .s1-hero__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
 .s1-hero__facts { display: grid; width: var(--content); margin: 56px auto 0; padding: 0; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; list-style: none; }
 .s1-hero__facts li { border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 16px 18px; background: rgba(255,253,248,.72); color: var(--ink-soft); font-size: 13px; line-height: 1.4; backdrop-filter: blur(6px); }
-.s1-hero__facts b { display: block; margin-bottom: 4px; color: var(--ink); font-family: var(--font-display); font-size: 30px; font-weight: 300; letter-spacing: -.02em; }
+.s1-hero__facts b { display: block; margin-bottom: 4px; white-space: nowrap; font-size: clamp(24px, 7vw, 30px) !important; color: var(--ink); font-family: var(--font-display); font-size: 30px; font-weight: 300; letter-spacing: -.02em; }
 
 /* -- the live answer ------------------------------------------------------------------------------- */
 .s1-demo { margin: 0; border: 1px solid var(--line); border-radius: 26px; padding: 18px; background: var(--paper-strong); box-shadow: 0 40px 80px -46px rgba(43,32,25,.5); }
@@ -159,7 +159,7 @@
 .s1-band__copy .button-link { display: inline-flex; }
 .s1-band__stats { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
 .s1-band__stats li { display: grid; grid-template-columns: 140px minmax(0, 1fr); align-items: center; gap: 16px; border-radius: var(--radius-sm); padding: 16px 20px; background: var(--paper-strong); color: var(--ink-soft); font-size: 13.5px; line-height: 1.45; }
-.s1-band__stats b { display: inline-flex; align-items: center; gap: 4px; color: var(--ink); font-family: var(--font-display); font-size: 34px; font-weight: 300; letter-spacing: -.02em; }
+.s1-band__stats b { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; color: var(--ink); font-family: var(--font-display); font-size: 34px; font-weight: 300; letter-spacing: -.02em; }
 .s1-band__stats b svg { color: var(--orange-deep); }
 @media (max-width: 860px) {
   .s1-band__inner { grid-template-columns: 1fr; }
