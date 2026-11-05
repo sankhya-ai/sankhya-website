@@ -1,6 +1,6 @@
 # Sankhya AI Labs
 
-> Sankhya AI Labs (सांख्य) is an AI lab in India that builds AI from the model up: its own decision models (Tura-S1, Manu-S1), agent memory (Dhee) and agents (root, root-driver, Chamber), shipped as products: Tura, an AI tutor for students, and Manu, a case diary for Indian courts.
+> Sankhya AI Labs (सांख्य) is an AI lab in India that builds AI from the model up: its own decision models (Tura-S1, Manu-S1), agent memory (Dhee) and agents (root, root-driver, Chamber), shipped as products: Tura, an AI tutor for students; Manu, a case diary for Indian courts; and Skye, a software team you text.
 
 Contact: hello@sankhyaailabs.com. Code: https://github.com/Sankhya-AI and https://github.com/tura-learn. Models: https://huggingface.co/sankhya-aI.
 
@@ -8,6 +8,7 @@ Contact: hello@sankhyaailabs.com. Code: https://github.com/Sankhya-AI and https:
 
 - [Tura](https://www.turalearn.com/): an AI tutor for university students that teaches from their own notes, slides and textbooks, reads past exam papers to find which topics carry the marks, and sets practice questions and mock exams. Has its own llms.txt at https://www.turalearn.com/llms.txt.
 - [Manu](https://www.sankhyaailabs.com/manu): the case diary for Indian advocates, law firms and judges. Follow a case by its CNR; every morning Manu reads the court, notices what changed, reads each new order, and says what to do and by when, quoting the words it came from.
+- [Skye](https://skye.sankhyaailabs.com/): a software team you text. Send a goal on iMessage or Telegram; a team of coding agents plans it, builds it, reviews it and checks it on a cloud machine of your own, with your own Claude, then sends you the pull request. Or run it on your own computer. 7 days free.
 
 ## Models
 
