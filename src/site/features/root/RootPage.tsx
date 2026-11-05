@@ -61,7 +61,7 @@ const FEATURES: Feature[] = [
   },
   {
     kicker: 'Dhee',
-    title: 'Memory is the spine.',
+    title: 'It remembers your project.',
     copy: (
       <>
         Most coding agents remember through a Markdown file they append to. root was built on <a href="/dhee">Dhee</a> from
@@ -78,7 +78,7 @@ const FEATURES: Feature[] = [
     title: 'It gets better as you use it.',
     copy: (
       <>
-        After real work, root reviews what it did and turns it into a skill — a step-by-step playbook for next time — and
+        After real work, root reviews what it did and turns it into a skill (a step-by-step playbook for next time) and
         into memories. You keep what is worth keeping. Then it keeps score: every skill is measured on the turns that use
         it, a version that does worse than the one before is rolled back, and one that hurts is retired.
       </>
@@ -145,7 +145,7 @@ function Features() {
     ...FEATURES,
     {
       kicker: 'Models',
-      title: 'Your key. Any model.',
+      title: 'Your OpenRouter key, any model on it.',
       copy: (
         <>
           Paste an OpenRouter key and choose any model that can call tools: a frontier model for the hardest work, a fast,
@@ -188,7 +188,7 @@ function Also() {
     <section className="root-also" aria-labelledby="root-also-title">
       <header className="dhee-section-head">
         <p className="dhee-kicker">In the box</p>
-        <h2 id="root-also-title">Everything else <em>a coding agent needs.</em></h2>
+        <h2 id="root-also-title">The rest of <em>what it does.</em></h2>
       </header>
       <ul className="root-also__list">
         {ALSO.map(([title, copy]) => (
@@ -236,7 +236,7 @@ export function RootPage() {
         <section className="faq-section" id="questions">
           <header className="faq-section__heading">
             <p className="dhee-kicker">Questions</p>
-            <h2>What people ask first.</h2>
+            <h2>Before you download.</h2>
           </header>
           <div className="faq-section__list">
             {QUESTIONS.map(([question, answer]) => (
@@ -249,7 +249,7 @@ export function RootPage() {
         </section>
 
         <section className="chamber-closing">
-          <h2>Built for ourselves. <em>Free for you.</em></h2>
+          <h2>We use it every day. <em>It costs nothing.</em></h2>
           <p>Download root, paste your OpenRouter key, and give it something real.</p>
           <div className="dhee-closing__actions">
             <ButtonLink href={ROOT_DOWNLOAD} download>Download for Mac</ButtonLink>

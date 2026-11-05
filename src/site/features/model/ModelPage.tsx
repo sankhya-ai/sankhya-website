@@ -69,15 +69,15 @@ export function ModelPage() {
           <PaperThreads tone="paper" seed={31} strands={7} pins={4} band={[0.1, 0.9]} className="s1-hero__threads" />
           <div className="s1-hero__inner">
             <div className="s1-hero__copy">
-              <Eyebrow>Our first model · open weights</Eyebrow>
+              <Eyebrow>Court procedure · open weights</Eyebrow>
               <h1>
                 Manu-S1
-                <em>A court clerk’s instinct, in 64 milliseconds.</em>
+                <em>One procedural question, answered in 64 milliseconds.</em>
               </h1>
               <p>
                 A small AI model we trained ourselves. Give it a court record and one precise question: is this complaint
-                in time, what kind of order is this, which court should hear it. It answers in the blink of an eye, and
-                says how sure it is.
+                in time, what kind of order is this, which court should hear it. It picks an answer from a fixed list
+                and says how sure it is.
               </p>
               <div className="s1-hero__actions">
                 <ButtonLink href={HF_URL} tone="ink" target="_blank" rel="noreferrer">
@@ -298,7 +298,7 @@ export function ModelPage() {
             </h2>
             <p className="closing-section__proof">
               <span>
-                <Check size={15} aria-hidden="true" /> Measured against answers labelled by practising advocates, first.
+                <Check size={15} aria-hidden="true" /> Practising advocates will check its answers first.
               </span>
             </p>
             <div className="s1-close-actions">

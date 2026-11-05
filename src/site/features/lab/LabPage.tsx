@@ -47,7 +47,7 @@ const CHAPTERS: readonly Chapter[] = [
     tone: 'rose',
     plate: 'I',
     kicker: 'For people',
-    title: <>For the student with an exam, the advocate with a docket, <em>and the builder with a goal.</em></>,
+    title: <>Two you can use today, <em>one with a waitlist.</em></>,
     art: {
       src: '/art/lab/india-gate.webp',
       alt: 'Watercolour of India Gate at sunset under a saffron sun, with a faint AI chip and a bar chart drawn in the sky beside it',
@@ -55,8 +55,8 @@ const CHAPTERS: readonly Chapter[] = [
     },
     items: [
       { name: 'Manu', href: '/manu', line: 'A case diary for Indian courts. Give it a CNR; each morning it reads every new order and shows the words each line came from.' },
-      { name: 'Tura', href: TURA_URL, line: 'A tutor that teaches from your own lecture notes, in the shape your past papers ask.' },
-      { name: 'Skye', href: 'https://skye.sankhyaailabs.com', line: 'A software team you text. Send a goal on iMessage or Telegram; it plans, builds, reviews and sends the pull request.' },
+      { name: 'Tura', href: TURA_URL, line: 'A tutor for university exams. It reads your lecture notes and past papers, and teaches the topics that carry the marks first.' },
+      { name: 'Skye', href: 'https://skye.sankhyaailabs.com', line: 'Text it a coding task on iMessage or Telegram. A team of agents works on it on your own cloud machine and sends back a pull request.' },
     ],
   },
   {
@@ -64,16 +64,16 @@ const CHAPTERS: readonly Chapter[] = [
     tone: 'blue',
     plate: 'II',
     kicker: 'Agents',
-    title: <>Agents that use your Mac, <em>and ask your team.</em></>,
+    title: <>The agents our own team <em>works in every day.</em></>,
     art: {
       src: '/art/lab/sea-link.webp',
       alt: 'Watercolour of the Bandra–Worli Sea Link at dusk, a glass skyline beside it and translucent data panels showing a dotted map of India',
       caption: 'Bandra–Worli Sea Link, Mumbai',
     },
     items: [
-      { name: 'root', href: '/root', line: 'The coding agent our team works in. Any model, every turn undoable, free for the Mac.' },
+      { name: 'root', href: '/root', line: 'A coding agent for the Mac. Bring any model through OpenRouter, and undo any turn. Free.' },
       { name: 'root-driver', href: '/root-driver', line: 'Lets any agent use your Mac’s apps in the background, so the cursor stays yours.' },
-      { name: 'Chamber', href: 'https://chamber.sankhyaailabs.com', line: 'Your agent asks a teammate’s agent and gets the answer back. Open source.' },
+      { name: 'Chamber', href: 'https://chamber.sankhyaailabs.com', line: 'Your agent asks a teammate’s agent and gets the answer back, file attached. People can read every exchange.' },
     ],
   },
   {
@@ -81,16 +81,16 @@ const CHAPTERS: readonly Chapter[] = [
     tone: 'sage',
     plate: 'III',
     kicker: 'Memory and models',
-    title: <>Models that decide fast, <em>and a memory that keeps up.</em></>,
+    title: <>The models and memory <em>underneath.</em></>,
     art: {
       src: '/art/lab/taj-mahal.webp',
       alt: 'Watercolour of the Taj Mahal seen down its long reflecting pool, a thin line of data waves drifting across the sky',
       caption: 'The Taj Mahal, Agra',
     },
     items: [
-      { name: 'Dhee', href: '/dhee', line: 'What a student knows in Tura, what a codebase expects in root. Kept as typed facts, replaced when they change.' },
-      { name: 'Tura-S1', href: '/tura-s1', line: 'A 4B model that picks an agent’s next step in one forward pass. Open weights.' },
-      { name: 'Manu-S1', href: '/manu-s1', line: 'Court procedure, trained from Tura-S1. Open weights.' },
+      { name: 'Dhee', href: '/dhee', line: 'Memory for agents. When a fact changes, it replaces the old one instead of keeping both. Tura and root both use it.' },
+      { name: 'Tura-S1', href: '/tura-s1', line: 'A 4B model that picks an agent’s next step, a tool or a reply, in 178 ms. Open weights.' },
+      { name: 'Manu-S1', href: '/manu-s1', line: 'Tura-S1, trained further on Indian court procedure: is a filing in time, what kind of order is this. Open weights.' },
     ],
   },
 ];
@@ -248,35 +248,36 @@ export function LabPage() {
           <div className="lab-products__head">
             <p className="lab-kicker" data-reveal>What we make</p>
             <h2 id="lab-products-title" data-reveal>
-              Nine things, <em>one stack.</em>
+              What we’ve made <em>so far.</em>
             </h2>
-            <p data-reveal>Two products people use every day, the agents our own team works in, and the models and memory under all of them.</p>
+            <p data-reveal>Three products, three agents, and the models and memory they run on. Most of it is open source.</p>
           </div>
           <ProductPanels />
         </section>
 
         <section className="lab-results" id="results" aria-labelledby="lab-results-title">
-          <div className="lab-results__grid">
-            <div className="lab-results__card" data-reveal>
+          {/* The painting is the section: no frame, its edges thinned into the paper, the words on its sky and the
+              numbers resting on its foot. */}
+          <div className="lab-results__stage">
+            <img
+              className="lab-results__painting"
+              src="/art/lab/jantar-mantar.webp"
+              alt="Watercolour of the red sandstone instruments of Jantar Mantar among trees, the arcs and phases of the moon drawn faintly in the sky"
+              width="885"
+              height="441"
+              loading="lazy"
+              decoding="async"
+            />
+            <div className="lab-results__copy" data-reveal>
               <p className="lab-kicker">Results</p>
               <h2 id="lab-results-title">
-                Measured on work <em>the models never saw.</em>
+                How they score on work <em>they never trained on.</em>
               </h2>
               <p>
-                Every number is from a held-out set built from real work: agent decisions from Tura, orders from High
-                Courts, and the long-memory benchmark everyone uses.
+                Agent decisions from Tura, orders from High Courts, and LongMemEval, a public benchmark for long
+                memory. Each test set was kept out of training.
               </p>
             </div>
-            <figure className="lab-plate" data-reveal>
-              <img
-                src="/art/lab/jantar-mantar.webp"
-                alt="Watercolour of the red sandstone instruments of Jantar Mantar among trees, the arcs and phases of the moon drawn faintly in the sky"
-                width="885"
-                height="441"
-                loading="lazy"
-                decoding="async"
-              />
-            </figure>
           </div>
           <div className="lab-results__numbers" data-reveal>
             <MetricsRow metrics={METRICS} label="Sankhya's models and memory in numbers" />
@@ -298,8 +299,8 @@ export function LabPage() {
           />
           <div className="lab-closing__copy">
             <p className="lab-kicker" data-reveal>Contact</p>
-            <h2 id="lab-closing-title" data-reveal>Write to the lab.</h2>
-            <p data-reveal>About a model, a repository, or putting one of our products to work where you are.</p>
+            <h2 id="lab-closing-title" data-reveal>Email us.</h2>
+            <p data-reveal>A question about a model, a bug in the code, or running Tura or Manu at your college or firm.</p>
             <a className="lab-mail" href={`mailto:${CONTACT_EMAIL}`} data-reveal>
               {CONTACT_EMAIL}
               <ArrowUpRight size={16} strokeWidth={1.8} aria-hidden="true" />

@@ -36,7 +36,7 @@ export function ChamberHosting() {
     <section className="cx-pricing" id="self-host" aria-labelledby="cx-hosting-title">
       <header className="dhee-section-head">
         <p className="dhee-kicker">Run it yourself</p>
-        <h2 id="cx-hosting-title">Free, open source, <em>yours.</em></h2>
+        <h2 id="cx-hosting-title">Run the relay <em>wherever you like.</em></h2>
         <p>Your chamber’s relay runs where you choose. Wherever it runs, it only ever holds sealed messages.</p>
       </header>
       <div className="cx-plans" data-snap>

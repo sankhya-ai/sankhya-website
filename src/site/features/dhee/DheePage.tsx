@@ -60,8 +60,8 @@ export function DheePage() {
         <section className="dhee-closing">
           <img src="/art/learning-by-doing.webp" alt="" width="1536" height="1024" loading="lazy" decoding="async" />
           <div>
-            <h2>A good tutor remembers <em>you.</em></h2>
-            <p>Bring your notes and your papers. Dhee will remember the rest.</p>
+            <h2>See it fill in, <em>in Tura.</em></h2>
+            <p>Upload a lecture PDF, answer a few questions on it, and watch its rings fill in, one key point at a time.</p>
             <div className="dhee-closing__actions">
               <ButtonLink href={TURA_START}>Start learning in Tura</ButtonLink>
               <ButtonLink href={DHEE_GITHUB} tone="outline" target="_blank" rel="noopener noreferrer" className="dhee-github">

@@ -150,16 +150,18 @@ a.lab-grid__card:hover h3 svg { transform: translate(3px, -3px); }
 
 /* ── Results: a card beside a framed plate, the numbers under both ──────── */
 .lab-results { padding: clamp(96px, 15svh, 150px) var(--lp-gutter) clamp(72px, 11svh, 110px); background: var(--lp-paper); }
-.lab-results__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 8fr); gap: 14px; align-items: stretch; }
-.lab-results__card { display: grid; align-content: space-between; gap: 28px; border: 1px solid var(--lp-line); border-radius: 18px; padding: clamp(26px, 3vw, 40px); background: #fbf3e3; }
-.lab-results__card h2 { margin-top: 18px; font-size: clamp(30px, min(3.2vw, 5.6svh), 48px); }
-.lab-results__card > p:last-child { color: var(--lp-ink-soft); font-size: 15.5px; line-height: 1.6; }
-.lab-plate { display: grid; gap: 12px; border: 1px solid var(--lp-line); border-radius: 18px; padding: 12px 12px 14px; background: #fbf3e3; }
-.lab-plate { align-content: center; }
-.lab-plate img { border-radius: 10px; }
-.lab-results__numbers { margin-top: clamp(40px, 7svh, 72px); }
+/* The painting sits on the right at its own shape, thinned to nothing at its left and lower edges, so it reads
+   as painted onto the page; the words sit on its pale sky, the numbers on its foot. */
+.lab-results__stage { position: relative; display: grid; align-items: center; }
+.lab-page .lab-results__painting { grid-area: 1 / 1; justify-self: end; width: min(1040px, 74%); height: auto; aspect-ratio: 885 / 441;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 22%, #000 97%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 7%, #000 74%, transparent 100%);
+  -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent 0%, #000 22%, #000 97%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 7%, #000 74%, transparent 100%); mask-composite: intersect; }
+.lab-results__copy { position: relative; z-index: 2; grid-area: 1 / 1; display: grid; gap: 18px; max-width: 440px; align-self: start; padding-top: clamp(8px, 4%, 40px); }
+.lab-results__copy h2 { font-size: clamp(30px, min(3vw, 5.4svh), 46px); }
+.lab-results__copy > p:last-child { max-width: 30em; color: var(--lp-ink-soft); font-size: 15.5px; line-height: 1.6; }
+.lab-results__numbers { position: relative; z-index: 2; margin-top: clamp(-44px, -3vw, -20px); }
 .lab-results .metrics-row { width: 100%; margin: 0; padding: 0; }
-.lab-results .metrics-row dl { border-top-color: var(--lp-ink); }
+.lab-results .metrics-row dl { border-top-color: color-mix(in srgb, var(--lp-ink) 22%, transparent); }
 .lab-results .metrics-row dt { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
 .lab-results .metrics-row__item { padding-top: clamp(16px, 3svh, 28px); }
 .lab-results .metrics-row dd strong { background: linear-gradient(100deg, var(--lp-indigo-deep) 15%, var(--tone-rose-ink) 95%); -webkit-background-clip: text; background-clip: text; font-size: clamp(2.6rem, min(4.4vw, 8svh), 4.4rem); font-weight: 300; }
@@ -185,7 +187,6 @@ a.lab-grid__card:hover h3 svg { transform: translate(3px, -3px); }
 @media (prefers-reduced-motion: no-preference) {
   .lab-page.is-armed [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity 900ms var(--lp-ease), transform 900ms var(--lp-ease); }
   .lab-page.is-armed [data-reveal].is-in { opacity: 1; transform: none; }
-  .lab-page.is-armed .lab-plate[data-reveal] { transition-delay: 120ms; }
   /* The hero arrives on its own, slowly, as paper takes a wash. */
   .lab-hero__art img { animation: lab-settle 2200ms var(--lp-ease) both; }
   .lab-hero__copy > * { animation: lab-rise 1100ms var(--lp-ease) both; }
@@ -243,7 +244,11 @@ a.lab-grid__card:hover h3 svg { transform: translate(3px, -3px); }
   .lab-panel__head { max-width: none; }
   .lab-panel__cards { grid-template-columns: 1fr; }
   .lab-results { padding-top: 72px; }
-  .lab-results__grid { grid-template-columns: 1fr; }
+  .lab-results__stage { display: flex; flex-direction: column-reverse; gap: 8px; }
+  .lab-page .lab-results__painting { width: calc(100% + 2 * var(--lp-gutter)); max-width: none; margin: 0 calc(-1 * var(--lp-gutter));
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 78%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 78%, transparent 100%); }
+  .lab-results__copy { max-width: none; padding-top: 0; }
+  .lab-results__numbers { margin-top: 0; }
   .lab-closing { padding-top: 56px; padding-bottom: 56px; }
   .lab-closing__frame { aspect-ratio: auto; padding: calc((100vw - 2 * var(--lp-gutter)) * 941 / 1672) 0 0; border-radius: 18px; background: var(--tone-blue); }
   .lab-closing__painting { bottom: auto; height: auto; aspect-ratio: 1672 / 941; }
@@ -257,8 +262,6 @@ a.lab-grid__card:hover h3 svg { transform: translate(3px, -3px); }
 
 
 .lab-results { --lp-accent: var(--tone-rose-ink); --lp-accent-dot: #dba593; }
-.lab-results__card { background: var(--tone-rose); border-color: color-mix(in srgb, var(--tone-rose-ink) 20%, transparent); }
-.lab-plate { background: var(--tone-sand); border-color: color-mix(in srgb, var(--tone-sand-ink) 20%, transparent); }
 .lab-results .metrics-row dd strong { background: linear-gradient(100deg, var(--tone-blue-ink) 10%, var(--tone-rose-ink) 95%); -webkit-background-clip: text; background-clip: text; }
 
 .lab-closing { --lp-accent: var(--tone-blue-ink); }

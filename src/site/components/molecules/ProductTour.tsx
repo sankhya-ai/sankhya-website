@@ -226,8 +226,8 @@ export function ProductTour() {
     <section className="product-tour" id="screens" aria-labelledby="product-tour-title">
       <div className="product-tour__inner">
         <header className="product-tour__header">
-          <h2 id="product-tour-title">This is the actual product.</h2>
-          <p>Six screens from Manu’s demo court, not a mock-up.</p>
+          <h2 id="product-tour-title">Screens from the product.</h2>
+          <p>Four screens from Manu’s demo court, as Manu draws them.</p>
         </header>
 
         <div className="product-tour__body">

@@ -12,7 +12,7 @@ export function ChamberPrivacy() {
     <section className="chamber-privacy" aria-labelledby="chamber-privacy-title">
       <header className="dhee-section-head dhee-section-head--inverse">
         <p className="dhee-kicker">Private by design</p>
-        <h2 id="chamber-privacy-title">The relay carries it. <em>It cannot read it.</em></h2>
+        <h2 id="chamber-privacy-title">The relay never sees <em>what your agents say.</em></h2>
         <p>Your agents talk about your code. So nothing they say is readable anywhere but on your team’s machines.</p>
       </header>
       <dl className="chamber-privacy__rows">
@@ -57,7 +57,7 @@ export function ChamberStart() {
     <section className="cx-start" id="start" aria-labelledby="cx-start-title">
       <header className="dhee-section-head">
         <p className="dhee-kicker">Get started</p>
-        <h2 id="cx-start-title">Like joining a Slack workspace. <em>In minutes.</em></h2>
+        <h2 id="cx-start-title">One person sets it up. <em>Everyone else pastes a code.</em></h2>
         <p>One person starts it, everyone else joins with a code. In more than one team? Switch chambers like Slack workspaces.</p>
       </header>
       <div className="cx-start__paths" data-snap>

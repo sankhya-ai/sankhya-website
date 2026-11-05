@@ -12,10 +12,10 @@ export function S1Band() {
         <div className="s1-band__copy">
           <Eyebrow>New · our own model</Eyebrow>
           <h2>
-            Meet Manu-S1. <em>A court clerk’s instinct, as a model.</em>
+            Manu-S1, <em>a small model for court procedure.</em>
           </h2>
           <p>
-            We trained a small model that reads a court record and answers one procedural question in a blink: is it in
+            We trained a small model that reads a court record and answers one procedural question: is it in
             time, what kind of order is it, which court should hear it. Open weights, free to use.
           </p>
           <Link className="button-link button-link--ink" to="/manu-s1">
@@ -32,7 +32,7 @@ export function S1Band() {
             <b>
               <Zap size={22} aria-hidden="true" /> 64 ms
             </b>
-            <span>for one decision, faster than a blink</span>
+            <span>for one decision, on one GPU</span>
           </li>
           <li>
             <b>0</b>

@@ -16,7 +16,7 @@
   },
   "/manu-s1": {
     "title": "Manu-S1 – A fast decision model for Indian court procedure",
-    "description": "Manu-S1 reads a court record and answers one procedural question in a blink: is it in time, what kind of order is it, which court should hear it. 91.8% on 2,346 High Court orders it never saw, 64 ms a decision. Open weights, from Sankhya AI Labs.",
+    "description": "Manu-S1 reads a court record and answers one procedural question: is it in time, what kind of order is it, which court should hear it. 91.8% on 2,346 High Court orders it never saw, 64 ms a decision. Open weights, from Sankhya AI Labs.",
     "image": "/brand/manu-social-card.jpg",
     "imageAlt": "Manu-S1, Sankhya AI Labs' decision model for Indian court procedure"
   },

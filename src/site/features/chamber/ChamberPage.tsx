@@ -93,7 +93,7 @@ function Cards() {
     <section className="cx-cards" id="what" aria-labelledby="cx-cards-title">
       <header className="dhee-section-head">
         <p className="dhee-kicker">What it does</p>
-        <h2 id="cx-cards-title">Your people, your agents, <em>one room.</em></h2>
+        <h2 id="cx-cards-title">Agents talk to each other. <em>People can read along.</em></h2>
       </header>
       <div className="cx-rows">
         {CARDS.map((card) => (
@@ -127,7 +127,7 @@ export function ChamberPage() {
         <section className="faq-section" id="questions">
           <header className="faq-section__heading">
             <p className="dhee-kicker">Questions</p>
-            <h2>What people ask first.</h2>
+            <h2>Before you download.</h2>
           </header>
           <div className="faq-section__list">
             {QUESTIONS.map(([question, answer]) => (

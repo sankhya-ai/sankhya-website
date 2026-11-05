@@ -177,7 +177,7 @@ export function TuraS1Page() {
         </section>
 
         <section className="chamber-closing">
-          <h2>Open weights. <em>Built for agents.</em></h2>
+          <h2>The weights <em>are yours to run.</em></h2>
           <p>Tura-S1-4B is free to use, change and ship, under Apache-2.0.</p>
           <div className="dhee-closing__actions">
             <ButtonLink href={S1_HF} target="_blank" rel="noopener noreferrer">Get it on Hugging Face</ButtonLink>

@@ -137,7 +137,7 @@ export function MarketingPage() {
           <div className="system-section__grid">
             <header className="system-section__intro">
               <Eyebrow>How it works</Eyebrow>
-              <h2>Three steps. Then the diary keeps itself.</h2>
+              <h2>Add a case once. Manu reads it every morning.</h2>
               <p>
                 Following a case takes its CNR. After that it is one screen: what is listed today, and what needs
                 you.
@@ -273,7 +273,7 @@ export function MarketingPage() {
           <PaperGround tile="scales" />
           <div className="paper-section__inner">
             <div className="paper-section__copy">
-              <Eyebrow>Liberty, for everyone</Eyebrow>
+              <Eyebrow>Bail and custody</Eyebrow>
               <h2>
                 The custody arithmetic, with its working.
                 <em>The decision stays with the court.</em>
@@ -301,7 +301,7 @@ export function MarketingPage() {
           <header className="about-precepts__head">
             <Eyebrow>What Manu will not do</Eyebrow>
             <h2>
-              Manu prepares. <em>People act.</em>
+              Manu never acts <em>on your behalf.</em>
             </h2>
           </header>
           <div className="about-precepts__grid">
@@ -329,7 +329,7 @@ export function MarketingPage() {
           <div className="faq-section">
             <header className="faq-section__heading">
               <Eyebrow>Questions</Eyebrow>
-              <h2>Everything you need to know.</h2>
+              <h2>Before you join.</h2>
             </header>
             <div className="faq-section__list">
               {QUESTIONS.map((item) => (
@@ -349,12 +349,12 @@ export function MarketingPage() {
           <div>
             <Eyebrow inverse>Start with one case</Eyebrow>
             <h2>
-              Your CNR,
+              Paste one CNR
               <br />
-              and about a minute.
+              tonight.
             </h2>
             <p className="closing-section__proof">
-              <span><CalendarClock size={15} aria-hidden="true" /> Tomorrow morning, the diary is already read.</span>
+              <span><CalendarClock size={15} aria-hidden="true" /> By morning, Manu has read the court for it.</span>
               <span><CheckCircle2 size={15} aria-hidden="true" /> Every line with its source.</span>
             </p>
             <WaitlistButton tone="paper" />

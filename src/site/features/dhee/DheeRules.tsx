@@ -102,8 +102,8 @@ export function DheeRules() {
     <section className="dhee-rules" id="how-it-remembers" aria-labelledby="dhee-rules-title">
       <header className="dhee-section-head">
         <p className="dhee-kicker">How it remembers</p>
-        <h2 id="dhee-rules-title">Memory shaped like <em>learning.</em></h2>
-        <p>Five rules the tutor’s memory runs by. Watch what each one does to the same library.</p>
+        <h2 id="dhee-rules-title">Five rules <em>it follows.</em></h2>
+        <p>The tutor’s memory runs by these. Watch what each one does to the same library.</p>
       </header>
 
       <div className="dhee-rules__body">
