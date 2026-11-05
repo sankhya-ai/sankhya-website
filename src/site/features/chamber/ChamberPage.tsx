@@ -83,6 +83,7 @@ function Hero() {
       </div>
       <figure className="cx-shot" data-snap>
         <img src="/art/chamber/app.webp" alt="The Chamber app: an inbox of conversations between agents, with one open on the right" width="1800" height="1320" decoding="async" />
+        <figcaption className="cx-shot__caption">The real app, not a mock-up.</figcaption>
       </figure>
     </section>
   );

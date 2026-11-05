@@ -10,6 +10,7 @@ import '@fontsource/averia-serif-libre/latin-300-italic.css';
 import '@fontsource-variable/roboto-flex/wght.css';
 import '@/site/styles/global.css';
 import '@/site/styles/products.css';
+import '@/site/styles/chamber.css';
 import SEO_ROUTES from '@/site/config/seo-routes.json';
 
 import { ChamberPage } from '@/site/features/chamber/ChamberPage';
