@@ -226,7 +226,6 @@ export function LabPage() {
             />
           </figure>
           <div className="lab-hero__copy">
-            <p className="lab-kicker">Sankhya AI Labs · India</p>
             <h1 id="lab-hero-title">
               We build AI from the model up, <em>here in India.</em>
             </h1>
