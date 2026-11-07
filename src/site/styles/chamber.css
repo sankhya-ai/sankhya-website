@@ -1,0 +1,169 @@
+/* ==========================================================================
+   Chamber's own site (chamber.sankhyaailabs.com) — redesign, Nov 2026.
+
+   One palette idea, everywhere on the page: two neutrals do the work
+   (warm paper + deep ink) and ONE bright accent — signal orange — is spent
+   only where the eye should land: the brand dot, the kickers, the primary
+   button, the card numbers, the final band. Roughly 60 / 30 / 10.
+
+   Every rule is scoped under .chamber-page so the lab's other product
+   pages, which share these class names, keep their own look.
+   ========================================================================== */
+
+.chamber-page {
+  --cx-accent: #ff4d00;
+  /* Small text on paper (4.93:1) and hover/open states. */
+  --cx-accent-deep: #c23e00;
+  /* Text on accent fills (4.77:1). */
+  --cx-onaccent: #142430;
+  /* Small text on the ink panel (4.82:1). */
+  --cx-accent-ondark: #ff5c14;
+  --cx-accent-soft: rgba(255, 77, 0, .1);
+  --cx-accent-line: rgba(255, 77, 0, .45);
+  background: #faf7f0;
+}
+
+.chamber-page ::selection { background: rgba(255, 77, 0, .22); color: var(--ink); }
+
+/* The accent, as italic emphasis, replaces the lab's blue on this page. */
+.chamber-page em { color: var(--cx-accent); }
+.chamber-page .cx-hero h1 em { color: var(--cx-accent); }
+
+/* ----- Kickers: ink words, one accent mark. ----- */
+.chamber-page .dhee-kicker { color: var(--ink); }
+.chamber-page .dhee-kicker::before { width: 18px; height: 2px; background: var(--cx-accent); }
+.chamber-page .dhee-section-head--inverse .dhee-kicker { color: var(--cx-accent-ondark); }
+
+/* ----- Header pill. ----- */
+.chamber-page .cx-nav { background: rgba(255, 253, 248, .88); }
+.chamber-page .cx-nav__brand span { background: var(--cx-accent); }
+.chamber-page .cx-nav nav a:hover { color: var(--cx-accent-deep); }
+.chamber-page .cx-nav__cta {
+  background: var(--cx-accent);
+  color: var(--cx-onaccent);
+  font-weight: 650;
+  transition: background 180ms ease, transform 180ms ease;
+}
+.chamber-page .cx-nav__cta:hover { transform: translateY(-1px); box-shadow: 0 6px 18px -8px rgba(194, 62, 0, .7); }
+
+/* ----- Hero. ----- */
+.chamber-page .cx-hero { position: relative; }
+.chamber-page .cx-hero::before {
+  position: absolute;
+  top: 16%;
+  left: 50%;
+  z-index: 0;
+  width: 70vw;
+  height: 44vw;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 77, 0, .14), transparent 72%);
+  content: '';
+  filter: blur(46px);
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+.chamber-page .cx-hero__copy { position: relative; z-index: 1; }
+.chamber-page .dhee-hero__eyebrow span { border-color: var(--cx-accent); box-shadow: 0 0 0 3px rgba(255, 77, 0, .16); }
+
+.chamber-page .cx-hero h1 em {
+  padding-bottom: .1em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M3 9 C 22 3, 42 11, 62 6 S 102 3, 117 7' fill='none' stroke='%23ff4d00' stroke-width='4.5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat 0 100% / 100% .16em;
+}
+
+/* The primary action is the one bright fill on a paper page. */
+.chamber-page .cx-hero .button-link--ink { background: var(--cx-accent); color: var(--cx-onaccent); }
+.chamber-page .cx-hero .button-link--ink:hover { box-shadow: 0 8px 22px -8px rgba(194, 62, 0, .65); }
+.chamber-page .cx-hero .button-link--outline:hover { border-color: var(--cx-accent-line); background: var(--paper-strong); }
+
+.chamber-page .chamber-platforms a {
+  color: var(--ink);
+  text-decoration-color: var(--cx-accent);
+  text-decoration-thickness: 1.5px;
+}
+.chamber-page .chamber-platforms a:hover { color: var(--cx-accent-deep); }
+
+/* The real app, framed like the product it is. */
+.chamber-page .cx-shot { border-color: var(--line-strong); background: var(--paper-strong); }
+.chamber-page .cx-shot__caption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+  padding: 10px 8px 4px;
+  color: var(--ink-faint);
+  font-size: 12.5px;
+}
+.chamber-page .cx-shot__caption::before { color: var(--cx-accent); content: '*'; font-size: 15px; line-height: 1; }
+
+/* ----- What it does: numbered rows. ----- */
+.chamber-page .cx-rows { counter-reset: cxcard; }
+.chamber-page .cx-row { counter-increment: cxcard; transition: border-color 200ms ease; }
+.chamber-page .cx-row:hover { border-color: var(--cx-accent-line); }
+.chamber-page .cx-row__copy::before {
+  display: block;
+  margin-bottom: 16px;
+  color: var(--cx-accent-deep);
+  content: '0' counter(cxcard);
+  font: 700 12px/1 'Manu Pixel', monospace;
+  letter-spacing: .18em;
+}
+.chamber-page .cx-cards__works::before { color: var(--cx-accent); content: '* '; }
+
+/* ----- Get started: accent step numbers. ----- */
+.chamber-page .cx-path { transition: border-color 200ms ease; }
+.chamber-page .cx-path:hover { border-color: var(--cx-accent-line); }
+.chamber-page .cx-path ol li::marker { color: var(--cx-accent); font-weight: 700; }
+
+/* ----- Where it runs. ----- */
+.chamber-page .cx-plan li::before { background: var(--cx-accent); }
+.chamber-page .cx-plan .button-link--ink { background: var(--cx-accent); color: var(--cx-onaccent); }
+.chamber-page .cx-plan .button-link--ink:hover { box-shadow: 0 8px 22px -8px rgba(194, 62, 0, .65); }
+
+/* ----- Private by design: ink panel, accent voice. ----- */
+.chamber-page .chamber-privacy em { color: var(--cx-accent); }
+.chamber-page .chamber-privacy__rows dt { position: relative; padding-left: 22px; }
+.chamber-page .chamber-privacy__rows dt::before {
+  position: absolute;
+  top: .48em;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--cx-accent);
+  content: '';
+}
+
+/* ----- Questions. ----- */
+.chamber-page .faq-section summary { transition: color 160ms ease; }
+.chamber-page .faq-section summary:hover { color: var(--cx-accent-deep); }
+.chamber-page .faq-section summary i { color: var(--cx-accent); }
+.chamber-page .faq-section details[open] summary { color: var(--cx-accent-deep); }
+
+/* ----- The close: the accent, spent all at once. ----- */
+.chamber-page .chamber-closing {
+  background: var(--cx-accent);
+  color: var(--ink);
+}
+.chamber-page .chamber-closing h2 { color: var(--cx-onaccent); }
+.chamber-page .chamber-closing h2 em { color: var(--cx-onaccent); }
+.chamber-page .chamber-closing p { color: var(--cx-onaccent); }
+.chamber-page .chamber-closing .button-link--ink { background: var(--ink); color: var(--paper-strong); }
+.chamber-page .chamber-closing .button-link--ink:hover { background: #284453; }
+.chamber-page .chamber-closing .button-link--outline {
+  border-color: rgba(20, 36, 48, .55);
+  background: transparent;
+  color: var(--cx-onaccent);
+  backdrop-filter: none;
+}
+.chamber-page .chamber-closing .button-link--outline:hover { background: rgba(255, 253, 248, .28); }
+
+/* ----- Footer. ----- */
+.chamber-page .cx-foot a:hover { color: var(--cx-accent-deep); }
+
+/* The onboarding dialogs sit mid-image; center the crop so they show. */
+.chamber-page .cx-path img { object-position: center; }
+
+/* Keyboard focus: one bright ring, same accent. */
+.chamber-page :focus-visible { outline: 2px solid var(--cx-accent-deep); outline-offset: 3px; border-radius: 4px; }
+.chamber-page .cx-nav__cta:focus-visible, .chamber-page .chamber-closing :focus-visible { outline-color: var(--cx-onaccent); }
