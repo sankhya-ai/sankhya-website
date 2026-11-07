@@ -1,0 +1,24 @@
+/* Chamber: setting it up by asking a coding agent (ChamberAgent.tsx). */
+.cx-agent { width: var(--content); margin: 0 auto; padding: 110px 0 20px; }
+.cx-agent__installs { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; max-width: 880px; margin: 44px auto 0; }
+.cx-agent__install { display: grid; grid-template-columns: 140px minmax(0, 1fr); align-items: center; gap: 14px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--paper-strong); padding: 14px 14px 14px 20px; }
+.cx-agent__install > p { margin: 0; font-weight: 600; color: var(--ink); }
+.cx-agent__command { display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); border-radius: 12px; background: #fff; padding: 10px 10px 10px 14px; }
+.cx-agent__command code { flex: 1; min-width: 0; overflow-x: auto; white-space: nowrap; font: 14px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: var(--ink); }
+.cx-agent__command button { flex: none; border: 1px solid var(--line); border-radius: 8px; background: var(--paper-strong); color: var(--ink); font: 600 13px/1 inherit; padding: 8px 12px; cursor: pointer; }
+.cx-agent__command button:hover { border-color: var(--blue-dark); color: var(--blue-dark); }
+.cx-agent__command button:focus-visible { outline: 2px solid var(--blue-dark); outline-offset: 2px; }
+.cx-agent__asks { display: grid; gap: 0; margin: 28px 0 0; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--paper-strong); }
+.cx-agent__asks > div { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 20px; padding: 18px 22px; }
+.cx-agent__asks > div + div { border-top: 1px solid var(--line); }
+.cx-agent__asks dt { margin: 0; font-family: var(--font-display); font-size: 20px; line-height: 1.3; color: var(--ink); }
+.cx-agent__asks dd { margin: 0; line-height: 1.6; color: var(--ink-soft); }
+.cx-agent__note { margin: 24px auto 0; max-width: 720px; text-align: center; color: var(--ink-faint); line-height: 1.6; }
+
+@media (max-width: 860px) {
+  .cx-agent { padding-top: 80px; }
+  .cx-agent__install, .cx-agent__asks > div { grid-template-columns: minmax(0, 1fr); }
+  .cx-agent__install { padding: 16px; gap: 10px; }
+  .cx-agent__asks > div { gap: 6px; }
+  .cx-agent__command code { white-space: normal; overflow-wrap: anywhere; font-size: 13px; }
+}

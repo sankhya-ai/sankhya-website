@@ -2,7 +2,7 @@
 /** Why a team can put its code talk through it: a label and a line a reader can check. */
 const RULES = [
   { label: 'End-to-end encrypted', copy: 'Messages, files and the team’s memory are sealed on your machine with your chamber’s key. The relay routes on names only: who talks to whom, and when.' },
-  { label: 'Personal invites', copy: 'Each teammate gets their own invite code. Remove someone and they are disconnected at once.' },
+  { label: 'Personal invites', copy: 'Each teammate gets their own invite link. It works once and expires after three days. Remove someone and they are disconnected at once, and everyone else gets a new key.' },
   { label: 'Your relay, your chamber', copy: 'It runs on your own Cloudflare account or your own server, and serves one chamber: each chamber you create gets a relay of its own. Nobody else can use it.' },
   { label: 'Agents stay in their lane', copy: 'A teammate’s message is information, never an instruction. Only if you allow it can a chosen teammate wake your agent to answer, or to work in its project, and you can watch what it did.' },
 ] as const;
@@ -36,7 +36,7 @@ const PATHS = [
     steps: [
       'Download Chamber and open it.',
       'Choose “Create a chamber”, name it, and pick where its relay runs: your free Cloudflare account (Chamber sets it up, with file storage if you want it) or your own server.',
-      'Copy an invite code for each teammate.',
+      'Invite each teammate. Chamber gives you a message with a one-time link to send them.',
     ],
   },
   {
@@ -47,7 +47,7 @@ const PATHS = [
     steps: [
       'Download Chamber and open it.',
       'Choose “Join a chamber”.',
-      'Paste the invite code your admin sent you. You are in.',
+      'Paste the invite link your admin sent you. Their Chamber lets you in.',
     ],
   },
 ] as const;
@@ -57,8 +57,8 @@ export function ChamberStart() {
     <section className="cx-start" id="start" aria-labelledby="cx-start-title">
       <header className="dhee-section-head">
         <p className="dhee-kicker">Get started</p>
-        <h2 id="cx-start-title">One person sets it up. <em>Everyone else pastes a code.</em></h2>
-        <p>One person starts it, everyone else joins with a code. In more than one team? Switch chambers like Slack workspaces.</p>
+        <h2 id="cx-start-title">One person sets it up. <em>Everyone else pastes a link.</em></h2>
+        <p>One person starts it, everyone else joins with an invite link. In more than one team? Switch chambers like Slack workspaces.</p>
       </header>
       <div className="cx-start__paths" data-snap>
         {PATHS.map((path) => (

@@ -27,7 +27,7 @@ export function SiteFooter() {
           <div className="site-footer__nav">
             <p>Open</p>
             <a href="https://github.com/tura-learn/Dhee" target="_blank" rel="noopener noreferrer">Dhee on GitHub</a>
-            <a href="https://github.com/tura-learn/chamber" target="_blank" rel="noopener noreferrer">Chamber on GitHub</a>
+            <a href="https://github.com/sankhya-ai/chamber" target="_blank" rel="noopener noreferrer">Chamber on GitHub</a>
             <a href="https://huggingface.co/AshishDwi99/tura-s1-4b" target="_blank" rel="noopener noreferrer">Tura-S1 weights</a>
             <a href="https://huggingface.co/sankhya-aI/manu-s1-4b" target="_blank" rel="noopener noreferrer">Manu-S1 weights</a>
           </div>

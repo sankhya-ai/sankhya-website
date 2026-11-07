@@ -67,7 +67,7 @@ const ENTITY = {
   '/manu-s1': code('Manu-S1', routes['/manu-s1'].description, `${SITE}/manu-s1`, 'https://huggingface.co/sankhya-aI/manu-s1-4b'),
   '/root': macApp('root', routes['/root'].description, `${SITE}/root`),
   '/root-driver': code('root-driver', routes['/root-driver'].description, `${SITE}/root-driver`, 'https://github.com/tura-learn/root-driver', { programmingLanguage: 'Swift', runtimePlatform: 'macOS' }),
-  '/chamber': macApp('Chamber', routes['/chamber'].description, CHAMBER, { sameAs: 'https://github.com/tura-learn/chamber', license: 'https://www.apache.org/licenses/LICENSE-2.0' }),
+  '/chamber': macApp('Chamber', routes['/chamber'].description, CHAMBER, { sameAs: 'https://github.com/sankhya-ai/chamber', license: 'https://www.apache.org/licenses/LICENSE-2.0' }),
   '/dhee': code('Dhee', routes['/dhee'].description, `${SITE}/dhee`, 'https://github.com/tura-learn/Dhee', { programmingLanguage: 'Python' }),
   '/privacy': { '@type': 'WebPage', name: routes['/privacy'].title, description: routes['/privacy'].description, url: `${SITE}/privacy`, about: { '@id': `${SITE}/#org` }, isPartOf: { '@id': `${SITE}/#site` } },
   '/tura-s1': code('Tura-S1-4B', routes['/tura-s1'].description, `${SITE}/tura-s1`, 'https://huggingface.co/AshishDwi99/tura-s1-4b', { license: 'https://www.apache.org/licenses/LICENSE-2.0' }),
