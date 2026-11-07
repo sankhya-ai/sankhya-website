@@ -9,7 +9,8 @@ import './chamber-agent.css';
  */
 const INSTALLS = [
   { agent: 'Claude Code', command: '/plugin install chamber --marketplace sankhya-ai/chamber' },
-  { agent: 'Codex and others', command: 'npx skills add sankhya-ai/chamber' },
+  { agent: 'Codex', command: 'codex plugin marketplace add sankhya-ai/chamber && codex plugin add chamber@chamber' },
+  { agent: 'Cursor and others', command: 'npx skills add sankhya-ai/chamber' },
 ] as const;
 
 const ASKS = [
